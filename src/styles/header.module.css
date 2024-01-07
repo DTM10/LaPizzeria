@@ -1,0 +1,76 @@
+.header {
+	background-color: var(--background-color);
+}
+
+.customBrand {
+	margin: 0 !important;
+	width: 20%;
+	min-width: 100px;
+}
+
+.logo {
+	padding: 1vw;
+	width: 100%;
+	height: auto;
+}
+
+.customToggle {
+	border-color: var(--text-color) !important;
+	width: 8vw;
+	height: 8vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+}
+
+.linksContainer {
+	align-items: center !important;
+}
+
+.togglerIcon {
+	color: var(--text-color);
+	width: 7vw !important;
+	min-width: 38px !important;
+	height: auto !important;
+	margin: 0 !important;
+}
+
+.navLink {
+	/* font-family: var(--regular-font) !important; */
+	font-size: 1.9vw !important;
+	font-weight: 700 !important;
+	color: var(--text-color) !important;
+	padding-left: 2vw !important;
+	padding-right: 2vw !important;
+	text-align: right;
+}
+
+.link {
+	text-decoration: none;
+	color: var(--text-color) !important;
+	font-family: var(--regular-font) !important;
+	font-size: 1.9vw !important;
+	font-weight: 700 !important;
+	padding-left: 2vw !important;
+	padding-right: 2vw !important;
+	text-align: right;
+}
+
+.cartIcon {
+	color: var(--cart-color);
+	width: 2.2vw;
+	height: auto;
+	padding-left: 2vw;
+}
+
+@media (max-width: 991px) {
+	.navLink {
+		font-size: 25px !important;
+	}
+
+	.cartIcon {
+		width: 30px;
+		height: auto;
+	}
+}

@@ -1,0 +1,41 @@
+.home {
+	color: var(--text-color);
+	background-image: url('../images/background.png'); /* Adjust path if necessary */
+	background-size: cover; /* Cover the entire area of .home */
+	background-position: center; /* Center the background image */
+	min-height: 100vh; /* Optional: make the div at least as tall as the viewport */
+	position: relative;
+	/* z-index: -1; */
+}
+
+.imgContainer {
+	position: relative;
+}
+
+.img {
+	width: 22%;
+	height: auto;
+	position: absolute;
+	top: 45%;
+	left: 70%;
+	transform: translate(-20%, 5%);
+}
+
+@media (max-width: 991px) {
+	.img {
+		width: 30%;
+		top: 45%;
+		left: 70%;
+		transform: translate(-25%, 10%);
+	}
+}
+
+@media (max-width: 576px) {
+	.img {
+		width: 35%;
+		min-width: 120px;
+		top: 45%;
+		left: 60%;
+		transform: translate(-25%, 10%);
+	}
+}

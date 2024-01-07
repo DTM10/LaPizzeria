@@ -1,38 +1,48 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Merriweather+Sans:wght@400;700&display=swap');
+:root {
+	/* --background-color: #e8c996; */
+	--background-color: rgba(232, 201, 150, 0.8);
+	--card-btn-background-color: #f5efdb;
+	--menu-background-color: rgba(232, 201, 150, 0.2);
+	--text-color: #981515;
+	--card-text-color: #f5efdb;
+	--card-btn-text-color: #ff6500;
+	--card-color: #702424;
+	--cart-color: rgba(162, 10, 10, 0.2);
+	--regular-font: 'Merriweather Sans', sans-serif;
+	--description-font: 'Merriweather', serif;
+	--bs-navbar-toggler-border-color: #981515 !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+	/* background-color: var(--background-color); */
+	color: var(--text-color) !important;
+	font-family: var(--regular-font) !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button.navbar-toggler {
+	border-width: 0px;
+	box-shadow: none !important;
+	transition: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button.collapsed:active {
+	border-width: 3px;
+	border-color: var(--text-color);
+	transition: none;
 }
 
-.App-link {
-  color: #61dafb;
+.header_customToggle__8nmxy.navbar-toggler .navbar-toggler-icon {
+	background-image: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><path fill="#981515" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 2.2vw;
+	min-width: 40px;
+	height: auto;
+	padding: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#basic-navbar-nav.show .nabar-nav a.nav-link {
+	font-size: 40px !important;
 }

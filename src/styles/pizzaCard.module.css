@@ -1,0 +1,30 @@
+.card {
+	background-color: var(--card-color);
+	color: var(--card-text-color);
+	width: 250px;
+	height: 500px;
+	border-radius: 25px;
+	margin: 50px;
+	padding: 25px;
+}
+
+.pizzaImg {
+	width: 200px;
+	height: auto;
+}
+
+.pizzaTitle {
+	font-size: 30px;
+	font-family: var(--regular-font);
+	font-weight: 700;
+	padding-top: 10px;
+	padding-bottom: 15px;
+	text-align: center;
+}
+
+.description {
+	font-size: 15px;
+	font-weight: 400;
+	font-family: var(--description-font);
+	padding-bottom: 20px;
+}
