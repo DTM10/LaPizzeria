@@ -7,3 +7,7 @@ body {
 	background-color: var(--background-color);
 	color: var(--text-color);
 }
+
+nav {
+	width: 100% !important;
+}

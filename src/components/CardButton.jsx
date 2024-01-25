@@ -3,15 +3,12 @@ import styles from '../styles/cardButton.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
-export function CardButton(props) {
-	const handleBtnClick = () => {
-		console.log('ADD TO CART clicked');
-	};
+export function CardButton({ handleAddition }) {
 	return (
 		<button
 			className={styles.cardBtn}
 			onClick={() => {
-				handleBtnClick();
+				handleAddition();
 			}}
 		>
 			<FontAwesomeIcon icon={faCartShopping} className={styles.cartIcon} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/header.module.css';
-import logo from '../images/pizza-logo.png';
+// import logo from '../images/pizza-logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import Container from 'react-bootstrap/Container';
@@ -10,10 +10,15 @@ import { Link } from 'react-router-dom';
 
 function Header() {
 	return (
-		<Navbar expand="lg" className={styles.header}>
-			<Container>
+		<Navbar expand="lg" className={`${styles.header} w-100`}>
+			<Container className={styles.navContainer}>
 				<Link to="/" className={`${styles.customBrand} navbar-brand`}>
-					<img src={logo} alt="pizza-logo" className={styles.logo} size="lg" />
+					<img
+						src={'/images/pizza-logo.webp'}
+						alt="pizza-logo"
+						className={styles.logo}
+						size="lg"
+					/>
 				</Link>
 
 				<Navbar.Toggle
@@ -24,7 +29,7 @@ function Header() {
 				</Navbar.Toggle>
 				<Navbar.Collapse
 					id="basic-navbar-nav"
-					className={`${styles.linksContainer} me-auto justify-content-end`}
+					className={`${styles.linksContainer}`}
 				>
 					<Nav>
 						<Link to="/tracker" className={`${styles.link} nav-link`}>

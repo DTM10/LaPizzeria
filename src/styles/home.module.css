@@ -1,11 +1,10 @@
 .home {
 	color: var(--text-color);
-	background-image: url('../images/background.png'); /* Adjust path if necessary */
-	background-size: cover; /* Cover the entire area of .home */
-	background-position: center; /* Center the background image */
-	min-height: 100vh; /* Optional: make the div at least as tall as the viewport */
+	background-image: url('/public/images/background.webp');
+	background-size: cover;
+	background-position: center;
+	min-height: 100vh;
 	position: relative;
-	/* z-index: -1; */
 }
 
 .imgContainer {
