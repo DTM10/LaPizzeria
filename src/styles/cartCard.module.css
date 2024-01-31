@@ -1,0 +1,25 @@
+.cartCard {
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	gap: 10px;
+	background-color: var(--background-color);
+	align-content: center;
+}
+
+.pizza,
+.qty {
+	display: flex;
+	/* margin-top: 10px; */
+	flex-direction: column;
+}
+
+.pizzaDetails {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.pizzaImg {
+	width: 100px;
+	height: auto;
+}

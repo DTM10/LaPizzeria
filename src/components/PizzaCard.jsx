@@ -15,7 +15,8 @@ export function PizzaCard({
 		const addingPizzas = {
 			id: id,
 			title: title,
-			src: imgSrc
+			src: imgSrc,
+			imgAltText: imgAltText
 		};
 
 		addCartItems([addingPizzas]);
