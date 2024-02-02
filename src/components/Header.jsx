@@ -8,7 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
-function Header() {
+function Header({ cartItems }) {
 	return (
 		<Navbar expand="lg" className={`${styles.header} w-100`}>
 			<Container className={styles.navContainer}>
@@ -44,7 +44,9 @@ function Header() {
 						<Link to="/cart" className={`${styles.link} nav-link`}>
 							<FontAwesomeIcon
 								icon={faCartShopping}
-								className={styles.cartIcon}
+								className={
+									cartItems.length > 0 ? styles.cartIcon : styles.emptyCartIcon
+								}
 							/>
 						</Link>
 					</Nav>

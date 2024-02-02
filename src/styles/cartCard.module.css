@@ -1,4 +1,7 @@
 .cartCard {
+	padding: 10%;
+}
+.cardContainer {
 	display: grid;
 	grid-template-columns: 2fr 3fr;
 	gap: 10px;
@@ -9,14 +12,18 @@
 .pizza,
 .qty {
 	display: flex;
-	/* margin-top: 10px; */
 	flex-direction: column;
+	/* align-items: center; */
+}
+
+.label {
+	font-weight: 700;
 }
 
 .pizzaDetails {
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 .pizzaImg {

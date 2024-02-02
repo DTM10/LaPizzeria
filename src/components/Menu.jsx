@@ -5,7 +5,7 @@ import { PizzaCard } from './PizzaCard';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 
-export function Menu({ addCartItems }) {
+export function Menu({ addCartItems, cartItems }) {
 	const [pizzas, setPizzas] = useState([]);
 
 	useEffect(() => {
@@ -31,7 +31,7 @@ export function Menu({ addCartItems }) {
 
 	return (
 		<div className={styles.menu}>
-			<Header />
+			<Header cartItems={cartItems} />
 			<div className={styles.cardsContainer}>
 				{pizzas.map((pizza) => {
 					return (

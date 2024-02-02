@@ -24,11 +24,6 @@
 	width: 100%;
 	height: auto;
 }
-/* 
-.customBrand,
-.customToggle {
-	flex-grow: 1;
-} */
 
 .customToggle {
 	border-color: var(--text-color) !important;
@@ -76,8 +71,15 @@
 	text-align: right;
 }
 
-.cartIcon {
+.emptyCartIcon {
 	color: var(--cart-color);
+	width: clamp(30px, 2.2vw, 50px);
+	height: auto;
+	padding-left: 2vw;
+}
+
+.cartIcon {
+	color: var(--text-color);
 	width: clamp(30px, 2.2vw, 50px);
 	height: auto;
 	padding-left: 2vw;

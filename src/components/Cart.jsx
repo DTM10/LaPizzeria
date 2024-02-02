@@ -27,7 +27,7 @@ export function Cart({ cartItems }) {
 
 	return (
 		<div className={styles.home}>
-			<Header />
+			<Header cartItems={cartItems} />
 			<h1>I am the Cart</h1>
 			{organizedPizzas.map((pizza) => (
 				<CartCard

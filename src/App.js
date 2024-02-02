@@ -20,10 +20,13 @@ function App() {
 		<div className="App">
 			<Router>
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/menu" element={<Menu addCartItems={addCartItems} />} />
-					<Route path="/tracker" element={<Tracker />} />
-					<Route path="/login" element={<Login />} />
+					<Route path="/" element={<Home cartItems={cartItems} />} />
+					<Route
+						path="/menu"
+						element={<Menu addCartItems={addCartItems} cartItems={cartItems} />}
+					/>
+					<Route path="/tracker" element={<Tracker cartItems={cartItems} />} />
+					<Route path="/login" element={<Login cartItems={cartItems} />} />
 					<Route path="/cart" element={<Cart cartItems={cartItems} />} />
 				</Routes>
 			</Router>
