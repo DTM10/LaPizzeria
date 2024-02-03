@@ -1,12 +1,18 @@
 .cartCard {
-	padding: 10%;
+	padding-left: 15%;
+	padding-right: 15%;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 .cardContainer {
+	padding: 20px;
 	display: grid;
-	grid-template-columns: 2fr 3fr;
+	grid-template-columns: 3fr 1fr 6fr;
 	gap: 10px;
-	background-color: var(--background-color);
+	background-color: var(--card-color);
 	align-content: center;
+	border-radius: 20px;
+	color: var(--card-text-color);
 }
 
 .pizza,
@@ -16,9 +22,21 @@
 	/* align-items: center; */
 }
 
-.label {
-	font-weight: 700;
+.divider {
+	height: 100%;
+	width: 2px;
+	background-color: var(--card-text-color);
+	margin: 0 5px;
 }
+
+/* .label {
+	font-weight: 700;
+	font-size: 3vw;
+} */
+
+/*
+	I NEED TO MAKE THE CARD RESPONSIBLE
+*/
 
 .pizzaDetails {
 	display: flex;
@@ -27,6 +45,11 @@
 }
 
 .pizzaImg {
-	width: 100px;
+	/* width: 150px; */
+	width: 10vw;
 	height: auto;
+}
+
+.pizzaName {
+	font-size: 2.5vw;
 }

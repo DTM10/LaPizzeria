@@ -3,10 +3,10 @@ import styles from '../styles/home.module.css';
 import Header from './Header';
 // import Promo from '../images/Promo.png';
 
-export function Home() {
+export function Home({ cartItems }) {
 	return (
 		<div className={styles.home}>
-			<Header />
+			<Header cartItems={cartItems} />
 			<div className={styles.imgContainer}>
 				<img
 					src={'/images/Promo.png'}

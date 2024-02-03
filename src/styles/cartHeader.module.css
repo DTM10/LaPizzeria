@@ -1,0 +1,22 @@
+.cartHeader {
+	padding-left: 15%;
+	padding-right: 15%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.cartHeaderContainer {
+	padding: 20px;
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	gap: 10px;
+	background-color: var(--card-color);
+	align-content: center;
+	border-radius: 20px;
+	color: var(--card-text-color);
+}
+
+.label {
+	font-weight: 700;
+	font-size: 3vw;
+}

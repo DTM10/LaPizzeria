@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../styles/home.module.css';
 import Header from './Header';
 import CartCard from './CartCard';
+import CartHeader from './CartHeader';
 
 export function Cart({ cartItems }) {
 	const [organizedPizzas, setOrganizedPizzas] = useState([]);
@@ -28,7 +29,7 @@ export function Cart({ cartItems }) {
 	return (
 		<div className={styles.home}>
 			<Header cartItems={cartItems} />
-			<h1>I am the Cart</h1>
+			<CartHeader />
 			{organizedPizzas.map((pizza) => (
 				<CartCard
 					qty={pizza.count}
