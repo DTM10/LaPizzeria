@@ -4,11 +4,9 @@ import Header from './Header';
 
 export function Tracker({ cartItems }) {
 	return (
-		<div className={styles.home}>
-			<div>
-				<Header cartItems={cartItems} />
-				<h1>I am the Tracker</h1>
-			</div>
-		</div>
+		<>
+			{/* <Header cartItems={cartItems} /> */}
+			<h1>I am the Tracker</h1>
+		</>
 	);
 }

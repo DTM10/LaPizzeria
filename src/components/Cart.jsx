@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from '../styles/home.module.css';
-import Header from './Header';
 import CartCard from './CartCard';
 import CartHeader from './CartHeader';
+import Invoice from './Invoice';
+import { CartContext } from '../context/CartContext';
 
-export function Cart({ cartItems }) {
+export function Cart() {
+	const { cartItems } = useContext(CartContext);
 	const [organizedPizzas, setOrganizedPizzas] = useState([]);
+	const [weekDay, setWeekDay] = useState(7);
 
 	useEffect(() => {
 		const aggregateItems = () => {
@@ -15,7 +18,6 @@ export function Cart({ cartItems }) {
 				} else {
 					acc[item.id].count += 1;
 				}
-				console.log('acc is: ', acc);
 				return acc;
 			}, {});
 			return Object.values(aggregationMap);
@@ -24,20 +26,39 @@ export function Cart({ cartItems }) {
 		const aggregatedItems = aggregateItems();
 		setOrganizedPizzas(aggregatedItems);
 		console.log('aggregatedItems are: ', aggregatedItems);
+
+		const day = new Date().getDay();
+		setWeekDay(day);
 	}, [cartItems]);
 
 	return (
 		<div className={styles.home}>
-			<Header cartItems={cartItems} />
 			<CartHeader />
 			{organizedPizzas.map((pizza) => (
 				<CartCard
 					qty={pizza.count}
 					pizzaName={pizza.title}
 					pizzaImg={pizza.src}
+					id={pizza.id}
 					key={pizza.id}
 				/>
 			))}
+			<hr />
+			{cartItems.length > 0 && (
+				<Invoice organizedPizzas={organizedPizzas} weekDay={weekDay} />
+			)}
 		</div>
 	);
 }
+
+/*
+
+WRITE THE LOGIC TO CREATE THE INVOICE.
+EACH PIZZA IS 14 DOLLARS
+CHECK IF ANY SPECIAL IS APPLYIED AND CALCULATE THE PRICE
+CALCULATE THE TAXES
+FIELD AND BUTTON TO TIP
+ADD BUTTON TO CHECKOUT 
+ADD BUTTON TO CLEAR THE CART
+
+*/

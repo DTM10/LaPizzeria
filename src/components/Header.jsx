@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../styles/header.module.css';
 // import logo from '../images/pizza-logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,8 +7,11 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
-function Header({ cartItems }) {
+function Header() {
+	const { cartItems } = useContext(CartContext);
+
 	return (
 		<Navbar expand="lg" className={`${styles.header} w-100`}>
 			<Container className={styles.navContainer}>

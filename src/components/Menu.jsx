@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from '../styles/menu.module.css';
-import Header from './Header';
 import { PizzaCard } from './PizzaCard';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
+import { CartContext } from '../context/CartContext';
 
-export function Menu({ addCartItems, cartItems }) {
+export function Menu() {
+	const { addCartItems } = useContext(CartContext);
 	const [pizzas, setPizzas] = useState([]);
 
 	useEffect(() => {
@@ -13,11 +14,9 @@ export function Menu({ addCartItems, cartItems }) {
 	}, []);
 
 	const fetchPizzasInfo = async () => {
-		console.log('fetchPizzasInfo');
 		const tempPizzas = [];
 		const querySnapshot = await getDocs(collection(db, 'Pizzas'));
 		querySnapshot.forEach((doc) => {
-			console.log(doc.id, ' => ', doc.data().title);
 			tempPizzas.push({
 				id: doc.id,
 				title: doc.data().title,
@@ -31,7 +30,6 @@ export function Menu({ addCartItems, cartItems }) {
 
 	return (
 		<div className={styles.menu}>
-			<Header cartItems={cartItems} />
 			<div className={styles.cardsContainer}>
 				{pizzas.map((pizza) => {
 					return (

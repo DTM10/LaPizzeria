@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from '../styles/home.module.css';
-import Header from './Header';
+// import Header from './Header';
 // import Promo from '../images/Promo.png';
 
 export function Home({ cartItems }) {
 	return (
 		<div className={styles.home}>
-			<Header cartItems={cartItems} />
 			<div className={styles.imgContainer}>
 				<img
 					src={'/images/Promo.png'}
