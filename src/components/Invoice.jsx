@@ -4,7 +4,7 @@ export default function Invoice({ organizedPizzas, weekDay }) {
 	const invoiceDetails = specialsCheck(weekDay, organizedPizzas);
 	const totals = calculateTotal(invoiceDetails, 10);
 	return (
-		<>
+		<div>
 			{invoiceDetails.map((p) => {
 				return (
 					<div key={p.id}>
@@ -15,11 +15,11 @@ export default function Invoice({ organizedPizzas, weekDay }) {
 					</div>
 				);
 			})}
-			<hr />
+
 			<p>Total Before Tax: {totals.totalBTax}</p>
 			<p>Tax: {totals.tax}</p>
 			<p>Tip: {totals.tip}</p>
 			<p>Grand Total: {totals.grandTotal}</p>
-		</>
+		</div>
 	);
 }

@@ -1,111 +1,197 @@
 const regularPrice = 14;
 const discountedPrice = 11;
+const sundaySpecialPrice = 10;
 const TAX = 0.13;
 
+// export const specialsCheck = (day, pizzas) => {
+// 	let invoiceDetails = [];
+// 	if (day === 0) {
+// 		let totalNumOfPizzas = 0;
+// 		pizzas.forEach((pizza) => {
+// 			totalNumOfPizzas += pizza.count;
+// 		});
+// 		console.log('total number of pizzas is: ', totalNumOfPizzas);
+// 	} else {
+// 		switch (day) {
+// 			case 1:
+// 				pizzas.forEach((pizza) => {
+// 					const price =
+// 						pizza.title === 'Quattro Formaggi' ? discountedPrice : regularPrice;
+// 					const priceDesc =
+// 						pizza.title === 'Quattro Formaggi' ? 'Monday Special' : 'Regular';
+// 					const subTotal = pizza.count * price;
+// 					invoiceDetails.push({
+// 						qty: pizza.count,
+// 						title: pizza.title,
+// 						subTotal: subTotal,
+// 						priceDesc: priceDesc,
+// 						id: pizza.id
+// 					});
+// 				});
+// 				break;
+// 			case 2:
+// 				pizzas.forEach((pizza) => {
+// 					const price =
+// 						pizza.title === 'Margherita' ? discountedPrice : regularPrice;
+// 					const priceDesc =
+// 						pizza.title === 'Margherita' ? 'Tuesday Special' : 'Regular';
+// 					const subTotal = pizza.count * price;
+// 					invoiceDetails.push({
+// 						qty: pizza.count,
+// 						title: pizza.title,
+// 						subTotal: subTotal,
+// 						priceDesc: priceDesc,
+// 						id: pizza.id
+// 					});
+// 				});
+// 				break;
+// 			case 3:
+// 				pizzas.forEach((pizza) => {
+// 					const price =
+// 						pizza.title === 'Bianca' ? discountedPrice : regularPrice;
+// 					const priceDesc =
+// 						pizza.title === 'Bianca' ? 'Wednesday Special' : 'Regular';
+// 					const subTotal = pizza.count * price;
+// 					invoiceDetails.push({
+// 						qty: pizza.count,
+// 						title: pizza.title,
+// 						subTotal: subTotal,
+// 						priceDesc: priceDesc,
+// 						id: pizza.id
+// 					});
+// 				});
+// 				break;
+// 			case 4:
+// 				pizzas.forEach((pizza) => {
+// 					const price =
+// 						pizza.title === 'Marinara' ? discountedPrice : regularPrice;
+// 					const priceDesc =
+// 						pizza.title === 'Marinara' ? 'Thursday Special' : 'Regular';
+// 					const subTotal = pizza.count * price;
+// 					invoiceDetails.push({
+// 						qty: pizza.count,
+// 						title: pizza.title,
+// 						subTotal: subTotal,
+// 						priceDesc: priceDesc,
+// 						id: pizza.id
+// 					});
+// 				});
+// 				break;
+// 			case 5:
+// 				pizzas.forEach((pizza) => {
+// 					const price =
+// 						pizza.title === 'Anchovies' ? discountedPrice : regularPrice;
+// 					const priceDesc =
+// 						pizza.title === 'Anchovies' ? 'Friday Special' : 'Regular';
+// 					const subTotal = pizza.count * price;
+// 					invoiceDetails.push({
+// 						qty: pizza.count,
+// 						title: pizza.title,
+// 						subTotal: subTotal,
+// 						priceDesc: priceDesc,
+// 						id: pizza.id
+// 					});
+// 				});
+// 				break;
+// 			case 6:
+// 				pizzas.maforEach((pizza) => {
+// 					const price =
+// 						pizza.title === 'Salsiccia' ? discountedPrice : regularPrice;
+// 					const priceDesc =
+// 						pizza.title === 'Anchovies' ? 'Saturday Special' : 'Regular';
+// 					const subTotal = pizza.count * price;
+// 					invoiceDetails.push({
+// 						qty: pizza.count,
+// 						title: pizza.title,
+// 						subTotal: subTotal,
+// 						priceDesc: priceDesc,
+// 						id: pizza.id
+// 					});
+// 				});
+// 				break;
+
+// 			default:
+// 				break;
+// 		}
+// 	}
+// 	return invoiceDetails;
+// };
 export const specialsCheck = (day, pizzas) => {
-	let invoiceDetails = [];
+	const invoiceDetails = [...pizzas];
 	if (day === 0) {
-		let totalNumOfPizzas = 0;
-		pizzas.forEach((pizza) => {
-			totalNumOfPizzas += pizza.count;
+		let pizzaCount = 0;
+		invoiceDetails.forEach((pizza) => {
+			pizzaCount += pizza.count;
 		});
-		console.log('total number of pizzas is: ', totalNumOfPizzas);
+
+		invoiceDetails.forEach((pizza, index) => {
+			const price = pizzaCount >= 3 ? sundaySpecialPrice : regularPrice;
+			invoiceDetails[index].subTotal = pizza.count * price;
+			invoiceDetails[index].price = price;
+			invoiceDetails[index].priceDesc =
+				pizzaCount >= 3 ? 'Sunday Special' : 'Regular';
+		});
 	} else {
 		switch (day) {
 			case 1:
-				pizzas.forEach((pizza) => {
+				invoiceDetails.forEach((pizza, index) => {
 					const price =
 						pizza.title === 'Quattro Formaggi' ? discountedPrice : regularPrice;
-					const priceDesc =
+					invoiceDetails[index].subTotal = pizza.count * price;
+					invoiceDetails[index].price = price;
+					invoiceDetails[index].priceDesc =
 						pizza.title === 'Quattro Formaggi' ? 'Monday Special' : 'Regular';
-					const subTotal = pizza.count * price;
-					invoiceDetails.push({
-						qty: pizza.count,
-						title: pizza.title,
-						subTotal: subTotal,
-						priceDesc: priceDesc,
-						id: pizza.id
-					});
 				});
 				break;
 			case 2:
-				pizzas.forEach((pizza) => {
+				pizzas.forEach((pizza, index) => {
 					const price =
 						pizza.title === 'Margherita' ? discountedPrice : regularPrice;
-					const priceDesc =
+
+					invoiceDetails[index].subTotal = pizza.count * price;
+					invoiceDetails[index].price = price;
+					invoiceDetails[index].priceDesc =
 						pizza.title === 'Margherita' ? 'Tuesday Special' : 'Regular';
-					const subTotal = pizza.count * price;
-					invoiceDetails.push({
-						qty: pizza.count,
-						title: pizza.title,
-						subTotal: subTotal,
-						priceDesc: priceDesc,
-						id: pizza.id
-					});
 				});
 				break;
 			case 3:
-				pizzas.forEach((pizza) => {
+				pizzas.forEach((pizza, index) => {
 					const price =
 						pizza.title === 'Bianca' ? discountedPrice : regularPrice;
-					const priceDesc =
+					invoiceDetails[index].subTotal = pizza.count * price;
+					invoiceDetails[index].price = price;
+					invoiceDetails[index].priceDesc =
 						pizza.title === 'Bianca' ? 'Wednesday Special' : 'Regular';
-					const subTotal = pizza.count * price;
-					invoiceDetails.push({
-						qty: pizza.count,
-						title: pizza.title,
-						subTotal: subTotal,
-						priceDesc: priceDesc,
-						id: pizza.id
-					});
 				});
 				break;
 			case 4:
-				pizzas.forEach((pizza) => {
+				pizzas.forEach((pizza, index) => {
 					const price =
 						pizza.title === 'Marinara' ? discountedPrice : regularPrice;
-					const priceDesc =
+					invoiceDetails[index].subTotal = pizza.count * price;
+					invoiceDetails[index].price = price;
+					invoiceDetails[index].priceDesc =
 						pizza.title === 'Marinara' ? 'Thursday Special' : 'Regular';
-					const subTotal = pizza.count * price;
-					invoiceDetails.push({
-						qty: pizza.count,
-						title: pizza.title,
-						subTotal: subTotal,
-						priceDesc: priceDesc,
-						id: pizza.id
-					});
 				});
 				break;
 			case 5:
-				pizzas.forEach((pizza) => {
+				pizzas.forEach((pizza, index) => {
 					const price =
 						pizza.title === 'Anchovies' ? discountedPrice : regularPrice;
-					const priceDesc =
+					invoiceDetails[index].subTotal = pizza.count * price;
+					invoiceDetails[index].price = price;
+					invoiceDetails[index].priceDesc =
 						pizza.title === 'Anchovies' ? 'Friday Special' : 'Regular';
-					const subTotal = pizza.count * price;
-					invoiceDetails.push({
-						qty: pizza.count,
-						title: pizza.title,
-						subTotal: subTotal,
-						priceDesc: priceDesc,
-						id: pizza.id
-					});
 				});
 				break;
 			case 6:
-				pizzas.maforEach((pizza) => {
+				pizzas.maforEach((pizza, index) => {
 					const price =
 						pizza.title === 'Salsiccia' ? discountedPrice : regularPrice;
-					const priceDesc =
+					invoiceDetails[index].subTotal = pizza.count * price;
+					invoiceDetails[index].price = price;
+					invoiceDetails[index].priceDesc =
 						pizza.title === 'Anchovies' ? 'Saturday Special' : 'Regular';
-					const subTotal = pizza.count * price;
-					invoiceDetails.push({
-						qty: pizza.count,
-						title: pizza.title,
-						subTotal: subTotal,
-						priceDesc: priceDesc,
-						id: pizza.id
-					});
 				});
 				break;
 
@@ -113,7 +199,23 @@ export const specialsCheck = (day, pizzas) => {
 				break;
 		}
 	}
+	console.log('invoiceDetails in specialsCheck: ', invoiceDetails);
 	return invoiceDetails;
+};
+
+export const aggregateItems = (cartItems) => {
+	if (cartItems.length > 0) {
+		const aggregationMap = cartItems.reduce((acc, item) => {
+			if (!acc[item.id]) {
+				acc[item.id] = { ...item, count: 1 };
+			} else {
+				acc[item.id].count += 1;
+			}
+			return acc;
+		}, {});
+		return Object.values(aggregationMap);
+	}
+	return [];
 };
 
 export const calculateTotal = (invoiceDetails, tip) => {

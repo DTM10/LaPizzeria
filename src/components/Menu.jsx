@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/menu.module.css';
 import { PizzaCard } from './PizzaCard';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
-import { CartContext } from '../context/CartContext';
 
 export function Menu() {
-	const { addCartItems } = useContext(CartContext);
 	const [pizzas, setPizzas] = useState([]);
 
 	useEffect(() => {
@@ -39,7 +37,6 @@ export function Menu() {
 							title={pizza.title}
 							description={pizza.description}
 							key={pizza.id}
-							addCartItems={addCartItems}
 						/>
 					);
 				})}

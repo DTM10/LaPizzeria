@@ -1,38 +1,59 @@
 .cartCard {
 	padding-left: 15%;
 	padding-right: 15%;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
+
 .cardContainer {
 	padding: 20px;
 	display: grid;
-	grid-template-columns: 3fr 1fr 6fr;
+	/* grid-template-columns: 2fr 1fr 6fr 1fr 4fr; */
+	grid-template-columns: 6fr 1fr 3fr;
 	gap: 10px;
 	background-color: var(--card-color);
 	align-content: center;
+	justify-items: center;
 	border-radius: 20px;
 	color: var(--card-text-color);
+	align-items: center;
 }
 
-.pizza,
-.qty {
+.pizza {
 	display: flex;
 	flex-direction: column;
-	/* align-items: center; */
+	align-items: center;
+}
+
+.qty {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+	font-size: 3vw;
+	margin: 0 5px;
+}
+
+.btn {
+	background-color: var(--card-text-color);
+	width: 7vw;
+	height: 5vw;
+	border: none;
+	border-radius: 2px;
+	margin: 5px;
+}
+
+.btn:active {
+	background-color: var(--card-btn-pressed-background-color);
 }
 
 .divider {
 	height: 100%;
 	width: 2px;
 	background-color: var(--card-text-color);
-	margin: 0 5px;
+	margin: 0 2px;
 }
-
-/* .label {
-	font-weight: 700;
-	font-size: 3vw;
-} */
 
 /*
 	I NEED TO MAKE THE CARD RESPONSIBLE
@@ -40,6 +61,7 @@
 
 .pizzaDetails {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 }
@@ -51,5 +73,23 @@
 }
 
 .pizzaName {
+	padding-top: 5px;
 	font-size: 2.5vw;
+}
+
+.price {
+	flex-direction: column;
+}
+
+.label {
+	font-size: 1.4vw;
+	margin: 0;
+}
+
+.priceDescrip {
+	font-size: 1.45vw;
+	font-weight: bold;
+	color: var(--card-btn-text-color);
+	background-color: var(--card-btn-background-color);
+	margin: 0;
 }

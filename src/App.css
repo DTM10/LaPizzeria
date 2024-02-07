@@ -3,6 +3,7 @@
 	/* --background-color: #e8c996; */
 	--background-color: rgba(232, 201, 150, 0.8);
 	--card-btn-background-color: #f5efdb;
+	--card-btn-pressed-background-color: rgba(245, 239, 219, 0.8);
 	--menu-background-color: rgba(232, 201, 150, 0.2);
 	--text-color: #981515;
 	--card-text-color: #f5efdb;

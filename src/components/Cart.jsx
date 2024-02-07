@@ -1,64 +1,68 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from '../styles/home.module.css';
+import styles from '../styles/cart.module.css';
 import CartCard from './CartCard';
 import CartHeader from './CartHeader';
 import Invoice from './Invoice';
 import { CartContext } from '../context/CartContext';
+import { specialsCheck, aggregateItems } from '../Helper';
+import CardButton from './CardButton';
 
 export function Cart() {
 	const { cartItems } = useContext(CartContext);
 	const [organizedPizzas, setOrganizedPizzas] = useState([]);
 	const [weekDay, setWeekDay] = useState(7);
+	// const [checkingOut, setCheckingOut] = useState(false);
+
+	const updateDay = () => {
+		setInterval(() => {
+			const day = new Date().getDay();
+			setWeekDay(day);
+		}, 60000);
+	};
 
 	useEffect(() => {
-		const aggregateItems = () => {
-			const aggregationMap = cartItems.reduce((acc, item) => {
-				if (!acc[item.id]) {
-					acc[item.id] = { ...item, count: 1 };
-				} else {
-					acc[item.id].count += 1;
-				}
-				return acc;
-			}, {});
-			return Object.values(aggregationMap);
-		};
-
-		const aggregatedItems = aggregateItems();
-		setOrganizedPizzas(aggregatedItems);
-		console.log('aggregatedItems are: ', aggregatedItems);
-
 		const day = new Date().getDay();
 		setWeekDay(day);
-	}, [cartItems]);
+		const aggregatedItems = aggregateItems(cartItems);
+		const organized = specialsCheck(day, aggregatedItems);
+
+		updateDay();
+		setOrganizedPizzas(organized);
+	}, [cartItems, weekDay]);
 
 	return (
-		<div className={styles.home}>
-			<CartHeader />
-			{organizedPizzas.map((pizza) => (
-				<CartCard
-					qty={pizza.count}
-					pizzaName={pizza.title}
-					pizzaImg={pizza.src}
-					id={pizza.id}
-					key={pizza.id}
-				/>
-			))}
-			<hr />
+		<div className={styles.cart}>
 			{cartItems.length > 0 && (
-				<Invoice organizedPizzas={organizedPizzas} weekDay={weekDay} />
+				<div className={styles.cartContainer}>
+					<CartHeader />
+					{organizedPizzas.map((pizza) => (
+						<CartCard
+							qty={pizza.count}
+							pizzaName={pizza.title}
+							pizzaImg={pizza.src}
+							id={pizza.id}
+							key={pizza.id}
+							priceDescrip={pizza.priceDesc}
+							subTotal={pizza.subTotal}
+							price={pizza.price}
+						/>
+					))}
+				</div>
 			)}
+			<CardButton />
 		</div>
 	);
 }
 
-/*
+/* 
+			- CHANGE THE LOGIC TO CREATE THE CARTCARD -> ADD THE SUBTOTAL ON THE CART
+				- NEED TO CHECK THE SPECIAL PRICE
+			- PUT THE INVOICE IN ITS OWN COMPONENT THAT WILL BE SHOWN IN A DIFFERENT ROUTE,
+			WHEN THE BUTTON CHECKOUT IS CLICKED.
+			IN THE INVOICE COMPONENT WE CREATE A BUTTON TO PAY, THAT SHOULD BE INTEGRATED WITH THE 
+			PAYMENT FUNCTIONALITY. 
+			
+			- ADD BUTTON TO CLEAR THE CART
+			- FIELD AND BUTTON TO TIP (CHANGE THE HARDCODED 10 DOLARS TIP.)
 
-WRITE THE LOGIC TO CREATE THE INVOICE.
-EACH PIZZA IS 14 DOLLARS
-CHECK IF ANY SPECIAL IS APPLYIED AND CALCULATE THE PRICE
-CALCULATE THE TAXES
-FIELD AND BUTTON TO TIP
-ADD BUTTON TO CHECKOUT 
-ADD BUTTON TO CLEAR THE CART
-
-*/
+			*/

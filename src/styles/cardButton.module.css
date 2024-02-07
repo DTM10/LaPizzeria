@@ -1,6 +1,5 @@
 .cardBtn {
 	display: flex;
-
 	color: var(--card-btn-text-color);
 	font-family: var(--regular-font);
 	font-size: 18;
@@ -12,6 +11,10 @@
 	box-shadow: none;
 	align-items: center;
 	justify-content: space-around;
+}
+
+.cardBtn:active {
+	background-color: var(--card-btn-pressed-background-color);
 }
 
 .cartIcon {
