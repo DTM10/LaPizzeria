@@ -1,20 +1,34 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from '../styles/pizzaCard.module.css';
 import CardButton from './CardButton';
 import { CartContext } from '../context/CartContext';
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
+import QtyToggle from './QtyToggle';
 
 export function PizzaCard({ id, imgSrc, imgAltText, title, description }) {
 	const { addCartItems } = useContext(CartContext);
+	const [qty, setQty] = useState(0);
 	const handleAddition = () => {
-		console.log('handleAddition called');
 		const addingPizza = {
 			id: id,
 			title: title,
 			src: imgSrc,
 			imgAltText: imgAltText
 		};
+		const addingArray = [];
+		for (let i = 0; i < qty; i++) {
+			addingArray.push(addingPizza);
+		}
+		addCartItems(addingArray);
+	};
 
-		addCartItems([addingPizza]);
+	const handleIncrease = () => {
+		setQty(qty + 1);
+	};
+
+	const handleDecrease = () => {
+		const newQty = qty - 1 >= 0 ? qty - 1 : 0;
+		setQty(newQty);
 	};
 
 	return (
@@ -22,7 +36,18 @@ export function PizzaCard({ id, imgSrc, imgAltText, title, description }) {
 			<img src={imgSrc} alt={imgAltText} className={styles.pizzaImg} />
 			<h2 className={styles.pizzaTitle}>{title}</h2>
 			<p className={styles.description}>{description}</p>
-			<CardButton handlePress={handleAddition} />
+			<div className={styles.qtyContainer}>
+				<QtyToggle
+					qty={qty}
+					handleDecrease={handleDecrease}
+					handleIncrease={handleIncrease}
+				/>
+			</div>
+			<CardButton
+				handlePress={handleAddition}
+				text={'ADD TO CART'}
+				icon={faCartArrowDown}
+			/>
 		</div>
 	);
 }

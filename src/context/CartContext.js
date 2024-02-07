@@ -6,7 +6,6 @@ function CartProvider({ children }) {
 	const [cartItems, setCart] = useState([]);
 
 	const addCartItems = (item) => {
-		console.log('item is: ', item);
 		setCart([...cartItems, ...item]);
 	};
 

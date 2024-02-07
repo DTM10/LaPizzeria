@@ -1,2 +1,19 @@
-.cart {
+/* .cart {
+} */
+
+/* .cartContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+} */
+
+.btnContainer {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 10vw;
+}
+
+.cardsContainer {
+	margin-bottom: 20px;
 }

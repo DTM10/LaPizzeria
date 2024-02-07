@@ -1,0 +1,23 @@
+.qty {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+	font-size: 3vw;
+	margin: 0 5px;
+}
+
+.btn {
+	background-color: var(--card-text-color);
+	width: 7vw;
+	height: 5vw;
+	border: none;
+	border-radius: 5px;
+	margin: 5px;
+	color: var(--card-btn-text-color);
+}
+
+.btn:active {
+	background-color: var(--card-btn-pressed-background-color);
+}

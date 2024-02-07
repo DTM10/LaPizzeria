@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styles from '../styles/cartCard.module.css';
 import { CartContext } from '../context/CartContext';
+import QtyToggle from './QtyToggle';
 
 export default function CartCard({
 	qty,
@@ -22,25 +23,13 @@ export default function CartCard({
 						<img src={pizzaImg} alt={imgAltText} className={styles.pizzaImg} />
 						<p className={styles.pizzaName}>{pizzaName}</p>
 					</div>
-					<div className={styles.qty}>
-						<button
-							className={styles.btn}
-							onClick={() => {
-								increaseItemCount(id);
-							}}
-						>
-							+
-						</button>
-						<p className={styles.qty}>{qty}</p>
-						<button
-							className={styles.btn}
-							onClick={() => {
-								removeCartItem(id);
-							}}
-						>
-							-
-						</button>
-					</div>
+
+					<QtyToggle
+						handleDecrease={removeCartItem}
+						handleIncrease={increaseItemCount}
+						qty={qty}
+						param={id}
+					/>
 				</div>
 				<div className={styles.divider}></div>
 				<div className={styles.price}>

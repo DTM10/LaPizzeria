@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from '../styles/cardButton.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export default function CardButton({ handlePress, text, icon }) {
-	// MAKE THIS BUTTON REUSABLE ADDING THE PROPS ABOVE
 	return (
 		<button
 			className={styles.cardBtn}
@@ -12,8 +10,8 @@ export default function CardButton({ handlePress, text, icon }) {
 				handlePress();
 			}}
 		>
-			<FontAwesomeIcon icon={faCartShopping} className={styles.cartIcon} />
-			<p className={styles.btnText}>ADD TO CART</p>
+			<FontAwesomeIcon icon={icon} className={styles.cartIcon} />
+			<p className={styles.btnText}>{text}</p>
 		</button>
 	);
 }

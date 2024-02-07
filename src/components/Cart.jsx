@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from '../styles/cart.module.css';
 import CartCard from './CartCard';
 import CartHeader from './CartHeader';
-import Invoice from './Invoice';
+// import Invoice from './Invoice';
 import { CartContext } from '../context/CartContext';
 import { specialsCheck, aggregateItems } from '../Helper';
 import CardButton from './CardButton';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export function Cart() {
 	const { cartItems } = useContext(CartContext);
@@ -30,26 +31,39 @@ export function Cart() {
 		setOrganizedPizzas(organized);
 	}, [cartItems, weekDay]);
 
+	const handleCheckout = () => {
+		// Make the backgroung blurried
+		// Set checkingout to show the checkout modal screen
+	};
+
 	return (
 		<div className={styles.cart}>
 			{cartItems.length > 0 && (
 				<div className={styles.cartContainer}>
 					<CartHeader />
-					{organizedPizzas.map((pizza) => (
-						<CartCard
-							qty={pizza.count}
-							pizzaName={pizza.title}
-							pizzaImg={pizza.src}
-							id={pizza.id}
-							key={pizza.id}
-							priceDescrip={pizza.priceDesc}
-							subTotal={pizza.subTotal}
-							price={pizza.price}
+					<div className={styles.cardsContainer}>
+						{organizedPizzas.map((pizza) => (
+							<CartCard
+								qty={pizza.count}
+								pizzaName={pizza.title}
+								pizzaImg={pizza.src}
+								id={pizza.id}
+								key={pizza.id}
+								priceDescrip={pizza.priceDesc}
+								subTotal={pizza.subTotal}
+								price={pizza.price}
+							/>
+						))}
+					</div>
+					<div className={styles.btnContainer}>
+						<CardButton
+							handlePress={handleCheckout}
+							text={'CHECKOUT'}
+							icon={faCartShopping}
 						/>
-					))}
+					</div>
 				</div>
 			)}
-			<CardButton />
 		</div>
 	);
 }
