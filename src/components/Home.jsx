@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import styles from '../styles/home.module.css';
-// import Header from './Header';
-// import Promo from '../images/Promo.png';
+import { CartContext } from '../context/CartContext';
+import { getSundaySpecial } from '../Helper';
 
-export function Home({ cartItems }) {
+export function Home() {
+	const { scheduleWeekDayUpdate, setSundaySpecial } = useContext(CartContext);
+
+	const getSpecial = useCallback(() => {
+		getSundaySpecial()
+			.then((res) => {
+				setSundaySpecial(res);
+			})
+			.catch((e) => {
+				console.log('Error trying to get special', e);
+			});
+	}, [setSundaySpecial]);
+
+	useEffect(() => {
+		scheduleWeekDayUpdate();
+		getSpecial();
+	}, [scheduleWeekDayUpdate, getSpecial]);
+
 	return (
 		<div className={styles.home}>
 			<div className={styles.imgContainer}>

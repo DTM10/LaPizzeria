@@ -1,6 +1,6 @@
 .cartHeader {
-	padding-left: 15%;
-	padding-right: 15%;
+	padding-left: 10%;
+	padding-right: 10%;
 	padding-top: 20px;
 	padding-bottom: 10px;
 }
@@ -13,11 +13,12 @@
 }
 
 .cartHeaderContainer {
+	margin-top: 5vw;
 	padding: 20px;
 	display: grid;
 	grid-template-columns: 6fr 1fr 3fr;
 	gap: 10px;
-	background-color: var(--card-color);
+	background-color: var(--card-background-color);
 	align-content: center;
 	border-radius: 20px;
 	color: var(--card-text-color);
@@ -29,4 +30,5 @@
 	font-weight: 700;
 	font-size: 3vw;
 	text-align: center;
+	margin: 0;
 }

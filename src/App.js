@@ -1,4 +1,5 @@
 import './App.css';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './components/Home';
 import { Menu } from './components/Menu';
@@ -11,8 +12,8 @@ import Layout from './components/Layout';
 
 function App() {
 	return (
-		<div className="App">
-			<CartProvider>
+		<CartProvider>
+			<div className="App">
 				<Router>
 					<Routes>
 						<Route path="/" element={<Layout />}>
@@ -24,8 +25,8 @@ function App() {
 						</Route>
 					</Routes>
 				</Router>
-			</CartProvider>
-		</div>
+			</div>
+		</CartProvider>
 	);
 }
 

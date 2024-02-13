@@ -1,0 +1,26 @@
+.invoice {
+	background-color: var(--background-color);
+	padding: 10%;
+}
+
+.invoiceContainer {
+	background-color: var(--card-background-color);
+	color: var(--card-text-color);
+	padding: 20px;
+	border-radius: 20px;
+}
+
+.btnContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.priceDetail {
+	font-size: 2vw;
+	margin: 5px 0;
+}
+
+.grandTotal {
+	font-size: 2.5vw;
+	margin: 10px 0;
+}

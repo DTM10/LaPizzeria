@@ -1,6 +1,9 @@
 .menu {
 	color: var(--text-color);
-	background-image: url('/public/images/background.webp');
+	/* background-image: url('/public/images/background.webp'); */
+	/* background-color: var(--card-text-color); */
+	/* background-color: rgba(84, 1, 1, 0.9); */
+	background-color: var(--background-color);
 	background-size: cover;
 	background-position: center;
 	min-height: 100vh;
@@ -9,22 +12,14 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	/* margin-top: -200px;
+	padding-top: 200px; */
 }
 
-/* .cardsContainer {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-around;
-	gap: 40px;
-	width: 80%;
-	margin: auto;
-} */
-
 .cardsContainer {
+	padding-top: 1vw;
 	display: grid;
 	width: 80%;
-
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 	gap: 40px;
 }

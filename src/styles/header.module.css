@@ -1,8 +1,13 @@
 .header {
-	background-color: var(--background-color);
+	/* background-color: var(--background-color); */
+	/* background-color: rgba(152, 21, 21, 0.9); */
+	/* background-color: rgba(152, 21, 21, 0.8); */
+	background-color: var(--header-background-color);
 	display: flex !important;
 	justify-content: space-between !important;
 	align-items: center !important;
+	z-index: 1;
+	margin-bottom: 50px;
 }
 
 .navContainer {
@@ -19,10 +24,13 @@
 }
 
 .logo {
-	margin-left: clamp(30px, 12vw, 50px);
+	/* margin-left: clamp(30px, 12vw, 50px); */
 	padding: 1vw;
 	width: 100%;
 	height: auto;
+	margin-bottom: -6vw;
+	transform: rotate(-0.04turn);
+	/* z-index: 50; */
 }
 
 .customToggle {
@@ -43,7 +51,7 @@
 }
 
 .togglerIcon {
-	color: var(--text-color);
+	color: var(--toggler-icon-color);
 	width: 7vw !important;
 	min-width: 38px !important;
 	height: auto !important;
@@ -62,7 +70,8 @@
 
 .link {
 	text-decoration: none;
-	color: var(--text-color) !important;
+	/* color: var(--text-color) !important; */
+	color: var(--card-text-color) !important;
 	font-family: var(--regular-font) !important;
 	font-size: clamp(25px, 1.9vw, 50px) !important;
 	font-weight: 700 !important;
@@ -72,14 +81,16 @@
 }
 
 .emptyCartIcon {
-	color: var(--cart-color);
+	/* color: var(--cart-color); */
+	color: rgba(245, 239, 219, 0.2);
 	width: clamp(30px, 2.2vw, 50px);
 	height: auto;
 	padding-left: 2vw;
 }
 
 .cartIcon {
-	color: var(--text-color);
+	/* color: var(--text-color); */
+	color: var(--card-text-color);
 	width: clamp(30px, 2.2vw, 50px);
 	height: auto;
 	padding-left: 2vw;

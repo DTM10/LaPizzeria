@@ -5,7 +5,16 @@ import { CartContext } from '../context/CartContext';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import QtyToggle from './QtyToggle';
 
-export function PizzaCard({ id, imgSrc, imgAltText, title, description }) {
+export function PizzaCard({
+	id,
+	imgSrc,
+	imgAltText,
+	title,
+	description,
+	price,
+	specialPrice,
+	specialDay
+}) {
 	const { addCartItems } = useContext(CartContext);
 	const [qty, setQty] = useState(0);
 	const handleAddition = () => {
@@ -13,13 +22,16 @@ export function PizzaCard({ id, imgSrc, imgAltText, title, description }) {
 			id: id,
 			title: title,
 			src: imgSrc,
-			imgAltText: imgAltText
+			price: price,
+			specialPrice: specialPrice,
+			specialDay: specialDay
 		};
 		const addingArray = [];
 		for (let i = 0; i < qty; i++) {
 			addingArray.push(addingPizza);
 		}
 		addCartItems(addingArray);
+		setQty(0);
 	};
 
 	const handleIncrease = () => {

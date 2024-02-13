@@ -1,6 +1,6 @@
 .home {
 	color: var(--text-color);
-	background-image: url('/public/images/background.webp');
+	/* background-image: url('/public/images/background.webp'); */
 	background-size: cover;
 	background-position: center;
 	min-height: 100vh;

@@ -1,15 +1,13 @@
 .card {
-	background-color: var(--card-color);
+	/* background-color: var(--card-color); */
+	/* background-color: rgba(162, 10, 10, 0.7); */
+	background-color: var(--card-background-color);
 	color: var(--card-text-color);
-	/* width: 300px; */
 	min-width: 300px;
 	flex: 1;
 	height: 550px;
 	border-radius: 25px;
-	/* margin: 50px; */
-	margin-top: 50px;
-	/* margin-left: 20px;
-	margin-right: 20px; */
+	/* margin-top: 50px; */
 	padding: 25px;
 	display: flex;
 	flex-direction: column;

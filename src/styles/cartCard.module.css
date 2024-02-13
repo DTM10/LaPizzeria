@@ -1,6 +1,6 @@
 .cartCard {
-	padding-left: 15%;
-	padding-right: 15%;
+	padding-left: 10%;
+	padding-right: 10%;
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
@@ -10,7 +10,7 @@
 	display: grid;
 	grid-template-columns: 6fr 1fr 3fr;
 	gap: 10px;
-	background-color: var(--card-color);
+	background-color: var(--card-background-color);
 	align-content: center;
 	justify-items: center;
 	border-radius: 20px;

@@ -4,14 +4,14 @@
 	align-content: center;
 	justify-items: center;
 	align-items: center;
-	font-size: 3vw;
-	margin: 0 5px;
+	font-size: 35px;
+	margin: 0 7px;
 }
 
 .btn {
 	background-color: var(--card-text-color);
-	width: 7vw;
-	height: 5vw;
+	width: 75px;
+	height: 50px;
 	border: none;
 	border-radius: 5px;
 	margin: 5px;

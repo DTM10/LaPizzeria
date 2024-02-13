@@ -1,25 +1,38 @@
-import { specialsCheck, calculateTotal } from '../Helper';
+import React, { useEffect, useState } from 'react';
+import { calculateTotal, formatCurrency } from '../Helper';
+import styles from '../styles/invoice.module.css';
+import CardButton from './CardButton';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
-export default function Invoice({ organizedPizzas, weekDay }) {
-	const invoiceDetails = specialsCheck(weekDay, organizedPizzas);
-	const totals = calculateTotal(invoiceDetails, 10);
+export default function Invoice({
+	organizedPizzas,
+	setCheckingOut,
+	checkingOut,
+	totals
+}) {
+	const handleCheckout = () => {
+		setCheckingOut(!checkingOut);
+	};
+
 	return (
-		<div>
-			{invoiceDetails.map((p) => {
-				return (
-					<div key={p.id}>
-						<p>Qty: {p.qty}</p>
-						<p>Pizza: {p.title}</p>
-						<p>Price Description: {p.priceDesc}</p>
-						<p>SubTotal: {p.subTotal}</p>
-					</div>
-				);
-			})}
+		<div className={styles.invoice}>
+			<div className={styles.invoiceContainer}>
+				<p children className={styles.priceDetail}>
+					Total Before Tax: {formatCurrency(totals.totalBTax)}
+				</p>
+				<p className={styles.priceDetail}>Tax: {formatCurrency(totals.tax)}</p>
 
-			<p>Total Before Tax: {totals.totalBTax}</p>
-			<p>Tax: {totals.tax}</p>
-			<p>Tip: {totals.tip}</p>
-			<p>Grand Total: {totals.grandTotal}</p>
+				<p className={styles.grandTotal}>
+					Grand Total: {formatCurrency(totals.grandTotal)}
+				</p>
+				<div className={styles.btnContainer}>
+					<CardButton
+						handlePress={handleCheckout}
+						text={'CHECKOUT'}
+						icon={faCartShopping}
+					/>
+				</div>
+			</div>
 		</div>
 	);
 }

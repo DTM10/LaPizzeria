@@ -19,7 +19,10 @@ export function Menu() {
 				id: doc.id,
 				title: doc.data().title,
 				description: doc.data().description,
-				src: doc.data().src
+				src: doc.data().src,
+				price: doc.data().price,
+				specialPrice: doc.data().specialPrice,
+				specialDay: doc.data().specialDay
 			});
 		});
 
@@ -37,6 +40,9 @@ export function Menu() {
 							title={pizza.title}
 							description={pizza.description}
 							key={pizza.id}
+							price={pizza.price}
+							specialPrice={pizza.specialPrice}
+							specialDay={pizza.specialDay}
 						/>
 					);
 				})}

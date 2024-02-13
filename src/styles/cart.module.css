@@ -1,12 +1,19 @@
-/* .cart {
-} */
+.cart {
+	background-color: var(--background-color);
+}
 
-/* .cartContainer {
-	display: flex;
+.cartCheckingOut {
+	background-color: var(--background-color);
+	filter: blur(5px);
+}
+
+.cartContainer {
+	background-color: var(--background-color);
+	/* display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-items: center;
-} */
+	justify-items: center; */
+}
 
 .btnContainer {
 	display: flex;
