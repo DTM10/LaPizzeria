@@ -16,6 +16,7 @@ function CartProvider({ children }) {
 		const aggregatedItems = aggregateItems(cartItems);
 		const organized = specialsCheck(weekDay, aggregatedItems, sundaySpecial);
 		setOrganizedPizzas(organized);
+		console.log('organizedPizzas set.');
 	},[cartItems])
 
 	useEffect(()=>{
@@ -87,7 +88,8 @@ function CartProvider({ children }) {
 				scheduleWeekDayUpdate,
 				sundaySpecial,
 				setSundaySpecial,
-				totalsObj
+				totalsObj,
+				organizedPizzas
 			}}
 		>
 			{children}
