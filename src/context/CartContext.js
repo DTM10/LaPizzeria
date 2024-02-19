@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import { specialsCheck, aggregateItems, calculateTotal } from '../Helper';
 
 const CartContext = createContext();
 
@@ -8,10 +9,28 @@ function CartProvider({ children }) {
 	const [weekDay, setWeekDay] = useState(new Date().getDay());
 	const [updateTimer, setupdateTimer] = useState([]);
 	const [sundaySpecial, setSundaySpecial] = useState({});
+	const [totalsObj, setTotalsObj] = useState({});
+	const [organizedPizzas, setOrganizedPizzas] = useState([]);
+
+	useEffect(()=>{
+		const aggregatedItems = aggregateItems(cartItems);
+		const organized = specialsCheck(weekDay, aggregatedItems, sundaySpecial);
+		setOrganizedPizzas(organized);
+	},[cartItems])
+
+	useEffect(()=>{
+		const totals = calculateTotal(organizedPizzas);
+		setTotalsObj(totals);
+	}, [organizedPizzas])
+
+	useEffect(()=>{
+		setCartAmount(totalsObj.grandTotal);
+	},[totalsObj])
 
 	const addCartItems = (item) => {
 		setCart([...cartItems, ...item]);
 	};
+
 
 	const removeCartItem = (id) => {
 		const index = cartItems.findIndex((pizzas) => pizzas.id === id);
@@ -67,7 +86,8 @@ function CartProvider({ children }) {
 				weekDay,
 				scheduleWeekDayUpdate,
 				sundaySpecial,
-				setSundaySpecial
+				setSundaySpecial,
+				totalsObj
 			}}
 		>
 			{children}

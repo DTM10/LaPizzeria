@@ -7,10 +7,11 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import { formatCurrency } from '../Helper';
 import { CartContext } from '../context/CartContext';
 
 function Header() {
-	const { cartItems } = useContext(CartContext);
+	const { cartItems, cartAmount } = useContext(CartContext);
 
 	return (
 		<Navbar expand="lg" className={`${styles.header} w-100`}>
@@ -44,13 +45,14 @@ function Header() {
 						<Link to="/login" className={`${styles.link} nav-link`}>
 							Login
 						</Link>
-						<Link to="/cart" className={`${styles.link} nav-link`}>
+						<Link to="/cart" className={`${styles.link} nav-link `}>
 							<FontAwesomeIcon
 								icon={faCartShopping}
 								className={
 									cartItems.length > 0 ? styles.cartIcon : styles.emptyCartIcon
 								}
 							/>
+							<p className={styles.cartAmount}>{formatCurrency(cartAmount)}</p>
 						</Link>
 					</Nav>
 				</Navbar.Collapse>

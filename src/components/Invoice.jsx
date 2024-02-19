@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { calculateTotal, formatCurrency } from '../Helper';
+import { formatCurrency } from '../Helper';
 import styles from '../styles/invoice.module.css';
 import CardButton from './CardButton';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';

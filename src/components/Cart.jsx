@@ -8,23 +8,9 @@ import { CartContext } from '../context/CartContext';
 import { specialsCheck, aggregateItems, calculateTotal } from '../Helper';
 
 export function Cart() {
-	const { cartItems, weekDay, sundaySpecial } = useContext(CartContext);
-	const [organizedPizzas, setOrganizedPizzas] = useState([]);
+	const { cartItems, weekDay, organizedPizzas, totalsObj } =
+		useContext(CartContext);
 	const [checkingOut, setCheckingOut] = useState(false);
-	const [totalsObj, setTotalsObj] = useState({});
-
-	useEffect(() => {
-		const aggregatedItems = aggregateItems(cartItems);
-		const organized = specialsCheck(weekDay, aggregatedItems, sundaySpecial);
-		setOrganizedPizzas(organized);
-	}, [cartItems, weekDay, sundaySpecial]);
-
-	useEffect(() => {
-		if (organizedPizzas.length > 0) {
-			const totals = calculateTotal(organizedPizzas);
-			setTotalsObj(totals);
-		}
-	}, [organizedPizzas]);
 
 	return (
 		<div className={styles.totalContainer}>

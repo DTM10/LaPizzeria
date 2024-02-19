@@ -1,0 +1,31 @@
+Implement specials functionality fetch data from the database. Add Invoice functionality. Checkout started.
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	new file:   public/images/wood-texture.webp
+#	modified:   src/App.css
+#	modified:   src/App.js
+#	modified:   src/Helper.js
+#	modified:   src/components/Cart.jsx
+#	new file:   src/components/Checkout.jsx
+#	modified:   src/components/Home.jsx
+#	modified:   src/components/Invoice.jsx
+#	modified:   src/components/Menu.jsx
+#	modified:   src/components/PizzaCard.jsx
+#	modified:   src/context/CartContext.js
+#	modified:   src/styles/cardButton.module.css
+#	modified:   src/styles/cart.module.css
+#	modified:   src/styles/cartCard.module.css
+#	modified:   src/styles/cartHeader.module.css
+#	new file:   src/styles/checkout.module.css
+#	modified:   src/styles/header.module.css
+#	modified:   src/styles/home.module.css
+#	new file:   src/styles/invoice.module.css
+#	modified:   src/styles/menu.module.css
+#	modified:   src/styles/pizzaCard.module.css
+#	modified:   src/styles/qtyToggle.module.css
+#

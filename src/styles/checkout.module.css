@@ -1,15 +1,15 @@
 .checkout {
-	background-color: var(--background-color);
-	position: absolute;
+	position: fixed;
 	top: auto;
-	left: auto;
+	/* left: auto;
 	right: auto;
-	bottom: auto;
-	background-color: var(--card-background-color);
+	bottom: auto; */
+	background-color: transparent;
 	display: flex;
+	width: 100%;
 	justify-content: center;
 	align-items: center;
-	z-index: 1000; /* Ensure it's above other content */
+	z-index: 1000;
 }
 
 .checkoutContainer {
@@ -17,17 +17,41 @@
 	padding: 20px;
 	border-radius: 5px;
 	position: relative;
-	max-width: 500px;
+	max-width: 800px;
 	width: 80%;
+	box-shadow: 1px 1px 1px var(--shadow-color);
 }
 
+.priceDetailsContainer {
+	padding: 20px;
+	color: var(--card-text-color);
+}
+.closeBtnContainer {
+	display: flex;
+
+	align-items: center;
+	justify-content: right;
+}
 .modalCloseBtn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
 	border: none;
-	background: none;
+	background-color: var(--card-btn-background-color);
+	padding: 10px 15px;
 	cursor: pointer;
+	width: auto;
+	border-radius: 5px;
+}
+
+.modalCloseBtn:active {
+	border: none;
+	background-color: var(--card-btn-pressed-background-color);
+	padding: 10px 15px;
+	cursor: pointer;
+	width: auto;
+	border-radius: 5px;
+}
+
+.closeBtnIcon {
+	color: var(--card-btn-text-color);
 }
 
 .btnContainer {
