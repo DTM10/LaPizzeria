@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import styles from '../styles/pizzaCard.module.css';
-import CardButton from './CardButton';
-import { CartContext } from '../context/CartContext';
+import styles from './pizzaCard.module.css';
+import CardButton from '../CardButton/CardButton';
+import { CartContext } from '../../context/CartContext';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
-import QtyToggle from './QtyToggle';
+import QtyToggle from '../QtyToggle/QtyToggle';
 
 export function PizzaCard({
 	id,

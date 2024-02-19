@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styles from '../styles/header.module.css';
+import styles from './header.module.css';
 // import logo from '../images/pizza-logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
@@ -7,8 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-import { formatCurrency } from '../Helper';
-import { CartContext } from '../context/CartContext';
+import { formatCurrency } from '../../Helper';
+import { CartContext } from '../../context/CartContext';
 
 function Header() {
 	const { cartItems, cartAmount } = useContext(CartContext);
@@ -52,7 +52,8 @@ function Header() {
 									cartItems.length > 0 ? styles.cartIcon : styles.emptyCartIcon
 								}
 							/>
-							<p className={styles.cartAmount}>{formatCurrency(cartAmount)}</p>
+							{formatCurrency(cartAmount)}
+							{/* <p className={styles.cartAmount}>{}</p> */}
 						</Link>
 					</Nav>
 				</Navbar.Collapse>

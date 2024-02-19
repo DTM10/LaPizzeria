@@ -1,7 +1,7 @@
 import React from 'react';
-import { formatCurrency } from '../Helper';
-import styles from '../styles/checkout.module.css';
-import CardButton from './CardButton';
+import { formatCurrency } from '../../Helper';
+import styles from './checkout.module.css';
+import CardButton from '../CardButton/CardButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faX } from '@fortawesome/free-solid-svg-icons';
 

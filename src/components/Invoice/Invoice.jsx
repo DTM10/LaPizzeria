@@ -1,6 +1,6 @@
-import { formatCurrency } from '../Helper';
-import styles from '../styles/invoice.module.css';
-import CardButton from './CardButton';
+import { formatCurrency } from '../../Helper';
+import styles from './invoice.module.css';
+import CardButton from '../CardButton/CardButton';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export default function Invoice({

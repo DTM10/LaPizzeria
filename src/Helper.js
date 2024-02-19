@@ -31,7 +31,6 @@ export const getSundaySpecial = async () => {
 };
 
 export const specialsCheck = (day, pizzas, sundaySpecial) => {
-	console.log('sundaySpecial in specialsCheck :', sundaySpecial);
 	const invoiceDetails = [...pizzas];
 	if (day === 0) {
 		let pizzaCount = 0;
@@ -39,14 +38,10 @@ export const specialsCheck = (day, pizzas, sundaySpecial) => {
 		invoiceDetails.forEach((pizza) => {
 			pizzaCount += pizza.count;
 		});
-		console.log('pizzaCount: ', pizzaCount);
 		if (pizzaCount >= sundaySpecial.minQty) {
 			pizzaPrice = sundaySpecial.pricePerPizza;
-			console.log('sundaySpecial.pricePerPizza: ', sundaySpecial.pricePerPizza);
 		}
-		console.log('pizzaPrice', pizzaPrice);
 		invoiceDetails.forEach((pizza) => {
-			console.log('pizza', pizza);
 			pizza.price = pizzaPrice !== 0 ? pizzaPrice : pizza.price;
 			pizza.priceDesc = `${getWeekdDayStr(0)} Special`;
 			pizza.subTotal = pizza.price * pizza.count;
@@ -60,7 +55,6 @@ export const specialsCheck = (day, pizzas, sundaySpecial) => {
 			}
 			pizza.subTotal = pizza.price * pizza.count;
 		});
-		console.log('invoiceDetails are: ', invoiceDetails);
 	}
 	return invoiceDetails;
 };

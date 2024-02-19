@@ -1,4 +1,4 @@
-import styles from '../styles/cartHeader.module.css';
+import styles from './cartHeader.module.css';
 
 export default function CartHeader() {
 	return (

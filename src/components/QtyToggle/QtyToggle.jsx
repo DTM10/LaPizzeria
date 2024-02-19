@@ -1,4 +1,4 @@
-import styles from '../styles/qtyToggle.module.css';
+import styles from './qtyToggle.module.css';
 export default function QtyToggle({
 	handleDecrease,
 	handleIncrease,

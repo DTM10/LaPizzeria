@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect } from 'react';
-import styles from '../styles/home.module.css';
-import { CartContext } from '../context/CartContext';
-import { getSundaySpecial } from '../Helper';
+import styles from './home.module.css';
+import { CartContext } from '../../context/CartContext';
+import { getSundaySpecial } from '../../Helper';
 
 export function Home() {
 	const { scheduleWeekDayUpdate, setSundaySpecial } = useContext(CartContext);

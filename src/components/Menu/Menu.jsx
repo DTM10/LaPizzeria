@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/menu.module.css';
-import { PizzaCard } from './PizzaCard';
+import styles from './menu.module.css';
+import { PizzaCard } from '../PizzaCard/PizzaCard';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebaseConfig';
+import { db } from '../../firebaseConfig';
 
 export function Menu() {
 	const [pizzas, setPizzas] = useState([]);

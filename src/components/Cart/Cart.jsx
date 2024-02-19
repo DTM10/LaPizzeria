@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from '../styles/cart.module.css';
-import CartCard from './CartCard';
-import CartHeader from './CartHeader';
-import Invoice from './Invoice';
-import Checkout from './Checkout';
-import { CartContext } from '../context/CartContext';
-import { specialsCheck, aggregateItems, calculateTotal } from '../Helper';
+import styles from './cart.module.css';
+import CartCard from '../CartCard/CartCard';
+import CartHeader from '../CartHeader/CartHeader';
+import Invoice from '../Invoice/Invoice';
+import Checkout from '../Checkout/Checkout';
+import { CartContext } from '../../context/CartContext';
+import { specialsCheck, aggregateItems, calculateTotal } from '../../Helper';
 
 export function Cart() {
 	const { cartItems, weekDay, organizedPizzas, totalsObj } =

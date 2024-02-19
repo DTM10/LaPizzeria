@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import styles from '../styles/cartCard.module.css';
-import { CartContext } from '../context/CartContext';
-import QtyToggle from './QtyToggle';
+import styles from './cartCard.module.css';
+import { CartContext } from '../../context/CartContext';
+import QtyToggle from '../QtyToggle/QtyToggle';
 
 export default function CartCard({
 	qty,
