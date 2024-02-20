@@ -1,0 +1,105 @@
+.header {
+	background-color: var(--header-background-color);
+	display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;
+	z-index: 1;
+	margin-bottom: 50px;
+}
+
+.navContainer {
+	margin: 0;
+	align-items: center;
+}
+
+.customBrand {
+	margin: 0 !important;
+	width: clamp(120px, 20%, 250px);
+}
+
+.logo {
+	/* margin-left: clamp(30px, 12vw, 50px); */
+	/* padding: 1vw; */
+	width: 100px;
+	height: auto;
+	margin-bottom: -60px;
+	transform: rotate(-0.04turn);
+	/* z-index: 50; */
+}
+
+.customToggle {
+	border-color: var(--text-color) !important;
+	width: 16px;
+	height: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+}
+
+.linksContainer {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	align-items: center;
+}
+
+.togglerIcon {
+	color: var(--toggler-icon-color);
+	width: 7vw !important;
+	min-width: 38px !important;
+	height: auto !important;
+	margin: 0 !important;
+}
+
+.navLink {
+	/* font-family: var(--regular-font) !important; */
+	/* font-size: 1.9vw !important; */
+	font-weight: 700 !important;
+	color: var(--text-color) !important;
+	padding-left: 2vw !important;
+	padding-right: 2vw !important;
+	text-align: right;
+}
+
+.link {
+	text-decoration: none;
+	display: flex;
+	/* color: var(--text-color) !important; */
+	color: var(--card-text-color) !important;
+	font-family: var(--regular-font) !important;
+	/* font-size: clamp(25px, 1.9vw, 50px) !important; */
+	font-size: 16px !important;
+	font-weight: 700 !important;
+	padding-left: 2vw !important;
+	padding-right: 2vw !important;
+	text-align: right;
+}
+
+.cart {
+	display: flex;
+	justify-content: space-between;
+}
+
+.emptyCart {
+	display: flex;
+	justify-content: space-between;
+	color: var(--empty-cart-color)
+}
+
+.emptyCartIcon {
+	/* color: var(--cart-color); */
+	color: var(--empty-cart-color);
+	/* width: clamp(30px, 2.2vw, 50px); */
+	width: 16px;
+	height: auto;
+	/* padding-left: 2vw; */
+}
+
+.cartIcon {
+	/* color: var(--text-color); */
+	color: var(--card-text-color);
+	width: clamp(30px, 2.2vw, 50px);
+	height: auto;
+	padding-left: 2vw;
+}
