@@ -96,3 +96,53 @@ export const formatCurrency = (num) => {
 
 	return formatter.format(num);
 };
+
+export const canadianProvincesTerritoriesInitials = [
+    'AB', // Alberta
+    'BC', // British Columbia
+    'MB', // Manitoba
+    'NB', // New Brunswick
+    'NL', // Newfoundland and Labrador
+    'NS', // Nova Scotia
+    'NT', // Northwest Territories
+    'NU', // Nunavut
+    'ON', // Ontario
+    'PE', // Prince Edward Island
+    'QC', // Quebec
+    'SK', // Saskatchewan
+    'YT', // Yukon
+  ];
+
+  const dateNumberToString = (n) => {
+	  let str = n.toString();
+	  if (str.length === 1) {
+		str = '0' + str;
+	  }
+	  return str
+  }
+
+  const formatHours = (h, m) => {
+	const isAfterNoon = h > 12;
+	const period = isAfterNoon ? 'PM' : 'AM'
+	const hourNum = isAfterNoon ? h - 12 : h;
+	return `${dateNumberToString(hourNum)}: ${dateNumberToString(m)} ${period}`;
+  }
+
+  export const getFormattedDate = (timestamp) => {
+	  console.log('timestamp: ',timestamp);
+	  const date = new Date(timestamp);
+	  
+	  console.log('date: ', date);
+	  const year = date.getFullYear();
+	  const month = dateNumberToString(date.getMonth() + 1);
+	  const day = dateNumberToString(date.getDate());
+	  const time = formatHours(date.getHours(), date.getMinutes());
+	  const formattedDate = `${year}-${month}-${day} at ${time}`;
+
+	console.log('formattedDate', formattedDate);
+
+	return formattedDate
+  }
+
+
+

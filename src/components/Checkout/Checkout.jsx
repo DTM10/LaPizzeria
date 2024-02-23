@@ -1,23 +1,58 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { formatCurrency } from '../../Helper';
 import styles from './checkout.module.css';
 import CardButton from '../CardButton/CardButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faX } from '@fortawesome/free-solid-svg-icons';
+import { collection, addDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebaseConfig';
+import { AuthContext } from '../../context/AuthContext';
+import { CartContext } from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
-export default function Invoice({
-  subTotal,
-  taxAmount,
-  grandTotal,
-  setCheckingOut,
-  checkingOut,
-}) {
+export default function Invoice({ setCheckingOut }) {
+  const { userId, fetchOrders } = useContext(AuthContext);
+  const { organizedPizzas, totalsObj, setCart } = useContext(CartContext);
+  const navigate = useNavigate();
+
   const handleCancel = () => {
-    setCheckingOut(!checkingOut);
+    setCheckingOut(false);
   };
 
   const handlePlaceOrder = () => {
     console.log('handlePlaceOrder');
+    const orderDetails = organizedPizzas.map((pizza) => {
+      return {
+        count: pizza.count,
+        pizzaId: pizza.id,
+        pizzaTitle: pizza.title,
+        pizzaSubTotal: Math.round(pizza.subTotal * 100) / 100,
+      };
+    });
+    const timestamp = new Date().getTime();
+    console.log('timestamp is: ', timestamp);
+    console.log('timestamp is: ', typeof timestamp);
+    const userDocRef = doc(db, 'users', userId);
+    const ordersCollectionRef = collection(userDocRef, 'orders');
+    addDoc(ordersCollectionRef, {
+      subTotal: Math.round(totalsObj.totalBTax * 100) / 100,
+      taxAmount: Math.round(totalsObj.tax * 100) / 100,
+      grandTotal: Math.round(totalsObj.grandTotal * 100) / 100,
+      timestamp: timestamp,
+      orderDetails: orderDetails,
+      status: 'pending',
+    })
+      .then((docRef) => {
+        console.log('New order added with ID: ', docRef.id);
+        fetchOrders();
+        setCart([]);
+        // SHOW FEEDBACK REGARDING THE ORDER PLACED
+        setCheckingOut(false);
+        navigate('/tracker');
+      })
+      .catch((error) => {
+        console.error('Error adding order: ', error);
+      });
   };
 
   return (
@@ -34,12 +69,14 @@ export default function Invoice({
         </div>
         <div className={styles.priceDetailsContainer}>
           <p children className={styles.priceDetail}>
-            Total Before Tax: {formatCurrency(subTotal)}
+            Total Before Tax: {formatCurrency(totalsObj.totalBTax)}
           </p>
-          <p className={styles.priceDetail}>Tax: {formatCurrency(taxAmount)}</p>
+          <p className={styles.priceDetail}>
+            Tax: {formatCurrency(totalsObj.tax)}
+          </p>
 
           <p className={styles.grandTotal}>
-            Grand Total: {formatCurrency(grandTotal)}
+            Grand Total: {formatCurrency(totalsObj.grandTotal)}
           </p>
         </div>
         <div className={styles.btnContainer}>

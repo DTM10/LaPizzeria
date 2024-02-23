@@ -16,18 +16,20 @@ function CartProvider({ children }) {
 		const aggregatedItems = aggregateItems(cartItems);
 		const organized = specialsCheck(weekDay, aggregatedItems, sundaySpecial);
 		setOrganizedPizzas(organized);
-	},[cartItems])
+	},[cartItems, weekDay])
 
 	useEffect(()=>{
 		const totals = calculateTotal(organizedPizzas);
 		setTotalsObj(totals);
-	}, [organizedPizzas])
+	}, [organizedPizzas, weekDay])
 
 	useEffect(()=>{
 		setCartAmount(totalsObj.grandTotal);
-	},[totalsObj])
+	},[totalsObj, weekDay])
 
 	const addCartItems = (item) => {
+		const day = new Date().getDay();
+		updateWeekDay(day);
 		setCart([...cartItems, ...item]);
 	};
 
@@ -78,6 +80,7 @@ function CartProvider({ children }) {
 		<CartContext.Provider
 			value={{
 				cartItems,
+				setCart,
 				addCartItems,
 				removeCartItem,
 				increaseItemCount,

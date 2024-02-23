@@ -1,13 +1,16 @@
-.login {
+
+.user {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.loginContainer{
+.userContainer{
+    color: var(--text-color);
     width: 80%;
-    display: flex;
-    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
 }
 
 .title{
@@ -28,7 +31,8 @@
     font-size: 14px;
     display: flex;
     flex-grow: 2;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 .input {
@@ -38,13 +42,15 @@
     border-color: var(--text-color);
     border-width: 1px;
     border-radius: 5px;
+    margin-left: 10px;
 }
 
 .btnContainer {
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
     padding-top: 30px;
+
 }
 
 .button {
@@ -82,19 +88,10 @@ align-items: center;
     background-color: var(--action-change-color);
 }
 
-.linksContainer {
-    display: flex;
-    padding-top: 10px;
-    justify-content: space-around;
-}
-
-.link {
+.loginLink {
     font-size: 12px;
     text-align: center;
     padding-top: 10px;
     text-decoration: none;
     color: var(--text-color);
-    border: none;
-    font-family: var(--regular-font);
-    background-color: transparent;
 }

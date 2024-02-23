@@ -1,0 +1,20 @@
+
+
+.tracker {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.trackerContainer{
+    color: var(--text-color);
+    width: 80%;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+}
+
+.title{
+    color: var(--text-color);
+    font-family: var(--regular-font);
+}

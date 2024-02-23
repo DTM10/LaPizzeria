@@ -2,6 +2,7 @@
 :root {
 	--background-color: #f5efdb;
 	--header-background-color: rgba(51, 3, 3);
+	--text-color: rgba(51, 3, 3);
 	--header-links-hover-background: rgba(51, 3, 3, 0.2) ;
 	--card-background-color: rgba(51, 3, 3);
 	--card-btn-background-color: #f5efdb;
@@ -30,29 +31,3 @@ body {
 	color: var(--text-color) !important;
 	font-family: var(--regular-font) !important;
 }
-
-/* button.navbar-toggler {
-	border-width: 0px;
-	box-shadow: none !important;
-	transition: none;
-}
-
-button.collapsed:active {
-	border-width: 3px;
-	border-color: var(--text-color);
-	transition: none;
-}
-
-.header_customToggle__8nmxy.navbar-toggler .navbar-toggler-icon {
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 2.2vw;
-	min-width: 40px;
-	height: auto;
-	padding: auto;
-} */
-
-/* #basic-navbar-nav.show .nabar-nav a.nav-link {
-	font-size: 40px !important;
-} */

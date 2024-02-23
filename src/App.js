@@ -7,11 +7,13 @@ import { Tracker } from './components/Tracker/Tracker';
 import { Login } from './components/Login/Login';
 import { Cart } from './components/Cart/Cart';
 import { CartProvider } from '../src/context/CartContext';
-// import Header from './components/Header';
+import { AuthProvider } from '../src/context/AuthContext';
+import { Register } from './components/Register/Register';
 import Layout from './components/Layout';
 
 function App() {
 	return (
+		<AuthProvider>
 		<CartProvider>
 			<div className="App">
 				<Router>
@@ -22,11 +24,13 @@ function App() {
 							<Route path="login" element={<Login />} />
 							<Route path="tracker" element={<Tracker />} />
 							<Route path="cart" element={<Cart />} />
+							<Route path="register" element={<Register />} />
 						</Route>
 					</Routes>
 				</Router>
 			</div>
 		</CartProvider>
+		</AuthProvider>
 	);
 }
 
