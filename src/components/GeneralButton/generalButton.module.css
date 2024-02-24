@@ -1,0 +1,34 @@
+.button {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--card-btn-text-color);
+    color: var(--card-text-color);
+    padding: 10px;
+    width: 200px;
+    height: 50px;
+    font-weight: 400;
+    font-size: 18px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    }
+    
+    .btnIcon {
+        width: 25px;
+        height: auto;
+    }
+    
+    .button:hover {
+        font-size: 19px;
+    }
+    
+    .button:hover .btnIcon {
+        width: 26px;
+        height: auto;
+    }
+    
+    
+    .button:active {
+        background-color: var(--action-change-color);
+    }

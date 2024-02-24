@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react';
 import styles from './login.module.css';
-import { Register } from '../Register/Register';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { auth } from '../../firebaseConfig';
 import {
@@ -12,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../User/User';
+import { GeneralButton } from '../GeneralButton/GeneralButton';
 
 export function Login() {
   const [loginEmail, setLoginEmail] = useState('');
@@ -89,13 +88,11 @@ export function Login() {
             </label>
           </div>
           <div className={styles.btnContainer}>
-            <button onClick={login} className={styles.button}>
-              LOGIN
-              <FontAwesomeIcon
-                icon={faArrowRightToBracket}
-                className={styles.btnIcon}
-              />
-            </button>
+            <GeneralButton
+              action={login}
+              btnText="LOGIN"
+              icon={faArrowRightToBracket}
+            />
           </div>
           <div className={styles.linksContainer}>
             <Link to="/register" className={styles.link}>

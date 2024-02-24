@@ -1,5 +1,6 @@
 import React, {createContext, useEffect, useState} from 'react';
-import { db } from '../firebaseConfig';
+import { db, auth } from '../firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 
 const AuthContext = createContext();
@@ -12,6 +13,20 @@ function AuthProvider({children}) {
     const [forDeliverOrders, setForDeliverOrders] = useState([])
     const [deliveredOrders, setDeliveredOrders] = useState([])
 
+
+    useEffect(()=>{
+        console.log('Auth useEffect test.');
+        onAuthStateChanged(auth, (user)=>{
+            if (user) {
+                const uid = user.uid
+                setUserId(uid)
+            } else {
+                console.log('No user logged');
+                setUserId('');
+            }
+        })
+    })
+
     useEffect(()=>{
         if(userId !== '') {
             setIsLoggedIn(true);
@@ -21,7 +36,6 @@ function AuthProvider({children}) {
             .then((res)=>{
                 const docSnap = res;
                 if (docSnap.exists()) {
-                    console.log("Document data:", docSnap.data());
                     setUserDetails(docSnap.data());
                 } else {
                     console.log("No such document!");
@@ -45,10 +59,8 @@ function AuthProvider({children}) {
         .then((querySnapshot)=>{
             const tempOrders = [];
             querySnapshot.forEach((doc)=>{
-                console.log(doc.id, '=>', doc.data());
                 tempOrders.push({...doc.data(), orderId: doc.id});
             })
-            console.log('tempOrders: ', tempOrders);
             setPendingOrders(tempOrders);
         })
     };
@@ -61,10 +73,8 @@ function AuthProvider({children}) {
         .then((querySnapshot)=>{
             const tempOrders = [];
             querySnapshot.forEach((doc)=>{
-                console.log(doc.id, '=>', doc.data());
                 tempOrders.push({...doc.data(), orderId: doc.id});
             })
-            console.log('tempOrders: ', tempOrders);
             setForDeliverOrders(tempOrders);
         })
     }
@@ -77,10 +87,8 @@ function AuthProvider({children}) {
         .then((querySnapshot)=>{
             const tempOrders = [];
             querySnapshot.forEach((doc)=>{
-                console.log(doc.id, '=>', doc.data());
                 tempOrders.push({...doc.data(), orderId: doc.id});
             })
-            console.log('tempOrders: ', tempOrders);
             setDeliveredOrders(tempOrders);
         })
     }
@@ -90,12 +98,7 @@ function AuthProvider({children}) {
         fetchForDeliverOrders();
         fetchDeliveredOrders();
     }
-
-    const fetchOrderByNumber = (order) => {
-
-    } 
-
-    return (<AuthContext.Provider value={{ setUserId, userDetails, isLoggedIn, userId , fetchOrders, fetchOrderByNumber, pendingOrders, forDeliverOrders, deliveredOrders}}>{children}</AuthContext.Provider>)
+    return (<AuthContext.Provider value={{ setUserId, userDetails, isLoggedIn, userId , fetchOrders, pendingOrders, forDeliverOrders, deliveredOrders}}>{children}</AuthContext.Provider>)
 }
 
 export {AuthContext, AuthProvider}

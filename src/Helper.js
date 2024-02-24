@@ -76,15 +76,11 @@ export const aggregateItems = (cartItems) => {
 
 export const calculateTotal = (organizedPizzas) => {
 	let totalBTax = 0;
-
 	organizedPizzas.forEach((i) => {
 		totalBTax += i.subTotal;
 	});
-
 	const tax = totalBTax * TAX;
-
 	const grandTotal = Math.round((totalBTax + tax) * 100) / 100;
-
 	return { totalBTax: totalBTax, tax: tax, grandTotal: grandTotal };
 };
 
@@ -93,7 +89,6 @@ export const formatCurrency = (num) => {
 		style: 'currency',
 		currency: 'CAD'
 	});
-
 	return formatter.format(num);
 };
 
@@ -129,19 +124,27 @@ export const canadianProvincesTerritoriesInitials = [
   }
 
   export const getFormattedDate = (timestamp) => {
-	  console.log('timestamp: ',timestamp);
 	  const date = new Date(timestamp);
-	  
-	  console.log('date: ', date);
 	  const year = date.getFullYear();
 	  const month = dateNumberToString(date.getMonth() + 1);
 	  const day = dateNumberToString(date.getDate());
 	  const time = formatHours(date.getHours(), date.getMinutes());
 	  const formattedDate = `${year}-${month}-${day} at ${time}`;
 
-	console.log('formattedDate', formattedDate);
 
 	return formattedDate
+  }
+
+  export const formatStatusStr = (str) => {
+	if (str === 'pending') {
+		return 'Pending'
+	}
+	if (str === 'fordeliver') {
+		return 'For Deliver'
+	}
+	if (str === 'delivered') {
+		return 'Delivered'
+	}
   }
 
 

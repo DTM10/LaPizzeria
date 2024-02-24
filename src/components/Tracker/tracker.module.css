@@ -18,3 +18,30 @@
     color: var(--text-color);
     font-family: var(--regular-font);
 }
+
+.orders, .pendingOrders {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    
+}
+
+/* .pendingOrders {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 2fr, 2fr, 1fr;
+    display: flex;
+    justify-content: space-between;
+} */
+
+.label {
+    font-size: 10px;
+    text-align: left;
+    font-weight: 200;
+}
+
+.data {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 300;
+}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { formatCurrency } from '../../Helper';
 import styles from './checkout.module.css';
 import CardButton from '../CardButton/CardButton';
@@ -13,6 +13,9 @@ import { useNavigate } from 'react-router-dom';
 export default function Invoice({ setCheckingOut }) {
   const { userId, fetchOrders } = useContext(AuthContext);
   const { organizedPizzas, totalsObj, setCart } = useContext(CartContext);
+  const [orderNumber, setOrderNum] = useState('');
+  // const [orderPlaced, setOrderPlaced] = useState(false);
+
   const navigate = useNavigate();
 
   const handleCancel = () => {
@@ -20,7 +23,6 @@ export default function Invoice({ setCheckingOut }) {
   };
 
   const handlePlaceOrder = () => {
-    console.log('handlePlaceOrder');
     const orderDetails = organizedPizzas.map((pizza) => {
       return {
         count: pizza.count,
@@ -30,10 +32,10 @@ export default function Invoice({ setCheckingOut }) {
       };
     });
     const timestamp = new Date().getTime();
-    console.log('timestamp is: ', timestamp);
-    console.log('timestamp is: ', typeof timestamp);
     const userDocRef = doc(db, 'users', userId);
+
     const ordersCollectionRef = collection(userDocRef, 'orders');
+
     addDoc(ordersCollectionRef, {
       subTotal: Math.round(totalsObj.totalBTax * 100) / 100,
       taxAmount: Math.round(totalsObj.tax * 100) / 100,
@@ -44,14 +46,14 @@ export default function Invoice({ setCheckingOut }) {
     })
       .then((docRef) => {
         console.log('New order added with ID: ', docRef.id);
-        fetchOrders();
+        setOrderNum(docRef.id);
         setCart([]);
-        // SHOW FEEDBACK REGARDING THE ORDER PLACED
+        fetchOrders();
         setCheckingOut(false);
         navigate('/tracker');
       })
-      .catch((error) => {
-        console.error('Error adding order: ', error);
+      .catch((e) => {
+        console.log('Error adding order: ', e);
       });
   };
 
@@ -67,6 +69,7 @@ export default function Invoice({ setCheckingOut }) {
             <FontAwesomeIcon icon={faX} className={styles.closeBtnIcon} />
           </button>
         </div>
+
         <div className={styles.priceDetailsContainer}>
           <p children className={styles.priceDetail}>
             Total Before Tax: {formatCurrency(totalsObj.totalBTax)}
@@ -79,6 +82,7 @@ export default function Invoice({ setCheckingOut }) {
             Grand Total: {formatCurrency(totalsObj.grandTotal)}
           </p>
         </div>
+
         <div className={styles.btnContainer}>
           <CardButton
             handlePress={handlePlaceOrder}

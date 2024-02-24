@@ -60,11 +60,24 @@
 }
 
 .priceDetail {
-	font-size: 2vw;
+	font-size: 12px;
 	margin: 5px 0;
 }
 
 .grandTotal {
 	font-size: 2.5vw;
 	margin: 10px 0;
+}
+
+.feedbackContainer {
+	display: flex;
+}
+
+.label {
+	font-size: 10px;
+	color: var(--card-text-color);
+}
+.orderNumber {
+	font-size: 12px;
+	color: var(--card-text-color);
 }
