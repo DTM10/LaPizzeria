@@ -57,7 +57,5 @@ export function Cart() {
 }
 
 /* 
-	 		
 	- ADD BUTTON TO CLEAR THE CART
-	
 */
