@@ -11,6 +11,7 @@ import {
 import { doc, setDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Feedback } from '../Feedback/Feedback';
 
 export function Register() {
   const [firstName, setFirstName] = useState('');
@@ -22,6 +23,8 @@ export function Register() {
   const [city, setCity] = useState('');
   const [province, setProvince] = useState('ON');
   const [isRegistered, setIsRegistered] = useState(false);
+  const [showFeedbackMsg, setShowFeedback] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,8 +42,6 @@ export function Register() {
       .then((userCredentials) => {
         const user = userCredentials.user;
         sendEmailVerification(auth.currentUser);
-        console.log('user is: ', user);
-        console.log('uid is: ', user.uid);
         setDoc(doc(db, 'users', user.uid), {
           firstName: firstName,
           lastName: lastName,
@@ -52,6 +53,10 @@ export function Register() {
           .then((res) => {
             console.log(res);
             setIsRegistered(true);
+            setFeedbackMsg(
+              'Account created! We have sent you an email to confirm your account. Please verify your email by following the instructions in the email.'
+            );
+            setShowFeedback(true);
           })
           .catch((err) => {
             console.log(
@@ -66,19 +71,14 @@ export function Register() {
         console.log('Error trying to register new user.');
         console.log('Error code: ', errorCode);
         console.log('Error Message: ', errorMsg);
+        setFeedbackMsg(`Error trying to register user: ${errorCode}`);
+        setShowFeedback(true);
       });
   };
 
   return (
     <div className={styles.register}>
-      {isRegistered && (
-        <div className={styles.feedbackContainer}>
-          <p className={styles.feedbackMsg}>
-            We've sent an email to verify your account. Please, verify your
-            email.
-          </p>
-        </div>
-      )}
+      {isRegistered && <Feedback feedbackMsg={feedbackMsg} />}
       {!isRegistered && (
         <div className={styles.registerContainer}>
           <h1 className={styles.title}>Register</h1>

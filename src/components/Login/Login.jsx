@@ -11,10 +11,13 @@ import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../User/User';
 import { GeneralButton } from '../GeneralButton/GeneralButton';
+import { Feedback } from '../Feedback/Feedback';
 
 export function Login() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [showFeedbackMsg, setShowFeedback] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState('');
   const { setUserId, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -30,6 +33,10 @@ export function Login() {
           navigate('/menu');
         } else {
           // SHOW A FEEDBACK MESSAGE TELLING THE USER TO VERIFY ITS EMAIL.
+          setFeedbackMsg(
+            'Kindly click on the link sent to your email to verify it before proceeding.'
+          );
+          setShowFeedback(true);
         }
       })
       .catch((e) => {
@@ -38,13 +45,28 @@ export function Login() {
         console.log('Error trying to login.');
         console.log('Error code: ', errorCode);
         console.log('Error message: ', errorMsg);
+        if (errorCode === 'auth/invalid-credential') {
+          setFeedbackMsg('Email and/or password incorrect.');
+          setShowFeedback(true);
+        } else if ('auth/too-many-requests') {
+          setFeedbackMsg(
+            'You have exceeded the maximum number of login attempts. Please reset your password by clicking on the Forgot Password button below.'
+          );
+          setShowFeedback(true);
+        } else {
+          setFeedbackMsg('We could not log you in.');
+          setShowFeedback(true);
+        }
       });
   };
 
   const resetPassword = () => {
     sendPasswordResetEmail(auth, loginEmail)
       .then(() => {
-        // SHOW A FEEDBACK MESSAGE TO THE USER SAYING THAT THE EMAIL WAS SENT IF THERE IS AN ACCOUNT WITH THIS EMAIL.
+        setFeedbackMsg(
+          'A reset password link has been sent . Please, check your email inbox.'
+        );
+        setShowFeedback(true);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -52,6 +74,10 @@ export function Login() {
         console.log('ERROR trying to send a password reset email.');
         console.log('Error code: ', errorCode);
         console.log('Error message: ', errorMessage);
+        setFeedbackMsg(
+          'Error trying to send a reset password email: ' + errorCode
+        );
+        setShowFeedback(true);
         // ..
       });
   };
@@ -70,6 +96,8 @@ export function Login() {
                 type="email"
                 value={loginEmail}
                 onChange={(e) => {
+                  setFeedbackMsg('');
+                  setShowFeedback(false);
                   setLoginEmail(e.target.value);
                 }}
               />
@@ -82,11 +110,19 @@ export function Login() {
                 type="password"
                 value={loginPassword}
                 onChange={(e) => {
+                  setFeedbackMsg('');
+                  setShowFeedback(false);
                   setLoginPassword(e.target.value);
                 }}
               />
             </label>
           </div>
+
+          {showFeedbackMsg && (
+            <div className={styles.feedbackContainer}>
+              <Feedback feedbackMsg={feedbackMsg} />
+            </div>
+          )}
           <div className={styles.btnContainer}>
             <GeneralButton
               action={login}

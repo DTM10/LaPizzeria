@@ -10,6 +10,7 @@ import {
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../../firebaseConfig';
 import { doc, setDoc } from 'firebase/firestore';
+import { Feedback } from '../Feedback/Feedback';
 
 export function User() {
   const { userDetails, setUserId, userId } = useContext(AuthContext);
@@ -17,6 +18,8 @@ export function User() {
   const [city, setCity] = useState(userDetails.city);
   const [province, setProvince] = useState(userDetails.province);
   const [phone, setPhone] = useState(userDetails.phone);
+  const [showFeedbackMsg, setShowFeedback] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState('');
 
   const updateUser = () => {
     console.log('updateUser called');
@@ -31,12 +34,21 @@ export function User() {
       { address: address, city: city, phone: phone, province: province },
       { merge: true }
     )
-      .then((r) => {
-        // IMPLEMENT FEEDBACK MESSAGE INFORMING THAT THE USER HAS BEEN UPDATED
-        console.log('userUpdated');
+      .then(() => {
+        setFeedbackMsg('User has been successfully updated.');
+        setShowFeedback(true);
+        setTimeout(() => {
+          setFeedbackMsg('');
+          setShowFeedback(false);
+        }, 5000);
       })
       .catch((e) => {
-        console.log('Error trying to update the user: ', e);
+        setFeedbackMsg(`Error trying to update the user: ${e}`);
+        setShowFeedback(true);
+        setTimeout(() => {
+          setFeedbackMsg('');
+          setShowFeedback(false);
+        }, 5000);
       });
   };
 
@@ -45,11 +57,14 @@ export function User() {
     signOut(auth)
       .then(() => {
         setUserId('');
-        // SHOW A FEEDBACK MESSAGE TELLING THE USER HAS BEEN LOGGED OUT
       })
       .catch((e) => {
-        // An error happened.
-        console.log('Error trying to log the user out: ', e);
+        setFeedbackMsg(`Error trying to log the user out: ${e}`);
+        setShowFeedback(true);
+        setTimeout(() => {
+          setFeedbackMsg('');
+          setShowFeedback(false);
+        }, 5000);
       });
   };
 
@@ -115,6 +130,11 @@ export function User() {
             />
           </label>
         </div>
+        {showFeedbackMsg && (
+          <div className={styles.feedbackContainer}>
+            <Feedback feedbackMsg={feedbackMsg} />
+          </div>
+        )}
         <div className={styles.btnContainer}>
           <button onClick={updateUser} className={styles.button}>
             UPDATE

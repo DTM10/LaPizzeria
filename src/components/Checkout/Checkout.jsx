@@ -9,12 +9,14 @@ import { db } from '../../firebaseConfig';
 import { AuthContext } from '../../context/AuthContext';
 import { CartContext } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { Feedback } from '../Feedback/Feedback';
 
 export default function Invoice({ setCheckingOut }) {
   const { userId, fetchOrders } = useContext(AuthContext);
   const { organizedPizzas, totalsObj, setCart } = useContext(CartContext);
-  const [orderNumber, setOrderNum] = useState('');
-  // const [orderPlaced, setOrderPlaced] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [showFeedbackMsg, setShowFeedback] = useState(false);
+  const [feedbackMsg, setFeedbackMsg] = useState('');
 
   const navigate = useNavigate();
 
@@ -46,11 +48,17 @@ export default function Invoice({ setCheckingOut }) {
     })
       .then((docRef) => {
         console.log('New order added with ID: ', docRef.id);
-        setOrderNum(docRef.id);
-        setCart([]);
-        fetchOrders();
-        setCheckingOut(false);
-        navigate('/tracker');
+        setFeedbackMsg('The order has been placed successfully!');
+        setShowFeedback(true);
+        setOrderPlaced(true);
+        setTimeout(() => {
+          setFeedbackMsg('');
+          setShowFeedback(false);
+          setCart([]);
+          fetchOrders();
+          setCheckingOut(false);
+          navigate('/tracker');
+        }, 3000);
       })
       .catch((e) => {
         console.log('Error adding order: ', e);
@@ -59,38 +67,45 @@ export default function Invoice({ setCheckingOut }) {
 
   return (
     <div className={styles.checkout}>
-      <div className={styles.checkoutContainer}>
-        <div className={styles.closeBtnContainer}>
-          <button
-            className={styles.modalCloseBtn}
-            onClick={handleCancel}
-            icon={faX}
-          >
-            <FontAwesomeIcon icon={faX} className={styles.closeBtnIcon} />
-          </button>
-        </div>
+      {!orderPlaced && (
+        <div className={styles.checkoutContainer}>
+          <div className={styles.closeBtnContainer}>
+            <button
+              className={styles.modalCloseBtn}
+              onClick={handleCancel}
+              icon={faX}
+            >
+              <FontAwesomeIcon icon={faX} className={styles.closeBtnIcon} />
+            </button>
+          </div>
 
-        <div className={styles.priceDetailsContainer}>
-          <p children className={styles.priceDetail}>
-            Total Before Tax: {formatCurrency(totalsObj.totalBTax)}
-          </p>
-          <p className={styles.priceDetail}>
-            Tax: {formatCurrency(totalsObj.tax)}
-          </p>
+          <div className={styles.priceDetailsContainer}>
+            <p children className={styles.priceDetail}>
+              Total Before Tax: {formatCurrency(totalsObj.totalBTax)}
+            </p>
+            <p className={styles.priceDetail}>
+              Tax: {formatCurrency(totalsObj.tax)}
+            </p>
 
-          <p className={styles.grandTotal}>
-            Grand Total: {formatCurrency(totalsObj.grandTotal)}
-          </p>
-        </div>
+            <p className={styles.grandTotal}>
+              Grand Total: {formatCurrency(totalsObj.grandTotal)}
+            </p>
+          </div>
 
-        <div className={styles.btnContainer}>
-          <CardButton
-            handlePress={handlePlaceOrder}
-            text={'PLACE ORDER'}
-            icon={faCartShopping}
-          />
+          <div className={styles.btnContainer}>
+            <CardButton
+              handlePress={handlePlaceOrder}
+              text={'PLACE ORDER'}
+              icon={faCartShopping}
+            />
+          </div>
         </div>
-      </div>
+      )}
+      {orderPlaced && (
+        <div className={styles.feedbackContainer}>
+          <Feedback feedbackMsg={feedbackMsg} />
+        </div>
+      )}
     </div>
   );
 }

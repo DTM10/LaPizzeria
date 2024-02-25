@@ -1,0 +1,10 @@
+.feedback {
+    background-color: var(--orange-color);
+    border-radius: 5px;
+    padding: 1px 5px;
+}
+
+.feedbackMsg {
+    color: var(--card-text-color);
+    font-size: 10px;
+}

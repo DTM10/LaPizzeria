@@ -19,13 +19,20 @@ function AuthProvider({children}) {
         onAuthStateChanged(auth, (user)=>{
             if (user) {
                 const uid = user.uid
-                setUserId(uid)
+                if(user.emailVerified){
+                    setUserId(uid)
+                }
             } else {
                 console.log('No user logged');
+                setIsLoggedIn(false)
                 setUserId('');
             }
         })
     })
+
+    useEffect(()=>{
+        console.log('isLoggedIn changed: ', isLoggedIn);
+    },[isLoggedIn])
 
     useEffect(()=>{
         if(userId !== '') {

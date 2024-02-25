@@ -4,13 +4,6 @@ display: flex;
 justify-content: center;
 }
 
-.feedbackContainer{
-    color: var(--text-color);
-    text-align: center;
-    padding: 20px;
-    font-size: 16px;
-}
-
 .registerContainer{
     width: 80%;
     display: flex;
