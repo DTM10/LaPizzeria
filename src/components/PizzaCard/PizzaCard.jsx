@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './pizzaCard.module.css';
 import CardButton from '../CardButton/CardButton';
 import { CartContext } from '../../context/CartContext';
@@ -14,14 +14,10 @@ export function PizzaCard({
   price,
   specialPrice,
   specialDay,
+  checkIfZero,
 }) {
   const { addCartItems } = useContext(CartContext);
   const [qty, setQty] = useState(1);
-  // const [canDescrease, setCanDecrease] = useState(false);
-
-  // useEffect(() => {
-  //   setCanDecrease(qty > 1 ? true : false);
-  // }, [qty]);
 
   const handleAddition = () => {
     const addingPizza = {
@@ -31,12 +27,9 @@ export function PizzaCard({
       price: price,
       specialPrice: specialPrice,
       specialDay: specialDay,
+      count: qty,
     };
-    const addingArray = [];
-    for (let i = 0; i < qty; i++) {
-      addingArray.push(addingPizza);
-    }
-    addCartItems(addingArray);
+    addCartItems(addingPizza);
     setQty(1);
   };
 
@@ -53,9 +46,7 @@ export function PizzaCard({
     <div className={styles.card}>
       <img src={imgSrc} alt={imgAltText} className={styles.pizzaImg} />
       <h2 className={styles.pizzaTitle}>{title}</h2>
-      {/* <div className={styles.titleContainer}>
 
-	  </div> */}
       <div className={styles.descriptionContainer}>
         <p className={styles.description}>{description}</p>
       </div>
@@ -68,6 +59,8 @@ export function PizzaCard({
           canDescrease={qty > 1}
           setQty={setQty}
           canEditValue={true}
+          param={id}
+          checkIfZero={checkIfZero}
         />
       </div>
       <CardButton

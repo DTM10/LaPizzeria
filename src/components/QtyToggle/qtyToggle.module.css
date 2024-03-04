@@ -32,6 +32,25 @@
 	text-align: center;
 }
 
+/* REMOVE THE SPINNERS */
+/* For Webkit browsers like Chrome, Safari */
+.qtyAmount[type="number"]::-webkit-inner-spin-button,
+.qtyAmount[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+.qtyAmount[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* For Microsoft Edge */
+.qtyAmount[type="number"]::-ms-clear,
+.qtyAmount[type="number"]::-ms-reveal {
+  display: none;
+}
+
 .disabled {
 	background-color: rgba(255,255,255,0.15);
 	padding: 2px;

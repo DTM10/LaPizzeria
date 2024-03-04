@@ -4,8 +4,6 @@ import { AuthContext } from '../../context/AuthContext';
 
 export default function CartHeader() {
   const { userDetails, isLoggedIn } = useContext(AuthContext);
-
-  console.log(userDetails, isLoggedIn);
   return (
     <div className={styles.cartHeader}>
       <div className={styles.cartHeaderContainer}>

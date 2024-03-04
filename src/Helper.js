@@ -59,21 +59,6 @@ export const specialsCheck = (day, pizzas, sundaySpecial) => {
 	return invoiceDetails;
 };
 
-export const aggregateItems = (cartItems) => {
-	if (cartItems.length > 0) {
-		const aggregationMap = cartItems.reduce((acc, item) => {
-			if (!acc[item.id]) {
-				acc[item.id] = { ...item, count: 1 };
-			} else {
-				acc[item.id].count += 1;
-			}
-			return acc;
-		}, {});
-		return Object.values(aggregationMap);
-	}
-	return [];
-};
-
 export const calculateTotal = (organizedPizzas) => {
 	let totalBTax = 0;
 	organizedPizzas.forEach((i) => {

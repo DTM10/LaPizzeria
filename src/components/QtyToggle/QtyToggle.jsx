@@ -8,7 +8,7 @@ export default function QtyToggle({
   qty,
   param,
   canDescrease,
-  canEditValue,
+  checkIfZero,
 }) {
   return (
     <div className={styles.qty}>
@@ -24,15 +24,17 @@ export default function QtyToggle({
         }}
       >
         <FontAwesomeIcon icon={faMinus} size="xs" />
-        {/* - */}
       </button>
       <input
         className={styles.qtyAmount}
+        type="number"
         value={qty}
         onChange={(e) => {
-          setQty(e.target.value);
+          setQty(Number(e.target.value), param);
         }}
-        disabled={!canEditValue}
+        onBlur={() => {
+          checkIfZero(param);
+        }}
       />
       <button
         className={styles.btn}
@@ -45,7 +47,6 @@ export default function QtyToggle({
         }}
       >
         <FontAwesomeIcon icon={faPlus} size="xs" />
-        {/* + */}
       </button>
     </div>
   );

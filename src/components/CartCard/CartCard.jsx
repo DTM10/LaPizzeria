@@ -13,7 +13,8 @@ export default function CartCard({
   subTotal,
   price,
 }) {
-  const { increaseItemCount, removeCartItem } = useContext(CartContext);
+  const { increaseItemCount, removeCartItem, setCartItemQty, checkIfZero } =
+    useContext(CartContext);
 
   return (
     <div className={styles.cartCard}>
@@ -31,7 +32,8 @@ export default function CartCard({
             qty={qty}
             param={id}
             canDescrease={true}
-            canEditValue={false}
+            setQty={setCartItemQty}
+            checkIfZero={checkIfZero}
           />
         </div>
         <div className={styles.price}>
