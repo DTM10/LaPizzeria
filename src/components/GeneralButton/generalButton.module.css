@@ -1,6 +1,6 @@
 .button {
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     background-color: var(--card-btn-text-color);
     color: var(--card-text-color);
     padding: 10px;

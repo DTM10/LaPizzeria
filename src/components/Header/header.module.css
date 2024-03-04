@@ -11,8 +11,7 @@
 .navbarContainer {
 	width: 100%;
 	display: flex;
-	padding-left: 10%;
-	padding-right: 10%;
+	padding: 0 40px;
 	justify-content: space-between;
 }
 
@@ -59,7 +58,7 @@
 	color: var(--card-text-color);
 	font-family: var(--regular-font);
 	font-size: 14px;
-	font-weight: 400;
+	font-weight: 300;
 	padding-left: 2vw;
 	padding-right: 2vw;
 	text-align: right;
@@ -68,6 +67,7 @@
 
 .link:hover{
 	background-color: var(--card-btn-text-color);
+	font-weight: 600;
 }
 
 .link:active{
@@ -93,7 +93,6 @@
 
 .cartIcon {
 	color: var(--card-text-color);
-	/* width: clamp(30px, 2.2vw, 50px); */
 	width: 14px;
 	height: auto;
 }
@@ -110,6 +109,7 @@
 
 	.navbarContainer {
 		flex-direction: column;
+		padding: 0 10px 20px;
 	}
 
 	.linksContainer {

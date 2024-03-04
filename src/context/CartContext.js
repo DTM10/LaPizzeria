@@ -46,6 +46,11 @@ function CartProvider({ children }) {
 		const newCart = [...cartItems, cartItems[index]];
 		setCart(newCart);
 	};
+	// const setCartItemQty = (id, newQty) => {
+	// 	const index = cartItems.findIndex((pizzas) => pizzas.id === id);
+	// 	const newCart = [...cartItems, cartItems[index]];
+	// 	setCart(newCart);
+	// };
 
 	const timeUntilMidnight = () => {
 		const now = new Date();

@@ -1,13 +1,12 @@
 .card {
-	/* background-color: var(--card-color); */
-	/* background-color: rgba(162, 10, 10, 0.7); */
 	background-color: var(--card-background-color);
 	color: var(--card-text-color);
-	min-width: 300px;
+	/* min-width: 300px; */
+	/* max-width: 70%; */
 	flex: 1;
-	height: 550px;
+	height: 520px;
+	/* width: 300px; */
 	border-radius: 25px;
-	/* margin-top: 50px; */
 	padding: 25px;
 	display: flex;
 	flex-direction: column;
@@ -15,15 +14,14 @@
 }
 
 .pizzaImg {
-	width: 190px;
-	height: auto;
+	height: 180px;
+	width: auto;
 	margin: auto;
 }
 
+
 .pizzaTitle {
-	/* font-size: 25px; */
-	font-size: clamp(20px, 180%, 35px);
-	/* font-size: 2vw; */
+	font-size: 20px;
 	font-family: var(--regular-font);
 	font-weight: 700;
 	padding-top: 10px;
@@ -31,9 +29,26 @@
 	text-align: center;
 }
 
-.description {
-	font-size: clamp(12px, 90%, 18px);
-	font-weight: 400;
-	font-family: var(--description-font);
-	padding-bottom: 20px;
+.descriptionContainer {
+	height: 180px;
+	max-width: 75%;
 }
+
+.description {
+	/* font-size: clamp(12px, 90%, 18px); */
+	font-size: 14px;
+	font-weight: 300;
+	font-family: var(--regular-font);
+	
+}
+
+@media screen and (max-width: 768px) {
+	.card {
+		height: auto;
+	}
+
+	.descriptionContainer {
+		height: auto;
+	}
+}
+

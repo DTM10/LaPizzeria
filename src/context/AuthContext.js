@@ -15,7 +15,6 @@ function AuthProvider({children}) {
 
 
     useEffect(()=>{
-        console.log('Auth useEffect test.');
         onAuthStateChanged(auth, (user)=>{
             if (user) {
                 const uid = user.uid
@@ -23,16 +22,11 @@ function AuthProvider({children}) {
                     setUserId(uid)
                 }
             } else {
-                console.log('No user logged');
                 setIsLoggedIn(false)
                 setUserId('');
             }
         })
     })
-
-    useEffect(()=>{
-        console.log('isLoggedIn changed: ', isLoggedIn);
-    },[isLoggedIn])
 
     useEffect(()=>{
         if(userId !== '') {

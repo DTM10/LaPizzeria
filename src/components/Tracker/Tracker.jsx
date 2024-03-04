@@ -30,7 +30,7 @@ export function Tracker() {
         {pendingOrders.length > 0 &&
           pendingOrders.map((order) => {
             return (
-              <div className={styles.pendingOrders}>
+              <div className={styles.pendingOrders} key={order.orderId}>
                 <div className={styles.orderDetail}>
                   <p className={styles.data}>{order.orderId}</p>
                 </div>
@@ -48,7 +48,7 @@ export function Tracker() {
         {forDeliverOrders.length > 0 &&
           forDeliverOrders.map((order) => {
             return (
-              <div className={styles.pendingOrders}>
+              <div className={styles.pendingOrders} key={order.orderId}>
                 <div className={styles.orderDetail}>
                   <p className={styles.data}>{order.orderId}</p>
                 </div>
@@ -66,7 +66,7 @@ export function Tracker() {
         {deliveredOrders.length > 0 &&
           deliveredOrders.map((order) => {
             return (
-              <div className={styles.pendingOrders}>
+              <div className={styles.pendingOrders} key={order.orderId}>
                 <div className={styles.orderDetail}>
                   <p className={styles.data}>{order.orderId}</p>
                 </div>

@@ -27,16 +27,14 @@ function Header() {
   return (
     <div className={styles.header}>
       <nav className={styles.navbarContainer}>
-        <div>
-          <Link to="/" className={styles.customBrand}>
-            <img
-              src={'/images/pizza-logo.webp'}
-              alt="pizza-logo"
-              className={styles.logo}
-              size="lg"
-            />
-          </Link>
-        </div>
+        <Link to="/" className={styles.customBrand}>
+          <img
+            src={'/images/pizza-logo.webp'}
+            alt="pizza-logo"
+            className={styles.logo}
+            size="lg"
+          />
+        </Link>
         <div className={styles.navbar}>
           <i
             aria-controls="basic-navbar-nav"

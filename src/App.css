@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Merriweather+Sans:wght@400;700&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
 	--background-color: #f5efdb;
 	--header-background-color: rgba(51, 3, 3);
@@ -15,8 +18,7 @@
 	--orange-color: #ff6500;
 	--action-change-color:rgba(255, 101, 0, 0.5);
 	--cart-color: rgba(162, 10, 10, 0.2);
-	--regular-font: 'Merriweather Sans', sans-serif;
-	--description-font: 'Merriweather', serif;
+	--regular-font: "Montserrat", sans-serif;
 	--toggler-icon-color: #f5efdb;
 
 	/* --bs-breakpoint-xs: 0;
@@ -31,4 +33,13 @@ body {
 	background-color: var(--background-color) !important;
 	color: var(--text-color) !important;
 	font-family: var(--regular-font) !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, label {
+	padding: 0;
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
 }

@@ -1,7 +1,10 @@
 import { formatCurrency } from '../../Helper';
 import styles from './invoice.module.css';
 import CardButton from '../CardButton/CardButton';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCartShopping,
+  faArrowRightToBracket,
+} from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -30,11 +33,19 @@ export default function Invoice({ setCheckingOut, checkingOut, totals }) {
           Grand Total: {formatCurrency(totals.grandTotal)}
         </p>
         <div className={styles.btnContainer}>
-          <CardButton
-            handlePress={handleCheckout}
-            text={'CHECKOUT'}
-            icon={faCartShopping}
-          />
+          {isLoggedIn ? (
+            <CardButton
+              handlePress={handleCheckout}
+              text={'CHECKOUT'}
+              icon={faCartShopping}
+            />
+          ) : (
+            <CardButton
+              handlePress={handleCheckout}
+              text={'LOGIN'}
+              icon={faArrowRightToBracket}
+            />
+          )}
         </div>
       </div>
     </div>
