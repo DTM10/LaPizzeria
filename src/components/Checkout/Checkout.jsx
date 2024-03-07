@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { formatCurrency } from '../../Helper';
-import styles from './checkout.module.css';
+import styles from './Checkout.module.scss';
 import CardButton from '../CardButton/CardButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faX } from '@fortawesome/free-solid-svg-icons';

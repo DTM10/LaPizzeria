@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from './header.module.css';
+// import styles from './header.module.css';
+import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
@@ -13,7 +14,6 @@ function Header() {
   const [linksClasses, setClasses] = useState(styles.linksContainer);
 
   const toggleLinks = () => {
-    console.log('toggleLinks');
     setIsActive(!isActive);
   };
 
@@ -21,21 +21,22 @@ function Header() {
     const divClass = classNames(styles.linksContainer, {
       [styles.active]: isActive,
     });
+    console.log(isActive);
     setClasses(divClass);
   }, [isActive]);
 
   return (
     <div className={styles.header}>
       <nav className={styles.navbarContainer}>
-        <Link to="/" className={styles.customBrand}>
-          <img
-            src={'/images/pizza-logo.webp'}
-            alt="pizza-logo"
-            className={styles.logo}
-            size="lg"
-          />
-        </Link>
-        <div className={styles.navbar}>
+        <div className={styles.mobileShowContainer}>
+          <Link to="/" className={styles.customBrand}>
+            <img
+              src={'/images/pizza-logo.webp'}
+              alt="pizza-logo"
+              className={styles.logo}
+              size="lg"
+            />
+          </Link>
           <i
             aria-controls="basic-navbar-nav"
             className={styles.customToggle}
@@ -43,6 +44,8 @@ function Header() {
           >
             <FontAwesomeIcon icon={faBars} className={styles.togglerIcon} />
           </i>
+        </div>
+        <div className={styles.navbar}>
           <div className={linksClasses}>
             <Link to="/tracker" className={styles.link}>
               Tracker

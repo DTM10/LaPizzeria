@@ -1,0 +1,159 @@
+@import '../../styles/variables.scss';
+
+.header {
+	background-color: $accent-color;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 1;
+	margin-bottom: 50px;
+	width: 100%;
+    .customBrand {
+        .logo {
+            width: 80px;
+            height: auto;
+            padding-top: 5px;
+            margin-bottom: -35px;
+            transform: rotate(-0.04turn);
+        }
+    }
+    .navbarContainer {
+        width: 100%;
+        display: flex;
+        padding: 0 $large-padding;
+        justify-content: space-between;
+        .mobileShowContainer{
+            .customToggle {
+                display: block;
+                .togglerIcon {
+                    display: none;
+                }
+            }
+        }
+        .navbar {
+            align-content: center;
+            .linksContainer {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                gap: 40px;
+                .link {
+                    text-decoration: none;
+                    padding: 0 15px;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    color: $background-color;
+                    font-size: 12px;
+                    font-weight: 300;
+                    text-align: center;
+                    justify-content: center;  
+                }
+                .link:hover{
+                    background-color: $secondary-accent-color;;
+                    font-weight: 600;
+                    color: $primary-content-color;
+                }
+                .link:hover .cartIcon{
+                    font-weight: 600;
+                    color: $primary-content-color;
+                }
+                .link:active{
+                    background-color: $detail-color;
+                    color: $background-color;
+                }
+                .cart {
+                    display: flex;
+                    justify-content: space-between;
+                    .cartIcon {
+                        color: $background-color;
+                        width: 14px;
+                        height: auto;
+                    }
+                    .cartAmount {
+                        padding-left: 3px;
+                    }
+                }
+                .emptyCart {
+                    display: flex;
+                    justify-content: space-between;
+                    .emptyCartIcon {
+                        color: $primary-content-color;
+                        opacity: 0.3;
+                        width: 14px;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: $medium-breakpoint) {
+    .header {
+    .navbarContainer {
+		flex-direction: column;
+		padding: 0 $medium-padding;
+        .mobileShowContainer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .customToggle {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                .togglerIcon {
+                    display: block;
+                    color: $background-color;
+                    width: 14px;
+                    height: auto ;
+                    margin: 0 ;
+                }
+            }
+        }
+        .navbar {
+            display: flex;
+            padding-bottom: 10px;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            .linksContainer {
+                display: none;
+                gap: 0;
+            }
+            .active {
+                padding-top: 35px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                width: 100%;
+                .link {
+                    padding: 10px 0;
+                    width: 100%;
+                    align-items: center;
+                }
+            }
+        }
+	}
+}
+}
+
+@media (max-width: $small-breakpoint) {
+    .header {
+        .navbarContainer {
+            padding: 0 $small-padding;
+            .navbar {
+                padding-bottom: 10px;
+                .active {
+                    .link {
+                        padding: 5px 0;
+                        width: 100%;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+}

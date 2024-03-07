@@ -30,6 +30,7 @@ export const getSundaySpecial = async () => {
 	}
 };
 
+
 export const specialsCheck = (day, pizzas, sundaySpecial) => {
 	const invoiceDetails = [...pizzas];
 	if (day === 0) {
@@ -43,7 +44,7 @@ export const specialsCheck = (day, pizzas, sundaySpecial) => {
 		}
 		invoiceDetails.forEach((pizza) => {
 			pizza.price = pizzaPrice !== 0 ? pizzaPrice : pizza.price;
-			pizza.priceDesc = `${getWeekdDayStr(0)} Special`;
+			pizza.pizzaDesc = `${getWeekdDayStr(0)} Special`;
 			pizza.subTotal = pizza.price * pizza.count;
 		});
 	} else {
@@ -51,7 +52,7 @@ export const specialsCheck = (day, pizzas, sundaySpecial) => {
 			pizza.pizzaDesc = 'Regular';
 			if (pizza.specialDay.includes(day)) {
 				pizza.price = pizza.specialPrice;
-				pizza.priceDesc = `${getWeekdDayStr(day)} Special`;
+				pizza.pizzaDesc = `${getWeekdDayStr(day)} Special`;
 			}
 			pizza.subTotal = pizza.price * pizza.count;
 		});

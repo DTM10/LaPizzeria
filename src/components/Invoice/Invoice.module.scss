@@ -1,0 +1,47 @@
+@import '../../styles/variables.scss';
+
+.invoice {
+    margin-bottom: 40px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    .invoiceContainer {
+        background-color: $card-background-color;
+        padding: 20px;
+        border-radius: 5px;
+        .priceContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+            .detailContainer {
+                .priceDetail {
+                    font-size: 14px;
+                    margin: 5px 0;
+                }
+            }
+            .grandTotal {
+                font-size: 20px;
+                margin: 10px 0 20px;
+            }
+        }
+        .btnContainer {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: $medium-breakpoint) {
+
+}
+
+@media (max-width: $small-breakpoint) {
+    .invoice {
+        .invoiceContainer {
+            .priceContainer {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+        }
+    }    
+}

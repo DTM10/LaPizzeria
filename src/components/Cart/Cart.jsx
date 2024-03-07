@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import styles from './cart.module.css';
+import React, { useContext, useEffect, useState } from 'react';
+import styles from './Cart.module.scss';
 import CartCard from '../CartCard/CartCard';
 import CartHeader from '../CartHeader/CartHeader';
 import Invoice from '../Invoice/Invoice';
@@ -10,6 +10,8 @@ export function Cart() {
   const { cartItems, weekDay, organizedPizzas, totalsObj } =
     useContext(CartContext);
   const [checkingOut, setCheckingOut] = useState(false);
+
+  useEffect(() => {});
 
   return (
     <div className={styles.totalContainer}>
@@ -22,10 +24,10 @@ export function Cart() {
           checkingOut={checkingOut}
         />
       )}
+      <CartHeader />
       <div className={checkingOut ? styles.cartCheckingOut : styles.cart}>
         {cartItems.length > 0 && (
           <div className={styles.cartContainer}>
-            <CartHeader />
             <div className={styles.cardsContainer}>
               {organizedPizzas.map((pizza) => (
                 <CartCard
@@ -34,7 +36,7 @@ export function Cart() {
                   pizzaImg={pizza.src}
                   id={pizza.id}
                   key={pizza.id}
-                  priceDescrip={pizza.priceDesc}
+                  pizzaDesc={pizza.pizzaDesc}
                   subTotal={pizza.subTotal}
                   price={pizza.price}
                 />
@@ -43,19 +45,17 @@ export function Cart() {
           </div>
         )}
         {cartItems.length > 0 && (
-          <Invoice
-            weekDay={weekDay}
-            setCheckingOut={setCheckingOut}
-            checkingOut={checkingOut}
-            totals={totalsObj}
-            orderDetails={organizedPizzas}
-          />
+          <div className={styles.invoiceContainer}>
+            <Invoice
+              weekDay={weekDay}
+              setCheckingOut={setCheckingOut}
+              checkingOut={checkingOut}
+              totals={totalsObj}
+              orderDetails={organizedPizzas}
+            />
+          </div>
         )}
       </div>
     </div>
   );
 }
-
-/* 
-	- ADD BUTTON TO CLEAR THE CART
-*/

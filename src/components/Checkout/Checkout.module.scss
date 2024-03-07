@@ -1,9 +1,9 @@
+@import '../../styles/variables.scss';
+
 .checkout {
 	position: fixed;
 	top: auto;
-	/* left: auto;
-	right: auto;
-	bottom: auto; */
+    margin-top: 20px;
 	background-color: transparent;
 	display: flex;
 	width: 100%;
@@ -13,17 +13,17 @@
 }
 
 .checkoutContainer {
-	background-color: var(--card-background-color);
+	background-color: $card-background-color;
 	padding: 20px;
 	border-radius: 5px;
 	position: relative;
-	max-width: 800px;
-	width: 80%;
-	box-shadow: 1px 1px 1px var(--shadow-color);
+	// max-width: 800px;
+	width: 320px;
+	box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .priceDetailsContainer {
-	padding: 20px;
+	// padding: 20px;
 	color: var(--card-text-color);
 }
 .closeBtnContainer {

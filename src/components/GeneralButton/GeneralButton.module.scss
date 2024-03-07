@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+
+.button {
+	display: flex;
+	font-size: 18px;
+	// background-color: $secondary-accent-color;
+	background-color: transparent;
+	width: 200px;
+	height: 50px;
+	border: none;
+	border-radius: 3px;
+	// border: 1px solid $detail-color;
+	border: 1px solid $accent-color;
+	box-shadow: none;
+	align-items: center;
+	justify-content: center;
+	gap:10px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3)
+}
+.button:hover {
+	font-weight: 600;
+	border-width: 2px;
+	background-color: $accent-color;
+	color: $background-color;
+}
+.button:active {
+	background-color: $detail-color;
+}
+
+.btnIcon {
+	width: 25px;
+	height: auto;
+}
+
+
+
+

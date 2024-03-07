@@ -1,0 +1,85 @@
+@import '../../styles/variables.scss';
+.totalContainer { 
+    padding: 0 $large-padding;
+    .cart {
+        display: flex;
+        height: calc(100vh - 200px);
+        gap: 20px;
+        .cartContainer {
+            flex: 2;
+            overflow-y: auto;
+            height: calc(100vh - 200px);
+            padding-right: 10px;
+            .cardsContainer {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+        }
+        .invoiceContainer {
+            position: -webkit-sticky;
+            position: sticky;
+            flex: 1;
+            z-index: 2;
+        }
+    }
+    
+}
+.cartCheckingOut {
+	background-color: $card-background-color;
+	filter: blur(50px);
+}
+
+@media (max-width: $medium-breakpoint) {
+    .totalContainer { 
+        padding: 0 $medium-padding;
+    .cart {
+        .cartContainer {
+            flex: 2;
+            height: 70vh;
+            .cardsContainer {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+        }
+        .invoiceContainer {
+            position: -webkit-sticky;
+            position: sticky;
+            flex: 1;
+            z-index: 2;
+        }
+    }
+}
+}
+
+@media (max-width: $small-breakpoint) {
+    .totalContainer { 
+        padding: 0 $small-padding;
+        .cart {
+            height: auto;
+            flex-direction: column;
+            .cartContainer {
+                height: auto;
+                flex: 2;
+                overflow-y: visible;
+                height: 70vh;
+                padding-right: 0;
+                .cardsContainer {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    margin-bottom: 20px;
+                }
+            }
+            .invoiceContainer {
+                position: -webkit-sticky;
+                position: sticky;
+                flex: 1;
+                z-index: 2;
+            }
+        }
+    }
+}

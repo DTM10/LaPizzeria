@@ -1,0 +1,36 @@
+@import '../../styles/variables.scss';
+.menu {
+	position: relative;
+    padding-bottom: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+    .cardsContainer {
+        padding: 20px 40px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+        gap: 40px;
+    }
+}
+
+
+
+@media (max-width: $medium-breakpoint) {
+    .menu {
+        .cardsContainer {
+            padding: 20px 30px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    }
+}
+
+@media (max-width: $small-breakpoint) {
+    .menu {
+        .cardsContainer {
+            padding: 20px 40px;
+            gap: 15px;
+        }
+    }
+}

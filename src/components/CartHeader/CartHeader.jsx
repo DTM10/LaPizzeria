@@ -1,4 +1,4 @@
-import styles from './cartHeader.module.css';
+import styles from './CartHeader.module.scss';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -8,7 +8,7 @@ export default function CartHeader() {
     <div className={styles.cartHeader}>
       <div className={styles.cartHeaderContainer}>
         {isLoggedIn ? (
-          <p className={styles.label}>{userDetails.firstName}'s order</p>
+          <p className={styles.label}>{userDetails.firstName}'s Order</p>
         ) : (
           <p className={styles.label}>Order</p>
         )}

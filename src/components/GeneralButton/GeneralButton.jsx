@@ -1,4 +1,4 @@
-import styles from './generalButton.module.css';
+import styles from './GeneralButton.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export function GeneralButton({ action, btnText, icon }) {

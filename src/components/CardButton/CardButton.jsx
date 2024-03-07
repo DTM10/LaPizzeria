@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './cardButton.module.css';
+import styles from './CardButton.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function CardButton({ handlePress, text, icon, children }) {

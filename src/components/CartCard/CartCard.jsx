@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styles from './cartCard.module.css';
+import styles from './CartCard.module.scss';
 import { CartContext } from '../../context/CartContext';
 import QtyToggle from '../QtyToggle/QtyToggle';
 
@@ -9,7 +9,7 @@ export default function CartCard({
   pizzaImg,
   imgAltText,
   id,
-  priceDescrip,
+  pizzaDesc,
   subTotal,
   price,
 }) {
@@ -20,7 +20,7 @@ export default function CartCard({
     <div className={styles.cartCard}>
       <div className={styles.cardContainer}>
         <div className={styles.pizza}>
-          <div className={styles.pizzaDetails}>
+          <div className={styles.imgContainer}>
             <img src={pizzaImg} alt={imgAltText} className={styles.pizzaImg} />
           </div>
         </div>
@@ -39,10 +39,9 @@ export default function CartCard({
         <div className={styles.price}>
           <div>
             <p className={styles.label}>Price:</p>
-            <p className={styles.priceDescrip}>{priceDescrip}</p>
+            <p className={styles.priceDescrip}>{pizzaDesc}</p>
             <p>${price}.00</p>
           </div>
-
           <div>
             <p className={styles.label}>Sub-total:</p>
             <p>${subTotal}.00</p>

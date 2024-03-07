@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import styles from './pizzaCard.module.css';
+// import styles from './pizzaCard.module.css';
 import CardButton from '../CardButton/CardButton';
 import { CartContext } from '../../context/CartContext';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import QtyToggle from '../QtyToggle/QtyToggle';
+import styles from './PizzaCard.module.scss';
 
 export function PizzaCard({
   id,
@@ -14,7 +15,6 @@ export function PizzaCard({
   price,
   specialPrice,
   specialDay,
-  checkIfZero,
 }) {
   const { addCartItems } = useContext(CartContext);
   const [qty, setQty] = useState(1);
@@ -42,13 +42,19 @@ export function PizzaCard({
     setQty(newQty);
   };
 
+  const checkIfZero = () => {
+    if (qty < 1 || NaN) {
+      setQty(1);
+    }
+  };
+
   return (
     <div className={styles.card}>
-      <img src={imgSrc} alt={imgAltText} className={styles.pizzaImg} />
-      <h2 className={styles.pizzaTitle}>{title}</h2>
+      <img src={imgSrc} alt={imgAltText} />
+      <h2>{title}</h2>
 
       <div className={styles.descriptionContainer}>
-        <p className={styles.description}>{description}</p>
+        <p>{description}</p>
       </div>
 
       <div className={styles.qtyContainer}>

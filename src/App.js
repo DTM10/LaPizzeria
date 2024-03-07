@@ -1,4 +1,3 @@
-import './App.css';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './components/Home/Home';
@@ -10,7 +9,8 @@ import { CartProvider } from '../src/context/CartContext';
 import { AuthProvider } from '../src/context/AuthContext';
 import { Register } from './components/Register/Register';
 import Layout from './components/Layout';
-
+import './App.scss';
+// import './App.css';
 function App() {
 	return (
 		<AuthProvider>

@@ -1,4 +1,4 @@
-import styles from './feedback.module.css';
+import styles from './Feedback.module.scss';
 
 export function Feedback({ feedbackMsg }) {
   return (

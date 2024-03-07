@@ -1,0 +1,48 @@
+@import '../../styles/variables.scss';
+
+.card {
+	background-color: $card-background-color;
+	flex: 1;
+	height: 520px;
+	border-radius: 5px;
+	padding: 25px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    img {
+        height: 180px;
+	    width: auto;
+    }
+    h2 {
+        font-size: 20px;
+		font-family: var(--regular-font);
+		font-weight: 700;
+		padding-top: 10px;
+		padding-bottom: 15px;
+		text-align: center;
+		max-width: 75%;
+    }
+	.descriptionContainer {
+		margin-bottom: auto;
+		padding-bottom: 10px;
+		max-width: 75%;
+		p {
+			font-size: 14px;
+			font-weight: 300;
+		}
+	}
+}
+
+
+
+@media screen and (max-width: 768px) {
+	.card {
+		height: auto;
+	}
+
+	.descriptionContainer {
+		height: auto;
+	}
+}
+

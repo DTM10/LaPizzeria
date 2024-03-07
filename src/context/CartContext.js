@@ -6,15 +6,21 @@ const CartContext = createContext();
 function CartProvider({ children }) {
 	const [cartItems, setCart] = useState([]);
 	const [cartAmount, setCartAmount] = useState(0);
-	const [weekDay, setWeekDay] = useState(new Date().getDay());
+	const [weekDay, setWeekDay] = useState(7);
 	const [updateTimer, setupdateTimer] = useState([]);
 	const [sundaySpecial, setSundaySpecial] = useState({});
 	const [totalsObj, setTotalsObj] = useState({});
 	const [organizedPizzas, setOrganizedPizzas] = useState([]);
 
 	useEffect(()=>{
-		const organized = specialsCheck(weekDay, cartItems, sundaySpecial);
-		console.log('organized is: ', organized);
+		setWeekDay(new Date().getDay());
+		timeoutForDayChange();
+	}, [weekDay])
+	
+	useEffect(()=>{
+		setWeekDay(new Date().getDay());
+		const organized = specialsCheck(new Date().getDay(), cartItems, sundaySpecial);
+		console.log('organized: ', organized);
 		setOrganizedPizzas(organized);
 	},[cartItems, weekDay, sundaySpecial])
 
@@ -43,6 +49,23 @@ function CartProvider({ children }) {
 			setCart([...cartItems, item]);
 		}
 	};
+
+	const timeoutForDayChange = () => {
+		console.log('timeoutForDayChange triggered');
+		const now = new Date();
+		const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+		tomorrow.setHours(0,0,0,0);
+		const delay = tomorrow - now;
+
+		console.log('now: ', now);
+		console.log('tomorrow: ', tomorrow);
+		console.log('delay: ', delay);
+
+		setTimeout(() => {
+			console.log('setTimeout in timeoutForDayCHange called.');
+			setWeekDay(new Date().getDay());
+		}, delay);
+	}
 
 
 	const removeCartItem = (id) => {

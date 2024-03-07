@@ -1,25 +1,28 @@
+@import '../../styles/variables.scss';
+
 .cardBtn {
 	display: flex;
-	color: var(--regular-font);
-	font-family: var(--background-color);
 	font-size: 18px;
-	background-color: var(--orange-color);
+	background-color: transparent;
 	width: 200px;
 	height: 50px;
 	border: none;
 	border-radius: 3px;
-	border: 1px solid var(--background-color);
+	border: 1px solid $accent-color;
 	box-shadow: none;
 	align-items: center;
 	justify-content: center;
 	gap:10px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3)
 }
 .cardBtn:hover {
 	font-weight: 600;
 	border-width: 2px;
+	background-color: $accent-color;
+	color: $background-color;
 }
 .cardBtn:active {
-	background-color: var(--card-btn-pressed-background-color);
+	background-color: $detail-color;
 }
 
 .cartIcon {
