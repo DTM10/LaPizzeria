@@ -1,0 +1,149 @@
+@import '../../styles/variables.scss';
+
+.login {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 $large-padding;
+    .imgContainer {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        img{
+           width: 70%;
+           height: auto;
+        }
+    }
+    .loginContainer{
+        width: 100%;
+        height: auto;
+        background-color: $card-background-color;
+        border-radius: 5px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        h1 {
+            font-size: 24px;
+        }
+        .inputContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-top: 10px;
+            gap: 20px;
+            .label {
+                font-size: 14px;
+                display: flex;
+                flex-grow: 2;
+                flex-direction: column;
+                width: 100%;
+                input {
+                    margin-top: 5px;
+                    padding: 3px 8px;
+                    width: auto;
+                    flex-grow: 2;
+                    border: solid 1px $accent-color;
+                    border-radius: 5px;
+                }
+            }
+        }
+        .feedbackContainer {
+            padding-top: 10px;
+            display: flex;
+            width: 100%;
+            // flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btnContainer {
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+            padding-top: 30px;
+        }
+        .linksContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: flex-start;
+            .link {
+                font-size: 12px;
+                text-align: left;
+                padding: 0;
+                padding-top: 10px;
+                text-decoration: none;
+                color: $primary-content-color;
+                border: none;
+                background-color: transparent;
+            }
+            .link:hover {
+                font-weight: 600;
+            }
+
+        }
+       
+    }
+}
+
+@media (max-width: $medium-breakpoint) {
+    .login {
+        padding: 0 $medium-padding;
+        flex-direction: column;
+        gap: 20px;
+        .imgContainer {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            img{
+               width: clamp(160px, 30%, 200px);
+               height: auto;
+            }
+        }
+        .loginContainer{
+            padding: 30px 20px;
+        }    
+    }
+}
+
+@media (max-width: $small-breakpoint) {
+    .login {
+        padding: 0 $small-padding;
+        gap: 10px;
+        .imgContainer {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            img{
+               width: clamp(120px, 40%, 160px);
+               height: auto;
+            }
+        }
+        .loginContainer{
+            padding: 20px 15px;
+            .btnContainer {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                padding-top: 30px;
+            }
+            .linksContainer {
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

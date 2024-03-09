@@ -1,0 +1,99 @@
+@import '../../styles/variables.scss';
+
+
+.user {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $card-background-color;
+    box-shadow: $card-box-shadow;
+    border-radius: 5px;
+    padding: 30px;
+    .userContainer{
+        width: 100%;
+        font-size: 16px;
+        .inputContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding-top: 10px;
+            label {
+                padding: 5px;
+                font-size: 14px;
+                display: flex;
+                flex-grow: 2;
+                flex-direction: column;
+                justify-content: flex-start;
+                text-align: left;
+                width: 100%;
+                input {
+                    margin-top: 5px;
+                    padding: 3px 8px;
+                    width: auto;
+                    border: solid 1px $accent-color;
+                    border-radius: 5px;
+                }
+                
+            }
+            label.selectLabel {
+                width: 90px;
+                select {
+                    border: solid 1px $accent-color;
+                    border-radius: 5px;
+                    font-family: $regular-font;
+                }
+            }
+
+        }
+        .feedbackContainer {
+            padding-top: 10px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .btnContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 30px 0 0;
+            gap: 20px;
+
+        }
+    }
+}
+
+@media (max-width: $medium-breakpoint) {
+    .user {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: $small-breakpoint) {
+    .user {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 20px 15px;
+        .userContainer{
+            h1 {
+                text-align: center;
+            }
+            .btnContainer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                // padding: 30px 0 0;
+                gap: 20px;
+    
+            }
+        }
+    }
+}

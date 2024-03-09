@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import styles from './user.module.css';
+import styles from './User.module.scss';
 import { canadianProvincesTerritoriesInitials } from '../../Helper';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowRightToBracket,
   faArrowsRotate,
@@ -11,6 +10,7 @@ import { signOut } from 'firebase/auth';
 import { auth, db } from '../../firebaseConfig';
 import { doc, setDoc } from 'firebase/firestore';
 import { Feedback } from '../Feedback/Feedback';
+import { GeneralButton } from '../GeneralButton/GeneralButton';
 
 export function User() {
   const { userDetails, setUserId, userId } = useContext(AuthContext);
@@ -71,12 +71,11 @@ export function User() {
   return (
     <div className={styles.user}>
       <div className={styles.userContainer}>
-        <h1 className={styles.title}>Welcome {userDetails.firstName}</h1>
-        <div className={styles.group}>
-          <label className={styles.label}>
+        <h1>Welcome, {userDetails.firstName}</h1>
+        <div className={styles.inputContainer}>
+          <label>
             Street Address:
             <input
-              className={styles.input}
               id="address"
               type="text"
               value={address}
@@ -85,10 +84,9 @@ export function User() {
               }}
             />
           </label>
-          <label className={styles.label}>
+          <label>
             City:
             <input
-              className={styles.input}
               id="city"
               type="text"
               value={city}
@@ -97,9 +95,7 @@ export function User() {
               }}
             />
           </label>
-        </div>
-        <div className={styles.group}>
-          <label className={styles.label}>
+          <label className={styles.selectLabel}>
             Province:
             <select
               value={province}
@@ -136,17 +132,16 @@ export function User() {
           </div>
         )}
         <div className={styles.btnContainer}>
-          <button onClick={updateUser} className={styles.button}>
-            UPDATE
-            <FontAwesomeIcon icon={faArrowsRotate} className={styles.btnIcon} />
-          </button>
-          <button onClick={logout} className={styles.button}>
-            LOGOUT
-            <FontAwesomeIcon
-              icon={faArrowRightToBracket}
-              className={styles.btnIcon}
-            />
-          </button>
+          <GeneralButton
+            action={updateUser}
+            btnText="UPDATE"
+            icon={faArrowsRotate}
+          />
+          <GeneralButton
+            action={logout}
+            btnText="LOGOUT"
+            icon={faArrowRightToBracket}
+          />
         </div>
       </div>
     </div>

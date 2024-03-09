@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import styles from './login.module.css';
+import styles from './Login.module.scss';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { auth } from '../../firebaseConfig';
 import {
@@ -22,19 +22,15 @@ export function Login() {
   const navigate = useNavigate();
 
   const login = () => {
-    console.log('login called');
     signInWithEmailAndPassword(auth, loginEmail, loginPassword)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log(user.auth.currentUser);
-        console.log(user.auth.currentUser.emailVerified);
         if (user.auth.currentUser.emailVerified) {
           setUserId(user.uid);
           navigate('/menu');
         } else {
-          // SHOW A FEEDBACK MESSAGE TELLING THE USER TO VERIFY ITS EMAIL.
           setFeedbackMsg(
-            'Kindly click on the link sent to your email to verify it before proceeding.'
+            'Please, click on the link sent to your email to verify it before proceeding.'
           );
           setShowFeedback(true);
         }
@@ -78,20 +74,22 @@ export function Login() {
           'Error trying to send a reset password email: ' + errorCode
         );
         setShowFeedback(true);
-        // ..
       });
   };
 
   return (
     <div className={styles.login}>
+      <div className={styles.imgContainer}>
+        <img src="./images/Marguerita.webp" alt={'pizza-margherita'} />
+      </div>
       {!isLoggedIn && (
         <div className={styles.loginContainer}>
           <h1 className={styles.title}>Login</h1>
-          <div className={styles.group}>
+          <div className={styles.inputContainer}>
             <label className={styles.label}>
               Email:
               <input
-                className={styles.input}
+                // className={styles.input}
                 id="email"
                 type="email"
                 value={loginEmail}
@@ -105,7 +103,6 @@ export function Login() {
             <label className={styles.label}>
               Password:
               <input
-                className={styles.input}
                 id="password"
                 type="password"
                 value={loginPassword}
@@ -123,6 +120,7 @@ export function Login() {
               <Feedback feedbackMsg={feedbackMsg} />
             </div>
           )}
+
           <div className={styles.btnContainer}>
             <GeneralButton
               action={login}
