@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-// import styles from './header.module.css';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons';

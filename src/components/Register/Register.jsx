@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styles from './register.module.css';
+import styles from './Register.module.scss';
 import { canadianProvincesTerritoriesInitials } from '../../Helper';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { GeneralButton } from '../GeneralButton/GeneralButton';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { auth, db } from '../../firebaseConfig';
 import {
@@ -34,7 +34,7 @@ export function Register() {
         navigate('/login');
       }, 5000);
     }
-  }, [isRegistered]);
+  }, [isRegistered, navigate]);
 
   const registerUser = () => {
     console.log('registerUser called');
@@ -78,15 +78,14 @@ export function Register() {
 
   return (
     <div className={styles.register}>
-      {isRegistered && <Feedback feedbackMsg={feedbackMsg} />}
+      {showFeedbackMsg && <Feedback feedbackMsg={feedbackMsg} />}
       {!isRegistered && (
         <div className={styles.registerContainer}>
           <h1 className={styles.title}>Register</h1>
           <div className={styles.group}>
-            <label className={styles.label}>
+            <label>
               First Name:
               <input
-                className={styles.input}
                 id="fName"
                 type="text"
                 value={firstName}
@@ -95,10 +94,9 @@ export function Register() {
                 }}
               />
             </label>
-            <label className={styles.label}>
+            <label>
               Last Name:
               <input
-                className={styles.input}
                 id="lName"
                 type="text"
                 value={lastName}
@@ -109,10 +107,9 @@ export function Register() {
             </label>
           </div>
           <div className={styles.group}>
-            <label className={styles.label}>
+            <label>
               Street Address:
               <input
-                className={styles.input}
                 id="address"
                 type="text"
                 value={streetAddress}
@@ -121,10 +118,9 @@ export function Register() {
                 }}
               />
             </label>
-            <label className={styles.label}>
+            <label>
               City:
               <input
-                className={styles.input}
                 id="city"
                 type="text"
                 value={city}
@@ -133,7 +129,7 @@ export function Register() {
                 }}
               />
             </label>
-            <label className={styles.label}>
+            <label className={styles.selectLabel}>
               Province:
               <select
                 value={province}
@@ -151,11 +147,10 @@ export function Register() {
               </select>
             </label>
           </div>
-          <div className={styles.group}>
-            <label className={styles.label}>
+          <div className={styles.bigGroup}>
+            <label>
               Email:
               <input
-                className={styles.input}
                 id="email"
                 type="email"
                 value={registerEmail}
@@ -164,10 +159,9 @@ export function Register() {
                 }}
               />
             </label>
-            <label className={styles.label}>
+            <label>
               Password:
               <input
-                className={styles.input}
                 id="password"
                 type="password"
                 value={registerPassword}
@@ -176,10 +170,9 @@ export function Register() {
                 }}
               />
             </label>
-            <label className={styles.label}>
+            <label>
               Phone:
               <input
-                className={styles.input}
                 id="phone"
                 type="tel"
                 pattern="\(\d{3}\) \d{3}-\d{4}"
@@ -191,13 +184,11 @@ export function Register() {
             </label>
           </div>
           <div className={styles.btnContainer}>
-            <button onClick={registerUser} className={styles.button}>
-              REGISTER
-              <FontAwesomeIcon
-                icon={faArrowRightToBracket}
-                className={styles.btnIcon}
-              />
-            </button>
+            <GeneralButton
+              action={registerUser}
+              btnText="REGISTER"
+              icon={faArrowRightToBracket}
+            />
           </div>
           <div className={styles.btnContainer}>
             <Link to="/login" className={styles.loginLink}>

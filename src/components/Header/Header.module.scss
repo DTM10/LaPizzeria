@@ -93,8 +93,8 @@
 @media (max-width: $medium-breakpoint) {
     .header {
     .navbarContainer {
-		flex-direction: column;
 		padding: 0 $medium-padding;
+		flex-direction: column;
         .mobileShowContainer {
             display: flex;
             align-items: center;
