@@ -10,7 +10,7 @@ import { AuthProvider } from '../src/context/AuthContext';
 import { Register } from './components/Register/Register';
 import Layout from './components/Layout';
 import './App.scss';
-// import './App.css';
+
 function App() {
 	return (
 		<AuthProvider>
@@ -19,7 +19,7 @@ function App() {
 				<Router>
 					<Routes>
 						<Route path="/" element={<Layout />}>
-							{/* <Route index element={<Home />} /> */}
+							<Route index element={<Home />} />
 							<Route index path="menu" element={<Menu />} />
 							<Route path="login" element={<Login />} />
 							<Route path="tracker" element={<Tracker />} />

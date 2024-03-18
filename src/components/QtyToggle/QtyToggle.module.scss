@@ -13,7 +13,6 @@
         padding: 2px;
         width: 22px;
         height: 22px;
-        // border: solid $detail-color 1px;
         border: solid $accent-color 1px;
         border-radius: 50%;
         margin: 5px;
@@ -26,12 +25,12 @@
     
     .btn:hover {
       background-color: $accent-color;
+      color: $background-color;
     }
     
     .btn:active {
-        // background-color: $secondary-accent-color;
-        background-color: $detail-color;
-        // color: $detail-color;
+        background-color: $secondary-accent-color;
+        color: $background-color;
     }
 
     .disabled {

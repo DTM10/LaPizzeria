@@ -19,6 +19,15 @@ export default function CartCard({
   return (
     <div className={styles.cartCard}>
       <div className={styles.cardContainer}>
+        <div
+          className={
+            pizzaDesc === 'Regular'
+              ? styles.priceDescrip
+              : styles.specialPriceDescrip
+          }
+        >
+          <p>{pizzaDesc}</p>
+        </div>
         <div className={styles.pizza}>
           <div className={styles.imgContainer}>
             <img src={pizzaImg} alt={imgAltText} className={styles.pizzaImg} />
@@ -39,7 +48,9 @@ export default function CartCard({
         <div className={styles.price}>
           <div>
             <p className={styles.label}>Price:</p>
-            <p className={styles.priceDescrip}>{pizzaDesc}</p>
+
+            {/* <p className={styles.priceDescrip}>{pizzaDesc}</p> */}
+
             <p>${price}.00</p>
           </div>
           <div>

@@ -89,7 +89,6 @@ export function Login() {
             <label className={styles.label}>
               Email:
               <input
-                // className={styles.input}
                 id="email"
                 type="email"
                 value={loginEmail}

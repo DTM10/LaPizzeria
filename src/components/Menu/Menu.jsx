@@ -21,11 +21,11 @@ export function Menu() {
         description: doc.data().description,
         src: doc.data().src,
         price: doc.data().price,
+        regularPrice: doc.data().regularPrice,
         specialPrice: doc.data().specialPrice,
         specialDay: doc.data().specialDay,
       });
     });
-
     setPizzas(tempPizzas);
   };
 
@@ -41,6 +41,7 @@ export function Menu() {
               description={pizza.description}
               key={pizza.id}
               price={pizza.price}
+              regularPrice={pizza.regularPrice}
               specialPrice={pizza.specialPrice}
               specialDay={pizza.specialDay}
             />

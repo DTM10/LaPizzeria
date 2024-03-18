@@ -1,6 +1,5 @@
 import { formatCurrency } from '../../Helper';
 import styles from './Invoice.module.scss';
-import CardButton from '../CardButton/CardButton';
 import {
   faCartShopping,
   faArrowRightToBracket,
@@ -24,6 +23,13 @@ export default function Invoice({ setCheckingOut, checkingOut, totals }) {
 
   return (
     <div className={styles.invoice}>
+      <div className={styles.startImgContainer}>
+        <img
+          src="./images/Rucola-Prosciutto.webp"
+          alt="Rucola-Prosciutto-pizza"
+          className={styles.pizzaImg}
+        />
+      </div>
       <div className={styles.invoiceContainer}>
         <div className={styles.priceContainer}>
           <div className={styles.detailsContainer}>
@@ -53,6 +59,13 @@ export default function Invoice({ setCheckingOut, checkingOut, totals }) {
             />
           )}
         </div>
+      </div>
+      <div className={styles.startImgContainer}>
+        <img
+          src="./images/Marguerita.webp"
+          alt="Marguerita-pizza"
+          className={styles.pizzaImg}
+        />
       </div>
     </div>
   );

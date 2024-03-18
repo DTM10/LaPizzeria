@@ -3,6 +3,20 @@
 .invoice {
     margin-bottom: 40px;
     box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $card-background-color;
+    max-height: 185px;
+    overflow: hidden;
+    .startImgContainer, .endImgContainer {
+        width: 100%;
+        display: flex;
+        .pizzaImg {
+            width: 500px;
+            height: auto;
+        }
+    }
     .invoiceContainer {
         background-color: $card-background-color;
         padding: 20px;
@@ -31,10 +45,6 @@
 }
 
 @media (max-width: $medium-breakpoint) {
-
-}
-
-@media (max-width: $small-breakpoint) {
     .invoice {
         .invoiceContainer {
             .priceContainer {

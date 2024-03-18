@@ -35,16 +35,12 @@ export const specialsCheck = (day, pizzas, sundaySpecial) => {
 	const invoiceDetails = [...pizzas];
 	if (day === 0) {
 		let pizzaCount = 0;
-		let pizzaPrice = 0;
 		invoiceDetails.forEach((pizza) => {
 			pizzaCount += pizza.count;
 		});
-		if (pizzaCount >= sundaySpecial.minQty) {
-			pizzaPrice = sundaySpecial.pricePerPizza;
-		}
 		invoiceDetails.forEach((pizza) => {
-			pizza.price = pizzaPrice !== 0 ? pizzaPrice : pizza.price;
-			pizza.pizzaDesc = `${getWeekdDayStr(0)} Special`;
+			pizza.price = pizzaCount >= sundaySpecial.minQty ? sundaySpecial.pricePerPizza : pizza.regularPrice;
+			pizza.pizzaDesc = pizzaCount >= sundaySpecial.minQty ? `${getWeekdDayStr(0)} Special` : 'Regular';
 			pizza.subTotal = pizza.price * pizza.count;
 		});
 	} else {

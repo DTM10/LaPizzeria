@@ -1,4 +1,3 @@
-// import styles from './qtyToggle.module.css';
 import styles from './QtyToggle.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';

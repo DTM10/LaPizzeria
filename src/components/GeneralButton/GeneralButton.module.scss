@@ -3,13 +3,12 @@
 .button {
 	display: flex;
 	font-size: 18px;
-	// background-color: $secondary-accent-color;
-	background-color: transparent;
+	background-color: $accent-color;
+	color: $background-color;
 	width: 200px;
 	height: 50px;
 	border: none;
 	border-radius: 3px;
-	// border: 1px solid $detail-color;
 	border: 1px solid $accent-color;
 	box-shadow: none;
 	align-items: center;
@@ -20,11 +19,12 @@
 .button:hover {
 	font-weight: 600;
 	border-width: 2px;
-	background-color: $accent-color;
+	background-color: $secondary-accent-color;
 	color: $background-color;
 }
 .button:active {
-	background-color: $detail-color;
+	background-color: transparent;
+	color: $primary-content-color;
 }
 
 .btnIcon {

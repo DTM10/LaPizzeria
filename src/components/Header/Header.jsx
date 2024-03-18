@@ -46,16 +46,16 @@ function Header() {
         </div>
         <div className={styles.navbar}>
           <div className={linksClasses}>
-            <Link to="/tracker" className={styles.link}>
+            <Link to="/tracker" className={styles.link} onClick={toggleLinks}>
               Tracker
             </Link>
-            <Link to="/menu" className={styles.link}>
+            <Link to="/menu" className={styles.link} onClick={toggleLinks}>
               Menu
             </Link>
-            <Link to="/login" className={styles.link}>
+            <Link to="/login" className={styles.link} onClick={toggleLinks}>
               Login
             </Link>
-            <Link to="/cart" className={styles.link}>
+            <Link to="/cart" className={styles.link} onClick={toggleLinks}>
               <div
                 className={
                   cartItems.length > 0 ? styles.cart : styles.emptyCart

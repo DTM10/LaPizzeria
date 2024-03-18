@@ -35,21 +35,22 @@
     .totalContainer { 
         padding: 0 $medium-padding;
     .cart {
+        flex-direction: column;
+        height: auto;
         .cartContainer {
-            flex: 2;
-            height: 70vh;
+            flex: 1 ;
+            height: auto;
+            overflow-y: visible;
+            padding-right: 0;
             .cardsContainer {
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
-                margin-bottom: 20px;
             }
         }
         .invoiceContainer {
-            position: -webkit-sticky;
-            position: sticky;
+            position: static;
             flex: 1;
-            z-index: 2;
         }
     }
 }
@@ -60,25 +61,15 @@
         padding: 0 $small-padding;
         .cart {
             height: auto;
-            flex-direction: column;
             .cartContainer {
                 height: auto;
-                flex: 2;
+                flex: 1;
                 overflow-y: visible;
-                height: 70vh;
-                padding-right: 0;
                 .cardsContainer {
                     display: flex;
                     flex-direction: column;
                     gap: 20px;
-                    margin-bottom: 20px;
                 }
-            }
-            .invoiceContainer {
-                position: -webkit-sticky;
-                position: sticky;
-                flex: 1;
-                z-index: 2;
             }
         }
     }

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-// import styles from './pizzaCard.module.css';
 import CardButton from '../CardButton/CardButton';
 import { CartContext } from '../../context/CartContext';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +12,7 @@ export function PizzaCard({
   title,
   description,
   price,
+  regularPrice,
   specialPrice,
   specialDay,
 }) {
@@ -25,6 +25,7 @@ export function PizzaCard({
       title: title,
       src: imgSrc,
       price: price,
+      regularPrice: regularPrice,
       specialPrice: specialPrice,
       specialDay: specialDay,
       count: qty,

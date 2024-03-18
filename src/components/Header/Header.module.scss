@@ -50,17 +50,15 @@
                     justify-content: center;  
                 }
                 .link:hover{
-                    background-color: $secondary-accent-color;;
+                    background-color: $secondary-accent-color;
                     font-weight: 600;
-                    color: $primary-content-color;
                 }
                 .link:hover .cartIcon{
                     font-weight: 600;
-                    color: $primary-content-color;
                 }
                 .link:active{
-                    background-color: $detail-color;
-                    color: $background-color;
+                    background-color: $background-color;
+                    color: $primary-content-color;
                 }
                 .cart {
                     display: flex;
@@ -107,7 +105,7 @@
                 .togglerIcon {
                     display: block;
                     color: $background-color;
-                    width: 14px;
+                    width: 24px;
                     height: auto ;
                     margin: 0 ;
                 }
@@ -122,6 +120,19 @@
             .linksContainer {
                 display: none;
                 gap: 0;
+                .cart {
+                    gap: 5px;
+                    .cartIcon {
+                        width: 24px;
+                        height: auto;
+                    }
+                }
+                .emptyCart {
+                    .emptyCartIcon {
+                        width: 24px;
+                        height: auto;
+                    }
+                }
             }
             .active {
                 padding-top: 35px;
@@ -133,6 +144,7 @@
                     padding: 10px 0;
                     width: 100%;
                     align-items: center;
+                    font-size: 24px;
                 }
             }
         }

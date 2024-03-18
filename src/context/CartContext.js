@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { specialsCheck, calculateTotal } from '../Helper';
+import { specialsCheck, calculateTotal, getSundaySpecial } from '../Helper';
 
 const CartContext = createContext();
 
@@ -7,14 +7,26 @@ function CartProvider({ children }) {
 	const [cartItems, setCart] = useState([]);
 	const [cartAmount, setCartAmount] = useState(0);
 	const [weekDay, setWeekDay] = useState(7);
-	const [updateTimer, setupdateTimer] = useState([]);
 	const [sundaySpecial, setSundaySpecial] = useState({});
 	const [totalsObj, setTotalsObj] = useState({});
 	const [organizedPizzas, setOrganizedPizzas] = useState([]);
+	const [timerId, setTimerId] = useState(null);
 
 	useEffect(()=>{
+		const getSpecial = async () => {
+			const special = await getSundaySpecial();
+			setSundaySpecial(special);
+		}
+		getSpecial();
+
+	},[])
+	
+	useEffect(()=>{
 		setWeekDay(new Date().getDay());
-		timeoutForDayChange();
+		if (timerId !== null) {
+			clearTimeout(timerId);
+		} 
+		timeoutForDayChange(); 
 	}, [weekDay])
 	
 	useEffect(()=>{
@@ -22,7 +34,7 @@ function CartProvider({ children }) {
 		const organized = specialsCheck(new Date().getDay(), cartItems, sundaySpecial);
 		console.log('organized: ', organized);
 		setOrganizedPizzas(organized);
-	},[cartItems, weekDay, sundaySpecial])
+	},[cartItems, weekDay, sundaySpecial]);
 
 	useEffect(()=>{
 		const totals = calculateTotal(organizedPizzas);
@@ -34,18 +46,12 @@ function CartProvider({ children }) {
 	},[totalsObj, weekDay])
 
 	const addCartItems = (item) => {
-		const day = new Date().getDay();
-		updateWeekDay(day);
 		const index = cartItems.findIndex((pizzas) => pizzas.id === item.id);
-		console.log('index in addCartItems is: ', index);
 		if (index >= 0 ) { 
 			const tempCart = [...cartItems];
-			console.log('prevCount: ', tempCart[index].count);
 			tempCart[index].count += item.count;
-			console.log('newCount: ', tempCart[index].count);
 			setCart(tempCart);
 		} else {
-			console.log('pizza not previously included');
 			setCart([...cartItems, item]);
 		}
 	};
@@ -61,10 +67,12 @@ function CartProvider({ children }) {
 		console.log('tomorrow: ', tomorrow);
 		console.log('delay: ', delay);
 
-		setTimeout(() => {
-			console.log('setTimeout in timeoutForDayCHange called.');
+		const id =  setTimeout(() => {
+			console.log('setTimeout in timeoutForDayChange called.');
 			setWeekDay(new Date().getDay());
 		}, delay);
+
+		setTimerId(id);
 	}
 
 
@@ -102,35 +110,6 @@ function CartProvider({ children }) {
 		console.log('checked if it was 0');
 	}
 
-	const timeUntilMidnight = () => {
-		const now = new Date();
-		const midnight = new Date(
-			now.getFullYear(),
-			now.getMonth(),
-			now.getDate() + 1,
-			0,
-			0,
-			0
-		);
-		return midnight.getTime() - now.getTime();
-	};
-
-	const updateWeekDay = (day) => {
-		if (day !== weekDay) {
-			setWeekDay(day);
-		}
-	};
-
-	const scheduleWeekDayUpdate = () => {
-		if (updateTimer.length === 0) {
-			const timer = setTimeout(() => {
-				const day = new Date().getDay();
-				updateWeekDay(day);
-			}, timeUntilMidnight());
-			setupdateTimer(timer);
-		}
-	};
-
 	return (
 		<CartContext.Provider
 			value={{
@@ -142,9 +121,7 @@ function CartProvider({ children }) {
 				cartAmount,
 				setCartAmount,
 				weekDay,
-				scheduleWeekDayUpdate,
 				sundaySpecial,
-				setSundaySpecial,
 				totalsObj,
 				organizedPizzas,
 				setCartItemQty,
