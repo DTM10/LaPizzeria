@@ -1,0 +1,75 @@
+@import '../../styles/variables.scss';
+
+.accordion {
+    .accordionBtn {
+        display: grid;
+        margin-top: 10px;
+        grid-template-columns: 2fr 1fr 12px;
+        background-color: $card-background-color;
+        box-shadow: $card-box-shadow;
+        padding: 10px;
+        width: 100%;
+        text-align: left;
+        border: solid $accent-color 1px;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+        transition: background-color 0.5 ease;
+        font-size: 12px;
+        font-weight: 300;
+
+        &:focus {
+            outline: none;
+        }
+
+        &::after {
+            content: '+';
+            float: right;
+        }
+
+        &.active::after {
+            content: '-';
+        }
+    }
+    .openBtn {
+        border-radius: 5px 5px 0 0;
+        background-color: $accent-color;
+        color: $background-color;
+    }
+
+    .accordionContent {
+        padding: 0 10px;
+        background-color: $card-background-color;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        max-height: 0;
+        .orderDetail {
+            text-align: left;
+            font-size: 10px;
+            .pizza {
+                padding: 5px 0;
+            }
+            .total {
+                font-weight: 500;
+            }
+        }
+ 
+            .data{
+                display: flex;
+                gap: 5px;
+                .label {
+                    font-weight: 300;
+                }
+
+            }
+        
+    }
+    .open {
+        max-height: 1000px; 
+        border: solid $accent-color 1px;
+        border-radius: 0 0 5px 5px;
+        padding: 5px 10px;
+        box-shadow: $card-box-shadow;
+    }
+      
+}

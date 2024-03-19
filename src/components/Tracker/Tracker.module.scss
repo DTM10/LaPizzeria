@@ -1,0 +1,63 @@
+@import '../../styles/variables.scss';
+
+.tracker {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .trackerContainer{
+        padding: 0 $large-padding;
+        width: 100%;
+        h2 {
+            color: $primary-content-color;
+            font-weight: 600;
+        }
+        .pendingOrders {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 2fr 1fr 10px;
+            .headerItem {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .label {
+                    text-align: left;
+                }
+            }
+            .label {
+                font-size: 10px;
+                text-align: center;
+                font-weight: 200;
+            }
+            .orderDetail, .orderDetailId {
+                .data {
+                    text-align: left;
+                    font-size: 12px;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $medium-breakpoint) {
+    .tracker {
+        .trackerContainer{
+            padding: 0 $medium-padding;
+        }
+    }
+}
+
+@media (max-width: $small-breakpoint) {
+    .tracker {
+        .trackerContainer{
+            padding: 0 $small-padding;
+        }
+    }
+}
+
+
+
+
+
+

@@ -1,8 +1,8 @@
 @import '../../styles/variables.scss';
 
 .invoice {
-    margin-bottom: 40px;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    box-shadow: $card-box-shadow;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +13,7 @@
         width: 100%;
         display: flex;
         .pizzaImg {
-            width: 500px;
+            width: 300px;
             height: auto;
         }
     }
@@ -46,11 +46,25 @@
 
 @media (max-width: $medium-breakpoint) {
     .invoice {
+        .startImgContainer, .endImgContainer {
+            .pizzaImg {
+                width: 500px;
+            }
+        }
         .invoiceContainer {
             .priceContainer {
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
+            }
+        }
+    }    
+}
+@media (max-width: $small-breakpoint) {
+    .invoice {
+        .startImgContainer, .endImgContainer {
+            .pizzaImg {
+                width: 300px;
             }
         }
     }    

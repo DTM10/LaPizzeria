@@ -48,9 +48,6 @@ export default function CartCard({
         <div className={styles.price}>
           <div>
             <p className={styles.label}>Price:</p>
-
-            {/* <p className={styles.priceDescrip}>{pizzaDesc}</p> */}
-
             <p>${price}.00</p>
           </div>
           <div>

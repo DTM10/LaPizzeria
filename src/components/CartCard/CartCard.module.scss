@@ -2,6 +2,18 @@
 
 .cartCard {
     .cardContainer {
+        padding: 30px 20px;
+        display: grid;
+        grid-template-columns: 10px 3fr 3fr 3fr;
+        gap: 10px;
+        background-color: $card-background-color;
+        box-shadow: $card-box-shadow;
+        align-content: center;
+        justify-items: center;
+        border-radius: 5px;
+        align-items: center;
+        overflow: hidden;
+        max-height: 150px;
         .priceDescrip, .specialPriceDescrip {
             background-color: $accent-color;
             display: flex;
@@ -10,7 +22,8 @@
             height: calc(100% + 60px);
             width: 30px;
             position: relative;
-            padding: 0;
+            padding: 30px;
+            z-index: 1;
             p{
                 width: auto;
                 height: auto;
@@ -26,42 +39,22 @@
         .specialPriceDescrip {
             background-color: $detail-color;
         }
-        padding: 30px 20px;
-        display: grid;
-        grid-template-columns: 15px 3fr 3fr 3fr;
-        gap: 10px;
-        background-color: $card-background-color;
-        box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        // box-shadow: 0 0 20px 0 #e2cfce;
-        align-content: center;
-        justify-items: center;
-        border-radius: 5px;
-        align-items: center;
+       
         .pizza {
-            // width: 100%;
-            // height: 100%;
-            // max-height: 130px;
-
-            // overflow: hidden;
-            // position: relative;
             justify-content: center;
 
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden;
             .imgContainer {
                 display: flex;
                 flex-direction: column;
-                align-items: center;
                 justify-content: space-between;
-                // height: 100%;
                 .pizzaImg {
-                    width: clamp(60px, 60%, 120px) ;
+                    width: 300px;
                     height: auto;
-
-                    // position: absolute;
-                    // top: -50%;
-                    // left: -50%;
+                    transform: translate(-30%, 0);
                 }
             }
         }
@@ -99,6 +92,8 @@
             padding: 15px 15px;
             .priceDescrip, .specialPriceDescrip {
                 height: calc(100% + 30px);
+                width: 100%;
+                
             }
         }
     }
@@ -111,9 +106,21 @@
             gap: 5px;
             .priceDescrip, .specialPriceDescrip  {
                 height: calc(100% + 20px);
-                width: 20px;
+                width: 100%;
+                padding: 20px;
                 p{
-                    font-size: 1.5vh;
+                    font-size: 1.8vh;
+                    padding-top: 10px;
+                }
+            }
+
+            .pizza {
+                .imgContainer {
+                    .pizzaImg {
+                        width: 200px;
+                        height: auto;
+                        transform: translate(-30%, 0);
+                    }
                 }
             }
         }
