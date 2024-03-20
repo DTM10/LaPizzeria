@@ -5,6 +5,8 @@
 	font-size: 18px;
 	background-color: $accent-color;
 	color: $background-color;
+	-webkit-text-fill-color: $background-color; 
+	-webkit-opacity: 1; 
 	width: 200px;
 	height: 50px;
 	border: none;
@@ -21,10 +23,14 @@
 	border-width: 2px;
 	background-color: $secondary-accent-color;
 	color: $background-color;
+	-webkit-text-fill-color: $background-color; 
+	-webkit-opacity: 1; 
 }
 .button:active {
 	background-color: transparent;
 	color: $primary-content-color;
+	-webkit-text-fill-color: $background-color; 
+	-webkit-opacity: 1; 
 }
 
 .btnIcon {

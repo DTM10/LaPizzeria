@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     .trackerContainer{
-        padding: 0 $large-padding;
+        padding: 0 $large-padding 30px;
         width: 100%;
         h2 {
             color: $primary-content-color;
@@ -15,15 +15,6 @@
             width: 100%;
             display: grid;
             grid-template-columns: 2fr 1fr 10px;
-            .headerItem {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                .label {
-                    text-align: left;
-                }
-            }
             .label {
                 font-size: 10px;
                 text-align: center;
@@ -43,7 +34,7 @@
 @media (max-width: $medium-breakpoint) {
     .tracker {
         .trackerContainer{
-            padding: 0 $medium-padding;
+            padding: 0 $medium-padding 30px;
         }
     }
 }
@@ -51,7 +42,7 @@
 @media (max-width: $small-breakpoint) {
     .tracker {
         .trackerContainer{
-            padding: 0 $small-padding;
+            padding: 0 $small-padding 20px;
         }
     }
 }

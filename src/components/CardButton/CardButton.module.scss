@@ -5,6 +5,8 @@
 	font-size: 18px;
 	background-color: $accent-color;
 	color: $background-color;
+	-webkit-text-fill-color: $background-color; 
+	-webkit-opacity: 1; 
 	width: 200px;
 	height: 50px;
 	border-radius: 3px;
@@ -20,10 +22,14 @@
 	border-width: 2px;
 	background-color: $secondary-accent-color;
 	color: $background-color;
+	-webkit-text-fill-color: $background-color; 
+	-webkit-opacity: 1; 
 }
 .cardBtn:active {
 	background-color: transparent;
 	color: $primary-content-color;
+	-webkit-text-fill-color: $primary-content-color; 
+	-webkit-opacity: 1; 
 }
 
 .cartIcon {

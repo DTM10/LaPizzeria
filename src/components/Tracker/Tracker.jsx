@@ -25,13 +25,6 @@ export function Tracker() {
     <div className={styles.tracker}>
       <div className={styles.trackerContainer}>
         <h2>{userDetails.firstName}, your orders are: </h2>
-        {/* <div className={styles.orders}>
-          <div className={styles.headerItem}>
-            <p className={styles.label}>Date</p>
-          </div>
-          <div className={styles.headerItem}></div>
-          <p className={styles.label}>Status</p>
-        </div> */}
         {pendingOrders.length > 0 &&
           pendingOrders.map((order) => {
             return (

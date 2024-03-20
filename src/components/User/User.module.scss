@@ -42,6 +42,9 @@
                     border: solid 1px $accent-color;
                     border-radius: 5px;
                     font-family: $regular-font;
+                    -webkit-text-fill-color: $primary-content-color; 
+	                -webkit-opacity: 1; 
+                    background-color: $background-color;
                 }
             }
 
