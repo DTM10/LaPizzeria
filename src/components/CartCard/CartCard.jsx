@@ -26,7 +26,7 @@ export default function CartCard({
               : styles.specialPriceDescrip
           }
         >
-          <p>{pizzaDesc}</p>
+          <p className={styles.descText}>{pizzaDesc}</p>
         </div>
         <div className={styles.pizza}>
           <div className={styles.imgContainer}>
