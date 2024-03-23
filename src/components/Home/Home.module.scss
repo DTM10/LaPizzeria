@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+.home {
+	background-size: cover;
+	background-position: center;
+	min-height: 100vh;
+	position: relative;
+    .carouselContainer {
+	
+    }
+}
+
+@media (max-width: $medium-breakpoint) {
+
+}
+
+@media (max-width: $small-breakpoint) {
+
+}
