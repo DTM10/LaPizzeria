@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect } from 'react';
 import styles from './Home.module.scss';
+import CarouselCard from '../CarouselCard/CarouselCard';
 import { CartContext } from '../../context/CartContext';
 import { getSundaySpecial } from '../../Helper';
 
@@ -23,7 +24,9 @@ export function Home() {
 
   return (
     <div className={styles.home}>
-      <div className={styles.imgContainer}></div>
+      <div className={styles.imgContainer}>
+        <CarouselCard />
+      </div>
     </div>
   );
 }

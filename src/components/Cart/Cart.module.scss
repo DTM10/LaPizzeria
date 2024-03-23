@@ -3,12 +3,12 @@
     padding: 0 $large-padding;
     .cart {
         display: flex;
-        height: calc(100vh - 200px);
+        height: calc(100vh - 265px);
         gap: 20px;
         .cartContainer {
             flex: 2;
             overflow-y: auto;
-            height: calc(100vh - 200px);
+            height: calc(100vh - 265px);
             padding-right: 10px;
             .cardsContainer {
                 display: flex;
