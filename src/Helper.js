@@ -3,7 +3,7 @@ import { db } from './firebaseConfig';
 
 const TAX = 0.13;
 
-const getWeekdDayStr = (day) => {
+export const getWeekDayStr = (day) => {
 	const weekdayStrArray = [
 		'Sunday',
 		'Monday',
@@ -40,7 +40,7 @@ export const specialsCheck = (day, pizzas, sundaySpecial) => {
 		});
 		invoiceDetails.forEach((pizza) => {
 			pizza.price = pizzaCount >= sundaySpecial.minQty ? sundaySpecial.pricePerPizza : pizza.regularPrice;
-			pizza.pizzaDesc = pizzaCount >= sundaySpecial.minQty ? `${getWeekdDayStr(0)} Special` : 'Regular';
+			pizza.pizzaDesc = pizzaCount >= sundaySpecial.minQty ? `${getWeekDayStr(0)} Special` : 'Regular';
 			pizza.subTotal = pizza.price * pizza.count;
 		});
 	} else {
@@ -48,7 +48,7 @@ export const specialsCheck = (day, pizzas, sundaySpecial) => {
 			pizza.pizzaDesc = 'Regular';
 			if (pizza.specialDay.includes(day)) {
 				pizza.price = pizza.specialPrice;
-				pizza.pizzaDesc = `${getWeekdDayStr(day)} Special`;
+				pizza.pizzaDesc = `${getWeekDayStr(day)} Special`;
 			}
 			pizza.subTotal = pizza.price * pizza.count;
 		});

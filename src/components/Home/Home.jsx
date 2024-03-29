@@ -1,31 +1,65 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import styles from './Home.module.scss';
-import CarouselCard from '../CarouselCard/CarouselCard';
+import Carousel from '../Carousel/Carousel';
 import { CartContext } from '../../context/CartContext';
-import { getSundaySpecial } from '../../Helper';
+import { formatCurrency, getWeekDayStr } from '../../Helper';
 
 export function Home() {
-  //   const { scheduleWeekDayUpdate, setSundaySpecial } = useContext(CartContext);
+  const { pizzas, sundaySpecial } = useContext(CartContext);
 
-  // const getSpecial = useCallback(() => {
-  // 	getSundaySpecial()
-  // 		.then((res) => {
-  // 			setSundaySpecial(res);
-  // 		})
-  // 		.catch((e) => {
-  // 			console.log('Error trying to get special', e);
-  // 		});
-  // }, [setSundaySpecial]);
+  const initialCard = [
+    {
+      title: 'Any Pizza',
+      info: 'on our menu',
+      price: formatCurrency(14),
+      img: './images/Salsiccia.webp',
+      altText: 'pizza-image',
+    },
+  ];
+  const [cards, setCards] = useState(initialCard);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // useEffect(() => {
-  // 	scheduleWeekDayUpdate();
-  // 	getSpecial();
-  // }, [scheduleWeekDayUpdate, getSpecial]);
+  useEffect(() => {
+    getCardsData(pizzas);
+  }, [pizzas, sundaySpecial]);
+
+  const getCardsData = (pizzas) => {
+    const pizzasSpecials = pizzas.filter(
+      (pizza) => pizza.specialDay.length > 0
+    );
+    pizzasSpecials.sort((a, b) => a.specialDay - b.specialDay);
+
+    const addingCards = pizzasSpecials.map((special) => {
+      return {
+        title: `${getWeekDayStr(special.specialDay[0])} Special`,
+        info: special.title,
+        price: formatCurrency(special.specialPrice),
+        img: special.src,
+        altText: `${special.title}-pizza`,
+        specialDay: special.specialDay,
+      };
+    });
+
+    const sunday = {
+      title: 'Sunday Special',
+      info: `Buy ${sundaySpecial.minQty} or more for`,
+      price: `${formatCurrency(sundaySpecial.pricePerPizza)} each`,
+      img: './images/Rucola-Prosciutto.webp',
+      altText: `pizza-img`,
+      specialDay: 0,
+    };
+
+    setCards([...initialCard, ...addingCards, sunday]);
+  };
 
   return (
     <div className={styles.home}>
       <div className={styles.imgContainer}>
-        <CarouselCard />
+        <Carousel
+          cards={cards}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+        />
       </div>
     </div>
   );

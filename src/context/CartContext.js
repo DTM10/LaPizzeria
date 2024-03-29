@@ -1,6 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { specialsCheck, calculateTotal, getSundaySpecial } from '../Helper';
 
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+
 const CartContext = createContext();
 
 function CartProvider({ children }) {
@@ -11,6 +14,7 @@ function CartProvider({ children }) {
 	const [totalsObj, setTotalsObj] = useState({});
 	const [organizedPizzas, setOrganizedPizzas] = useState([]);
 	const [timerId, setTimerId] = useState(null);
+	const [pizzas, setPizzas] = useState([]);
 
 	useEffect(()=>{
 		const getSpecial = async () => {
@@ -18,7 +22,7 @@ function CartProvider({ children }) {
 			setSundaySpecial(special);
 		}
 		getSpecial();
-
+		fetchPizzasInfo();
 	},[])
 	
 	useEffect(()=>{
@@ -32,7 +36,6 @@ function CartProvider({ children }) {
 	useEffect(()=>{
 		setWeekDay(new Date().getDay());
 		const organized = specialsCheck(new Date().getDay(), cartItems, sundaySpecial);
-		console.log('organized: ', organized);
 		setOrganizedPizzas(organized);
 	},[cartItems, weekDay, sundaySpecial]);
 
@@ -57,18 +60,11 @@ function CartProvider({ children }) {
 	};
 
 	const timeoutForDayChange = () => {
-		console.log('timeoutForDayChange triggered');
 		const now = new Date();
 		const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
 		tomorrow.setHours(0,0,0,0);
 		const delay = tomorrow - now;
-
-		console.log('now: ', now);
-		console.log('tomorrow: ', tomorrow);
-		console.log('delay: ', delay);
-
 		const id =  setTimeout(() => {
-			console.log('setTimeout in timeoutForDayChange called.');
 			setWeekDay(new Date().getDay());
 		}, delay);
 
@@ -107,12 +103,30 @@ function CartProvider({ children }) {
 			newCart.splice(index, 1);
 			setCart(newCart);
 		}
-		console.log('checked if it was 0');
 	}
+
+	const fetchPizzasInfo = async () => {
+		const tempPizzas = [];
+		const querySnapshot = await getDocs(collection(db, 'Pizzas'));
+		querySnapshot.forEach((doc) => {
+		  tempPizzas.push({
+			id: doc.id,
+			title: doc.data().title,
+			description: doc.data().description,
+			src: doc.data().src,
+			price: doc.data().price,
+			regularPrice: doc.data().regularPrice,
+			specialPrice: doc.data().specialPrice,
+			specialDay: doc.data().specialDay,
+		  });
+		});
+		setPizzas(tempPizzas);
+	  };
 
 	return (
 		<CartContext.Provider
 			value={{
+				pizzas,
 				cartItems,
 				setCart,
 				addCartItems,

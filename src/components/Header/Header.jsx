@@ -20,7 +20,6 @@ function Header() {
     const divClass = classNames(styles.linksContainer, {
       [styles.active]: isActive,
     });
-    console.log(isActive);
     setClasses(divClass);
   }, [isActive]);
 

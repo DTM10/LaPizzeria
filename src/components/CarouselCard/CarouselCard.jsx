@@ -1,20 +1,17 @@
 import styles from './CarouselCard.module.scss';
 
-function CarouselCard() {
+function CarouselCard({ title, info, price, img, altText }) {
   return (
     <div className={styles.carouselCard}>
       <div className={styles.carouselCardContainer}>
         <div className={styles.imgContainer}>
-          <img
-            src="./images/Quattro-Formaggi.webp"
-            alt="pizza-Quattro-Formaggi"
-          />
+          <img src={img} alt={altText} />
         </div>
         <div className={styles.contentContainer}>
-          <h2>Monday Special</h2>
+          <h2>{title}</h2>
           <div className={styles.dataContainer}>
-            <p>Quatro Formaggi</p>
-            <p className={styles.price}>$11.00</p>
+            <p>{info}</p>
+            <p className={styles.price}>{price}</p>
           </div>
         </div>
       </div>

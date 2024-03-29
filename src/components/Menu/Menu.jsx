@@ -1,33 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from './Menu.module.scss';
 import { PizzaCard } from '../PizzaCard/PizzaCard';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebaseConfig';
+import { CartContext } from '../../context/CartContext';
 
 export function Menu() {
-  const [pizzas, setPizzas] = useState([]);
-
-  useEffect(() => {
-    fetchPizzasInfo();
-  }, []);
-
-  const fetchPizzasInfo = async () => {
-    const tempPizzas = [];
-    const querySnapshot = await getDocs(collection(db, 'Pizzas'));
-    querySnapshot.forEach((doc) => {
-      tempPizzas.push({
-        id: doc.id,
-        title: doc.data().title,
-        description: doc.data().description,
-        src: doc.data().src,
-        price: doc.data().price,
-        regularPrice: doc.data().regularPrice,
-        specialPrice: doc.data().specialPrice,
-        specialDay: doc.data().specialDay,
-      });
-    });
-    setPizzas(tempPizzas);
-  };
+  const { pizzas } = useContext(CartContext);
 
   return (
     <div className={styles.menu}>
