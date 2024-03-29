@@ -3,15 +3,19 @@ import React, { useState, useEffect } from 'react';
 import CarouselCard from '../CarouselCard/CarouselCard';
 
 export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
+  const [hasTimeout, setHasTimeout] = useState(null);
+
   const nextCard = () => {
-    const newIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
-    console.log('nextIndex is: ', newIndex);
-    setCurrentIndex(newIndex);
+    if (!hasTimeout) {
+      setHasTimeout(true);
+      setCurrentIndex(1);
+    } else {
+      const newIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
+      setCurrentIndex(newIndex);
+    }
   };
 
   useEffect(() => {
-    // const interval = setInterval(nextImage, 3000);
-    // return () => clearInterval(interval);
     setTimeout(() => {
       nextCard();
     }, 3000);
@@ -30,7 +34,7 @@ export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
         {cards.map((_, index) => (
           <button
             key={index}
-            className={currentIndex === index ? 'active' : ''}
+            className={currentIndex === index ? styles.active : ''}
             onClick={() => setCurrentIndex(index)}
           >
             &#9679;
