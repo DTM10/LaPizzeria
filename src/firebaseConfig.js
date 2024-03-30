@@ -3,13 +3,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyBpfMHIWopsodUxwP1zGKjPZyVEcxt8ffs',
-	authDomain: 'lapizzeria-b7ae4.firebaseapp.com',
-	projectId: 'lapizzeria-b7ae4',
-	storageBucket: 'lapizzeria-b7ae4.appspot.com',
-	messagingSenderId: '687711673307',
-	appId: '1:687711673307:web:68fe8fd64c644820a1e5fe',
-	measurementId: 'G-X92R9RCZYX'
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_FIREBASE_APP_ID,
+	measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
