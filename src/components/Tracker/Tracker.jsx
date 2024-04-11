@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import styles from './Tracker.module.scss';
 import { AuthContext } from '../../context/AuthContext';
-import { OrderInput } from '../OrderInput/OrderInput';
+import NotLoggedIn from '../NotLoggedIn/NotLoggedIn';
 import Accordion from '../Accordion/Accordion';
 
 export function Tracker() {
@@ -16,11 +16,10 @@ export function Tracker() {
   } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log('userDetails: ', userDetails);
     if (userId) {
       fetchOrders();
     }
-  }, []);
+  }, [fetchOrders, userDetails, userId]);
   return isLoggedIn ? (
     <div className={styles.tracker}>
       <div className={styles.trackerContainer}>
@@ -70,6 +69,6 @@ export function Tracker() {
       </div>
     </div>
   ) : (
-    <OrderInput />
+    <NotLoggedIn />
   );
 }

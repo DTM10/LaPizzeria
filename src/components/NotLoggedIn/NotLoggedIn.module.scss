@@ -1,0 +1,53 @@
+@import '../../styles/variables.scss';
+
+.notLoggedIn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .notLoggedInContainer{
+        padding: 0 $large-padding 30px;
+        width: 100%;
+        p {
+            padding-bottom: 20px;
+            font-size: 4vh;
+        }
+        .pendingOrders {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 2fr 1fr 10px;
+            .label {
+                font-size: 10px;
+                text-align: center;
+                font-weight: 200;
+            }
+            .orderDetail, .orderDetailId {
+                .data {
+                    text-align: left;
+                    font-size: 12px;
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $medium-breakpoint) {
+    .notLoggedIn {
+        .notLoggedInContainer{
+            padding: 0 $medium-padding 30px;
+     
+        }
+    }
+}
+
+@media (max-width: $small-breakpoint) {
+    .notLoggedIn {
+        .notLoggedInContainer{
+            padding: 0 $small-padding 20px;
+            p {
+                padding-bottom: 20px;
+                font-size: 2.5vh;
+            }
+        }
+    }
+}

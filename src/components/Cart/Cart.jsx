@@ -15,6 +15,7 @@ export function Cart() {
 
   return (
     <div className={styles.totalContainer}>
+      <CartHeader />
       {checkingOut && (
         <Checkout
           subTotal={totalsObj.totalBTax}
@@ -24,7 +25,6 @@ export function Cart() {
           checkingOut={checkingOut}
         />
       )}
-      <CartHeader />
       <div className={checkingOut ? styles.cartCheckingOut : styles.cart}>
         {cartItems.length > 0 && (
           <div className={styles.cartContainer}>

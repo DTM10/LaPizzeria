@@ -30,7 +30,11 @@ export default function QtyToggle({
         type="number"
         value={qty}
         onChange={(e) => {
-          setQty(Number(e.target.value), param);
+          if (isNaN(Number(e.target.value))) {
+            return;
+          } else {
+            setQty(Number(e.target.value), param);
+          }
         }}
         onBlur={() => {
           checkIfZero(param);

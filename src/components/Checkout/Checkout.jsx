@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { formatCurrency } from '../../Helper';
 import styles from './Checkout.module.scss';
-import CardButton from '../CardButton/CardButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faX } from '@fortawesome/free-solid-svg-icons';
 import { collection, addDoc, doc } from 'firebase/firestore';
@@ -10,6 +9,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { CartContext } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { Feedback } from '../Feedback/Feedback';
+import { GeneralButton } from '../GeneralButton/GeneralButton';
 
 export default function Invoice({ setCheckingOut }) {
   const { userId, fetchOrders } = useContext(AuthContext);
@@ -62,6 +62,13 @@ export default function Invoice({ setCheckingOut }) {
       })
       .catch((e) => {
         console.log('Error adding order: ', e);
+        setFeedbackMsg('Error trying to place the order!');
+        setShowFeedback(true);
+        setOrderPlaced(false);
+        setTimeout(() => {
+          setFeedbackMsg('');
+          setShowFeedback(false);
+        }, 3000);
       });
   };
 
@@ -70,12 +77,12 @@ export default function Invoice({ setCheckingOut }) {
       {!orderPlaced && (
         <div className={styles.checkoutContainer}>
           <div className={styles.closeBtnContainer}>
-            <button
-              className={styles.modalCloseBtn}
-              onClick={handleCancel}
-              icon={faX}
-            >
-              <FontAwesomeIcon icon={faX} className={styles.closeBtnIcon} />
+            <button className={styles.modalCloseBtn} onClick={handleCancel}>
+              <FontAwesomeIcon
+                icon={faX}
+                style={{ color: '#383838' }}
+                className={styles.closeBtnIcon}
+              />
             </button>
           </div>
 
@@ -93,15 +100,15 @@ export default function Invoice({ setCheckingOut }) {
           </div>
 
           <div className={styles.btnContainer}>
-            <CardButton
-              handlePress={handlePlaceOrder}
-              text={'PLACE ORDER'}
+            <GeneralButton
+              action={handlePlaceOrder}
+              btnText={'PLACE ORDER'}
               icon={faCartShopping}
             />
           </div>
         </div>
       )}
-      {orderPlaced && (
+      {showFeedbackMsg && (
         <div className={styles.feedbackContainer}>
           <Feedback feedbackMsg={feedbackMsg} />
         </div>
