@@ -22,13 +22,7 @@ export function User() {
   const [feedbackMsg, setFeedbackMsg] = useState('');
 
   const updateUser = () => {
-    console.log('updateUser called');
-    console.log('db is: ', db);
-    console.log('userId is: ', userId);
-    // VALIDATE INPUTS BEFORE UPDATING
     const userRef = doc(db, 'users', userId);
-    console.log('userRef: ', userRef);
-
     setDoc(
       userRef,
       { address: address, city: city, phone: phone, province: province },

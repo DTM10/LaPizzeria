@@ -29,7 +29,6 @@ export function Register() {
 
   useEffect(() => {
     if (isRegistered) {
-      //go to login page after 5 seconds
       setTimeout(() => {
         navigate('/login');
       }, 5000);
