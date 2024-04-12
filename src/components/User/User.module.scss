@@ -1,19 +1,36 @@
 @import '../../styles/variables.scss';
 
-
 .user {
     width: 100%;
-    max-width: 400px;
     display: flex;
-    justify-content: center;
-    background-color: $card-background-color;
-    box-shadow: $card-box-shadow;
-    border-radius: 5px;
-    padding: 30px;
+    justify-content: space-between;
+    padding: 0 $large-padding;
     overflow: hidden;
+    max-height: 500px;
+    .imgContainer {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        img{
+           width: 150%;
+           height: auto;
+           transform: translate(18%,0);
+        }
+    }
     .userContainer{
         width: 100%;
-        font-size: 16px;
+        height: auto;
+        background-color: $card-background-color;
+        border-radius: 5px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        
         .inputContainer {
             display: flex;
             flex-direction: column;
@@ -73,11 +90,27 @@
 
 @media (max-width: $medium-breakpoint) {
     .user {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: 30px 20px;
-        max-width: none;
+        padding: 0 $medium-padding;
+        flex-direction: column;
+        overflow: visible;
+        max-height: none;
+        .imgContainer {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-height: 200px;
+            img{
+               width: 100%;
+               height: auto;
+               transform: translate(0,35%);
+            }
+        }
+        .loginContainer{
+            padding: 30px 20px;
+        }   
     }
 }
 
@@ -86,7 +119,15 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        padding: 20px 15px;
+        padding: 0 $small-padding;
+        .imgContainer {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
         .userContainer{
             h1 {
                 text-align: center;

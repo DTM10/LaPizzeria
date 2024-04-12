@@ -12,6 +12,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Feedback } from '../Feedback/Feedback';
+import { checkEmptyInput } from '../../Helper';
 
 export function Register() {
   const [firstName, setFirstName] = useState('');
@@ -35,44 +36,64 @@ export function Register() {
     }
   }, [isRegistered, navigate]);
 
+  useEffect(() => {
+    if (feedbackMsg !== '') {
+      setShowFeedback(true);
+      setTimeout(() => {
+        setFeedbackMsg('');
+        setShowFeedback(false);
+      }, 5000);
+    }
+  }, [feedbackMsg]);
+
   const registerUser = () => {
-    console.log('registerUser called');
-    createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        sendEmailVerification(auth.currentUser);
-        setDoc(doc(db, 'users', user.uid), {
-          firstName: firstName,
-          lastName: lastName,
-          phone: registerPhone,
-          address: streetAddress,
-          city: city,
-          province: province,
-        })
-          .then((res) => {
-            console.log(res);
-            setIsRegistered(true);
-            setFeedbackMsg(
-              'Account created! We have sent you an email to confirm your account. Please verify your email by following the instructions in the email.'
-            );
-            setShowFeedback(true);
+    const msg = 'All fields must be filled with the respective data.';
+    if (
+      !checkEmptyInput(firstName, setFeedbackMsg, msg) ||
+      !checkEmptyInput(lastName, setFeedbackMsg, msg) ||
+      !checkEmptyInput(streetAddress, setFeedbackMsg, msg) ||
+      !checkEmptyInput(city, setFeedbackMsg, msg) ||
+      !checkEmptyInput(registerEmail, setFeedbackMsg, msg) ||
+      !checkEmptyInput(registerPassword, setFeedbackMsg, msg) ||
+      !checkEmptyInput(registerPhone, setFeedbackMsg, msg)
+    ) {
+      return;
+    } else {
+      createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+        .then((userCredentials) => {
+          const user = userCredentials.user;
+          sendEmailVerification(auth.currentUser);
+          setDoc(doc(db, 'users', user.uid), {
+            firstName: firstName,
+            lastName: lastName,
+            phone: registerPhone,
+            address: streetAddress,
+            city: city,
+            province: province,
           })
-          .catch((err) => {
-            console.log(
-              'Error saving the user data in DB when registering',
-              err
-            );
-          });
-      })
-      .catch((e) => {
-        const errorCode = e.code;
-        const errorMsg = e.message;
-        console.log('Error trying to register new user.');
-        console.log('Error code: ', errorCode);
-        console.log('Error Message: ', errorMsg);
-        setFeedbackMsg(`Error trying to register user: ${errorCode}`);
-        setShowFeedback(true);
-      });
+            .then((res) => {
+              console.log(res);
+              setIsRegistered(true);
+              setFeedbackMsg(
+                'Account created! We have sent you an email to confirm your account. Please verify your email by following the instructions in the email.'
+              );
+            })
+            .catch((err) => {
+              console.log(
+                'Error saving the user data in DB when registering',
+                err
+              );
+            });
+        })
+        .catch((e) => {
+          const errorCode = e.code;
+          const errorMsg = e.message;
+          console.log('Error trying to register new user.');
+          console.log('Error code: ', errorCode);
+          console.log('Error Message: ', errorMsg);
+          setFeedbackMsg(`Error trying to register user: ${errorCode}`);
+        });
+    }
   };
 
   return (
@@ -91,6 +112,9 @@ export function Register() {
                 onChange={(e) => {
                   setFirstName(e.target.value);
                 }}
+                onBlur={() => {
+                  checkEmptyInput(firstName, setFeedbackMsg);
+                }}
               />
             </label>
             <label>
@@ -101,6 +125,9 @@ export function Register() {
                 value={lastName}
                 onChange={(e) => {
                   setLastName(e.target.value);
+                }}
+                onBlur={() => {
+                  checkEmptyInput(lastName, setFeedbackMsg);
                 }}
               />
             </label>
@@ -115,6 +142,9 @@ export function Register() {
                 onChange={(e) => {
                   setStreetAddress(e.target.value);
                 }}
+                onBlur={() => {
+                  checkEmptyInput(streetAddress, setFeedbackMsg);
+                }}
               />
             </label>
             <label>
@@ -125,6 +155,9 @@ export function Register() {
                 value={city}
                 onChange={(e) => {
                   setCity(e.target.value);
+                }}
+                onBlur={() => {
+                  checkEmptyInput(city, setFeedbackMsg);
                 }}
               />
             </label>
@@ -156,6 +189,9 @@ export function Register() {
                 onChange={(e) => {
                   setRegisterEmail(e.target.value);
                 }}
+                onBlur={() => {
+                  checkEmptyInput(registerEmail, setFeedbackMsg);
+                }}
               />
             </label>
             <label>
@@ -166,6 +202,9 @@ export function Register() {
                 value={registerPassword}
                 onChange={(e) => {
                   setRegisterPassword(e.target.value);
+                }}
+                onBlur={() => {
+                  checkEmptyInput(registerPassword, setFeedbackMsg);
                 }}
               />
             </label>
@@ -178,6 +217,9 @@ export function Register() {
                 value={registerPhone}
                 onChange={(e) => {
                   setPhone(e.target.value);
+                }}
+                onBlur={() => {
+                  checkEmptyInput(registerPhone, setFeedbackMsg);
                 }}
               />
             </label>

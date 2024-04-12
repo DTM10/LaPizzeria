@@ -1,7 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import styles from './User.module.scss';
-import { canadianProvincesTerritoriesInitials } from '../../Helper';
+import {
+  canadianProvincesTerritoriesInitials,
+  checkEmptyInput,
+} from '../../Helper';
 import {
   faArrowRightToBracket,
   faArrowsRotate,
@@ -21,29 +24,38 @@ export function User() {
   const [showFeedbackMsg, setShowFeedback] = useState(false);
   const [feedbackMsg, setFeedbackMsg] = useState('');
 
+  useEffect(() => {
+    if (feedbackMsg !== '') {
+      setShowFeedback(true);
+      setTimeout(() => {
+        setFeedbackMsg('');
+        setShowFeedback(false);
+      }, 5000);
+    }
+  }, [feedbackMsg]);
+
   const updateUser = () => {
-    const userRef = doc(db, 'users', userId);
-    setDoc(
-      userRef,
-      { address: address, city: city, phone: phone, province: province },
-      { merge: true }
-    )
-      .then(() => {
-        setFeedbackMsg('User has been successfully updated.');
-        setShowFeedback(true);
-        setTimeout(() => {
-          setFeedbackMsg('');
-          setShowFeedback(false);
-        }, 5000);
-      })
-      .catch((e) => {
-        setFeedbackMsg(`Error trying to update the user: ${e}`);
-        setShowFeedback(true);
-        setTimeout(() => {
-          setFeedbackMsg('');
-          setShowFeedback(false);
-        }, 5000);
-      });
+    const msg = 'All fields must be filled with the respective data.';
+    if (
+      !checkEmptyInput(address, setFeedbackMsg, msg) ||
+      !checkEmptyInput(city, setFeedbackMsg, msg) ||
+      !checkEmptyInput(phone, setFeedbackMsg, msg)
+    ) {
+      return;
+    } else {
+      const userRef = doc(db, 'users', userId);
+      setDoc(
+        userRef,
+        { address: address, city: city, phone: phone, province: province },
+        { merge: true }
+      )
+        .then(() => {
+          setFeedbackMsg('User has been successfully updated.');
+        })
+        .catch((e) => {
+          setFeedbackMsg(`Error trying to update the user: ${e}`);
+        });
+    }
   };
 
   const logout = () => {
@@ -54,16 +66,14 @@ export function User() {
       })
       .catch((e) => {
         setFeedbackMsg(`Error trying to log the user out: ${e}`);
-        setShowFeedback(true);
-        setTimeout(() => {
-          setFeedbackMsg('');
-          setShowFeedback(false);
-        }, 5000);
       });
   };
 
   return (
     <div className={styles.user}>
+      <div className={styles.imgContainer}>
+        <img src="./images/Marguerita.webp" alt={'pizza-margherita'} />
+      </div>
       <div className={styles.userContainer}>
         <h1>Welcome, {userDetails.firstName}</h1>
         <div className={styles.inputContainer}>
@@ -76,6 +86,9 @@ export function User() {
               onChange={(e) => {
                 setAddress(e.target.value);
               }}
+              onBlur={() => {
+                checkEmptyInput(address, setFeedbackMsg);
+              }}
             />
           </label>
           <label>
@@ -86,6 +99,9 @@ export function User() {
               value={city}
               onChange={(e) => {
                 setCity(e.target.value);
+              }}
+              onBlur={() => {
+                checkEmptyInput(city, setFeedbackMsg);
               }}
             />
           </label>
@@ -116,6 +132,9 @@ export function User() {
               value={phone}
               onChange={(e) => {
                 setPhone(e.target.value);
+              }}
+              onBlur={() => {
+                checkEmptyInput(city, setFeedbackMsg);
               }}
             />
           </label>

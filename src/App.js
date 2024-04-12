@@ -10,6 +10,7 @@ import { Register } from './components/Register/Register';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import Layout from './components/Layout';
 import './App.scss';
+import { User } from './components/User/User';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="menu" element={<Menu />} />
                 <Route path="login" element={<Login />} />
+                <Route path="user" element={<User />} />
                 <Route path="tracker" element={<Tracker />} />
                 <Route path="cart" element={<Cart />} />
                 <Route path="register" element={<Register />} />

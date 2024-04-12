@@ -23,7 +23,6 @@
     }
     .loginContainer{
         width: 100%;
-        max-width: 400px;
         height: auto;
         background-color: $card-background-color;
         border-radius: 5px;
@@ -101,7 +100,6 @@
         flex-direction: column;
         overflow: visible;
         max-height: none;
-        // gap: 20px;
         .imgContainer {
             width: 100%;
             height: auto;
@@ -109,10 +107,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            // overflow: visible;
             max-height: 200px;
             img{
-            //    width: clamp(160px, 30%, 200px);
                width: 100%;
                height: auto;
                transform: translate(0,35%);
@@ -127,7 +123,6 @@
 @media (max-width: $small-breakpoint) {
     .login {
         padding: 0 $small-padding;
-        // gap: 10px;
         .imgContainer {
             width: 100%;
             height: auto;
@@ -135,10 +130,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            // img{
-            //    width: clamp(120px, 40%, 160px);
-            //    height: auto;
-            // }
         }
         .loginContainer{
             padding: 20px 15px;

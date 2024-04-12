@@ -6,9 +6,11 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { formatCurrency } from '../../Helper';
 import { CartContext } from '../../context/CartContext';
+import { AuthContext } from '../../context/AuthContext';
 
 function Header() {
   const { cartItems, cartAmount } = useContext(CartContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const [isActive, setIsActive] = useState(false);
   const [linksClasses, setClasses] = useState(styles.linksContainer);
 
@@ -45,15 +47,23 @@ function Header() {
         </div>
         <div className={styles.navbar}>
           <div className={linksClasses}>
-            <Link to="/tracker" className={styles.link} onClick={toggleLinks}>
-              Tracker
-            </Link>
+            {isLoggedIn && (
+              <Link to="/tracker" className={styles.link} onClick={toggleLinks}>
+                Tracker
+              </Link>
+            )}
             <Link to="/menu" className={styles.link} onClick={toggleLinks}>
               Menu
             </Link>
-            <Link to="/login" className={styles.link} onClick={toggleLinks}>
-              Login
-            </Link>
+            {isLoggedIn ? (
+              <Link to="/user" className={styles.link} onClick={toggleLinks}>
+                My Profile
+              </Link>
+            ) : (
+              <Link to="/login" className={styles.link} onClick={toggleLinks}>
+                Login
+              </Link>
+            )}
             <Link to="/cart" className={styles.link} onClick={toggleLinks}>
               <div
                 className={

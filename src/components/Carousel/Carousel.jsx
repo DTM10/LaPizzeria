@@ -1,11 +1,12 @@
 import styles from './Carousel.module.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import CarouselCard from '../CarouselCard/CarouselCard';
 
 export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
   const [hasTimeout, setHasTimeout] = useState(null);
+  const [timeoutId, setTimeoutId] = useState();
 
-  const nextCard = () => {
+  const nextCard = useCallback(() => {
     if (!hasTimeout) {
       setHasTimeout(true);
       setCurrentIndex(1);
@@ -13,13 +14,21 @@ export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
       const newIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
       setCurrentIndex(newIndex);
     }
-  };
+  }, [cards, currentIndex, hasTimeout, setCurrentIndex]);
+
+  const createTimeout = useCallback(() => {
+    const id = setTimeout(() => {
+      nextCard();
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }, 3000);
+    setTimeoutId(id);
+  }, [nextCard, timeoutId]);
 
   useEffect(() => {
-    setTimeout(() => {
-      nextCard();
-    }, 3000);
-  }, [currentIndex]);
+    createTimeout();
+  }, [currentIndex, createTimeout]);
 
   return (
     <div className={styles.carousel}>
@@ -35,7 +44,10 @@ export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
           <button
             key={index}
             className={currentIndex === index ? styles.active : ''}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => {
+              clearTimeout(timeoutId);
+              setCurrentIndex(index);
+            }}
           >
             &#9679;
           </button>

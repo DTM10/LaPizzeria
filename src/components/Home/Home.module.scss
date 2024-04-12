@@ -1,15 +1,19 @@
 @import '../../styles/variables.scss';
 
 .home {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 	min-height: 60vh;
 	position: relative;
-    .carouselContainer {
-	
+    .imgContainer {
+	width: 100%;
+
+    
     }
+    
 }
 
 @media (max-width: $medium-breakpoint) {

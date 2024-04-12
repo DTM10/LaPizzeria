@@ -72,20 +72,30 @@
                         width: 14px;
                         height: auto;
                     }
+                    .cartIcon:active {
+                        color: $primary-content-color;
+                    }
                     .cartAmount {
                         padding-left: 3px;
+                    }
+                }
+                .cart:active {
+                    .cartIcon {
+                        color: $primary-content-color;
                     }
                 }
                 .emptyCart {
                     display: flex;
                     justify-content: space-between;
                     .emptyCartIcon {
-                        color: $primary-content-color;
-                        -webkit-text-fill-color: $primary-content-color; 
-	                    -webkit-opacity: 1; 
                         opacity: 0.3;
                         width: 14px;
                         height: auto;
+                    }
+                }
+                .emptyCart {
+                    .emptyCartIcon {
+                        color: $primary-content-color;
                     }
                 }
             }
