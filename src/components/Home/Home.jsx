@@ -13,56 +13,50 @@ import { formatCurrency, getWeekDayStr } from '../../Helper';
 export function Home() {
   const { pizzas, sundaySpecial } = useContext(CartContext);
 
-  const initialCard = useMemo(
-    () => [
-      {
-        title: 'Any Pizza',
-        info: 'on our menu',
-        price: formatCurrency(14),
-        img: './images/Salsiccia.webp',
-        altText: 'pizza-image',
-      },
-    ],
-    []
-  );
+  const initialCard = [
+    {
+      title: 'Any Pizza',
+      info: 'on our menu',
+      price: formatCurrency(14),
+      img: './images/Salsiccia.webp',
+      altText: 'pizza-image',
+    },
+  ];
   const [cards, setCards] = useState(initialCard);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const getCardsData = useCallback(
-    (pizzas) => {
-      const pizzasSpecials = pizzas.filter(
-        (pizza) => pizza.specialDay.length > 0
-      );
-      pizzasSpecials.sort((a, b) => a.specialDay - b.specialDay);
+  const getCardsData = (pizzas) => {
+    const pizzasSpecials = pizzas.filter(
+      (pizza) => pizza.specialDay.length > 0
+    );
+    pizzasSpecials.sort((a, b) => a.specialDay - b.specialDay);
 
-      const addingCards = pizzasSpecials.map((special) => {
-        return {
-          title: `${getWeekDayStr(special.specialDay[0])} Special`,
-          info: special.title,
-          price: formatCurrency(special.specialPrice),
-          img: special.src,
-          altText: `${special.title}-pizza`,
-          specialDay: special.specialDay,
-        };
-      });
-
-      const sunday = {
-        title: 'Sunday Special',
-        info: `Buy ${sundaySpecial.minQty} or more for`,
-        price: `${formatCurrency(sundaySpecial.pricePerPizza)} each`,
-        img: './images/Rucola-Prosciutto.webp',
-        altText: `pizza-img`,
-        specialDay: 0,
+    const addingCards = pizzasSpecials.map((special) => {
+      return {
+        title: `${getWeekDayStr(special.specialDay[0])} Special`,
+        info: special.title,
+        price: formatCurrency(special.specialPrice),
+        img: special.src,
+        altText: `${special.title}-pizza`,
+        specialDay: special.specialDay,
       };
+    });
 
-      setCards([...initialCard, ...addingCards, sunday]);
-    },
-    [initialCard, sundaySpecial]
-  );
+    const sunday = {
+      title: 'Sunday Special',
+      info: `Buy ${sundaySpecial.minQty} or more for`,
+      price: `${formatCurrency(sundaySpecial.pricePerPizza)} each`,
+      img: './images/Rucola-Prosciutto.webp',
+      altText: `pizza-img`,
+      specialDay: 0,
+    };
+
+    setCards([...initialCard, ...addingCards, sunday]);
+  };
 
   useEffect(() => {
     getCardsData(pizzas);
-  }, [pizzas, sundaySpecial, getCardsData]);
+  }, [pizzas, sundaySpecial]);
 
   return (
     <div className={styles.home}>

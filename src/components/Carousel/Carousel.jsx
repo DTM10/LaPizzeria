@@ -6,7 +6,7 @@ export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
   const [hasTimeout, setHasTimeout] = useState(null);
   const [timeoutId, setTimeoutId] = useState();
 
-  const nextCard = useCallback(() => {
+  const nextCard = () => {
     if (!hasTimeout) {
       setHasTimeout(true);
       setCurrentIndex(1);
@@ -14,9 +14,9 @@ export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
       const newIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
       setCurrentIndex(newIndex);
     }
-  }, [cards, currentIndex, hasTimeout, setCurrentIndex]);
+  };
 
-  const createTimeout = useCallback(() => {
+  const createTimeout = () => {
     const id = setTimeout(() => {
       nextCard();
       return () => {
@@ -24,11 +24,11 @@ export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
       };
     }, 3000);
     setTimeoutId(id);
-  }, [nextCard, timeoutId]);
+  };
 
   useEffect(() => {
     createTimeout();
-  }, [currentIndex, createTimeout]);
+  }, [currentIndex]);
 
   return (
     <div className={styles.carousel}>
