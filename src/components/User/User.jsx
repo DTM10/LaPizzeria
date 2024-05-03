@@ -14,6 +14,7 @@ import { auth, db } from '../../firebaseConfig';
 import { doc, setDoc } from 'firebase/firestore';
 import { Feedback } from '../Feedback/Feedback';
 import { GeneralButton } from '../GeneralButton/GeneralButton';
+import { useNavigate } from 'react-router-dom';
 
 export function User() {
   const { userDetails, setUserId, userId } = useContext(AuthContext);
@@ -23,6 +24,8 @@ export function User() {
   const [phone, setPhone] = useState(userDetails.phone);
   const [showFeedbackMsg, setShowFeedback] = useState(false);
   const [feedbackMsg, setFeedbackMsg] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (feedbackMsg !== '') {
@@ -63,6 +66,7 @@ export function User() {
     signOut(auth)
       .then(() => {
         setUserId('');
+        navigate('/home');
       })
       .catch((e) => {
         setFeedbackMsg(`Error trying to log the user out: ${e}`);

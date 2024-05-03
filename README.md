@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Pizza Store Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The Pizza Store Web Application is a full-featured online ordering system designed for a pizza restaurant. It allows customers to browse the menu, register, login, place orders, and track the status of their orders in real-time. This application is built using React and Firebase to offer a responsive and interactive user experience.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Home Page**: Showcases daily and weekly pizza specials and promotions using an auto-rotating carousel.
+- **Menu Page**: Displays all available pizzas and allows users to add items to their cart.
+- **Login/Registration Page**: Secure user authentication for order tracking and history.
+- **Order Tracker**: Real-time updates on order preparation and delivery status. Just shown, when the user is logged in.
+- **Shopping Cart**: Review and modify orders before checkout, including quantity adjustments and item removals.
+- **Responsive Design**: Ensures a great experience across desktop and mobile devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React**: For building the user interface.
+- **Firebase**: Backend as a Service (BaaS) - used for authentication, database (Firestore) management, and hosting.
+- **SCSS**: For styling components with modular and maintainable CSS.
+- **React Router**: For navigation and routing management.
 
-### `npm test`
+## Setup and Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- Node.js
+- npm (Node Package Manager)
+- A Firebase account
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation Steps
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the Repository**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/DTM10/LaPizzeria.git
+   cd lapizzeria
 
-### `npm run eject`
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Install Dependencies**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Set Up Firebase**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Create a project in Firebase.
+- Enable Firestore and Authentication.
+- Set up the Firestore data as described in the Firebase Setup section below.
 
-## Learn More
+Firebase Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Firestore Collections: Users, Orders
+Authentication: Email/Password setup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. **Configure Environment Variables**
 
-### Code Splitting
+Cretate a .env.local file and copy and paste the below with your Firebase Config Info
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+REACT_APP_FIREBASE_API_KEY=YourValue
+REACT_APP_FIREBASE_AUTH_DOMAIN=YourValue
+REACT_APP_FIREBASE_PROJECT_ID=YourValue
+REACT_APP_FIREBASE_STORAGE_BUCKET=YourValue
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=YourValue
+REACT_APP_FIREBASE_APP_ID=YourValue
+REACT_APP_FIREBASE_MEASUREMENT_ID=YourValue
 
-### Analyzing the Bundle Size
+5. **Start the Development Server**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+npm start
 
-### Making a Progressive Web App
+6. **Start the Development Server**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+After starting the app, navigate through the different pages using the navbar. You can register a new user, log in, place orders, and track them through the tracker interface.

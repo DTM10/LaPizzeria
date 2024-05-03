@@ -1,5 +1,5 @@
 import styles from './Carousel.module.scss';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import CarouselCard from '../CarouselCard/CarouselCard';
 
 export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
@@ -16,7 +16,7 @@ export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
     }
   };
 
-  const createTimeout = () => {
+  const createTimeout = useMemo(() => {
     const id = setTimeout(() => {
       nextCard();
       return () => {
@@ -24,11 +24,11 @@ export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
       };
     }, 3000);
     setTimeoutId(id);
-  };
-
-  useEffect(() => {
-    createTimeout();
   }, [currentIndex]);
+
+  // useEffect(() => {
+  //   createTimeout();
+  // }, [currentIndex]);
 
   return (
     <div className={styles.carousel}>
