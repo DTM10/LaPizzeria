@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styles from './Tracker.module.scss';
 import { AuthContext } from '../../context/AuthContext';
 import NotLoggedIn from '../NotLoggedIn/NotLoggedIn';
@@ -15,11 +15,6 @@ export function Tracker() {
     isLoggedIn,
   } = useContext(AuthContext);
 
-  useEffect(() => {
-    if (userId) {
-      fetchOrders();
-    }
-  }, [fetchOrders, userDetails, userId]);
   return isLoggedIn ? (
     <div className={styles.tracker}>
       <div className={styles.trackerContainer}>
@@ -28,6 +23,7 @@ export function Tracker() {
           pendingOrders.map((order) => {
             return (
               <Accordion
+                key={order.orderId}
                 generalObj={{
                   orderId: order.orderId,
                   timestamp: order.timestamp,
@@ -42,6 +38,7 @@ export function Tracker() {
           forDeliverOrders.map((order) => {
             return (
               <Accordion
+                key={order.orderId}
                 generalObj={{
                   orderId: order.orderId,
                   timestamp: order.timestamp,
@@ -56,6 +53,7 @@ export function Tracker() {
           deliveredOrders.map((order) => {
             return (
               <Accordion
+                key={order.orderId}
                 generalObj={{
                   orderId: order.orderId,
                   timestamp: order.timestamp,

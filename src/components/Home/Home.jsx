@@ -55,8 +55,10 @@ export function Home() {
   };
 
   useEffect(() => {
-    getCardsData(pizzas);
-  }, [pizzas, sundaySpecial]);
+    if (pizzas.length > 0) {
+      getCardsData(pizzas);
+    }
+  }, [pizzas]);
 
   return (
     <div className={styles.home}>

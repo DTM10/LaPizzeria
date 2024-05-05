@@ -26,10 +26,6 @@ export default function Carousel({ cards, currentIndex, setCurrentIndex }) {
     setTimeoutId(id);
   }, [currentIndex]);
 
-  // useEffect(() => {
-  //   createTimeout();
-  // }, [currentIndex]);
-
   return (
     <div className={styles.carousel}>
       <CarouselCard

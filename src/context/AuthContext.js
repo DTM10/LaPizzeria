@@ -20,45 +20,56 @@ function AuthProvider({ children }) {
   const [forDeliverOrders, setForDeliverOrders] = useState([]);
   const [deliveredOrders, setDeliveredOrders] = useState([]);
 
+  console.log('AuthContext');
+
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    console.log('AuthContext no dependency useEffect');
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
         if (user.emailVerified) {
           setUserId(uid);
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+          setUserId('');
         }
       } else {
         setIsLoggedIn(false);
         setUserId('');
       }
     });
+
+    return () => unsubscribe();
   }, []);
 
   useEffect(() => {
-    if (userId !== '') {
-      setIsLoggedIn(true);
-      fetchOrders();
+    console.log('AuthContext WITH dependency useEffect');
+    if (userId) {
+      console.log(
+        'AuthContext WITH dependency useEffect - passed condition with userId: ',
+        userId
+      );
+
       const docRef = doc(db, 'users', userId);
-      getDoc(docRef)
-        .then((res) => {
-          const docSnap = res;
-          if (docSnap.exists()) {
-            setUserDetails(docSnap.data());
-          } else {
-            console.log('No such document!');
-          }
-        })
-        .catch((e) => {
-          console.log('Error trying to retrieve users details');
-        });
+      const fetchUserData = async () => {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUserDetails(docSnap.data());
+        } else {
+          console.log('No such document!');
+        }
+      };
+
+      fetchUserData();
+      fetchOrders();
     } else {
-      setIsLoggedIn(false);
       setUserDetails({});
-      setPendingOrders([]);
+      setIsLoggedIn(false);
     }
   }, [userId]);
 
-  const fetchPendingOrders = () => {
+  const fetchPendingOrders = useCallback(() => {
     const userDocRef = doc(db, 'users', userId);
     const ordersCollectionRef = collection(userDocRef, 'orders');
     const q = query(ordersCollectionRef, where('status', '==', 'pending'));
@@ -71,9 +82,9 @@ function AuthProvider({ children }) {
       tempOrders.sort((a, b) => a.timestamp - b.timestamp);
       setPendingOrders(tempOrders);
     });
-  };
+  }, [userId]);
 
-  const fetchForDeliverOrders = () => {
+  const fetchForDeliverOrders = useCallback(() => {
     const userDocRef = doc(db, 'users', userId);
     const ordersCollectionRef = collection(userDocRef, 'orders');
     const q = query(ordersCollectionRef, where('status', '==', 'fordeliver'));
@@ -85,9 +96,9 @@ function AuthProvider({ children }) {
       tempOrders.sort((a, b) => a.timestamp - b.timestamp);
       setForDeliverOrders(tempOrders);
     });
-  };
+  }, [userId]);
 
-  const fetchDeliveredOrders = () => {
+  const fetchDeliveredOrders = useCallback(() => {
     const userDocRef = doc(db, 'users', userId);
     const ordersCollectionRef = collection(userDocRef, 'orders');
     const q = query(ordersCollectionRef, where('status', '==', 'delivered'));
@@ -99,13 +110,14 @@ function AuthProvider({ children }) {
       tempOrders.sort((a, b) => a.timestamp - b.timestamp);
       setDeliveredOrders(tempOrders);
     });
-  };
+  }, [userId]);
 
-  const fetchOrders = () => {
+  const fetchOrders = useCallback(() => {
+    if (!userId) return;
     fetchPendingOrders();
     fetchForDeliverOrders();
     fetchDeliveredOrders();
-  };
+  }, [userId]);
 
   return (
     <AuthContext.Provider

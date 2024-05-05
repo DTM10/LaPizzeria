@@ -35,9 +35,9 @@ export default function Accordion({ generalObj, childrenObj }) {
             <p className={styles.label}>Order Id:</p>
             <p className={styles.value}>{generalObj.orderId}</p>
           </div>
-          {childrenObj.map((pizza) => {
+          {childrenObj.map((pizza, index) => {
             return (
-              <div className={styles.pizza}>
+              <div className={styles.pizza} key={`pizza-${index}`}>
                 <div className={styles.data}>
                   <p className={styles.label}>Topping:</p>
                   <p className={styles.value}>{pizza.pizzaTitle}</p>
